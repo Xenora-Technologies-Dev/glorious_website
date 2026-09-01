@@ -1,0 +1,82 @@
+import { EnquiryForm } from '@/components/contact/EnquiryForm'
+import { Seo } from '@/components/seo/Seo'
+import { Button } from '@/components/ui/Button'
+import { Container } from '@/components/ui/Container'
+import { company } from '@/content/company'
+import { breadcrumbJsonLd } from '@/content/jsonld'
+import { conversionPaths } from '@/content/navigation'
+import { pageMeta } from '@/content/seo'
+
+export function ContactPage() {
+  return (
+    <>
+      <Seo
+        title={pageMeta.contact.title}
+        description={pageMeta.contact.description}
+        jsonLd={breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Contact', path: '/contact' },
+        ])}
+      />
+      <section className="bg-ivory pt-32 pb-24 lg:pt-40 lg:pb-32">
+        <Container>
+          <p className="mb-5 text-[11px] font-semibold tracking-[0.24em] uppercase text-gold-muted">
+            Contact
+          </p>
+          <h1 className="font-display max-w-4xl text-5xl leading-[1.05] text-navy sm:text-6xl lg:text-7xl">
+            Let’s Talk Business.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+            Product information, quotations, private-label programmes and partnerships. Email is
+            not listed here because it is not verified in the materials used for this site.
+          </p>
+
+          <div className="mt-16 grid gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <EnquiryForm />
+            </div>
+            <aside className="lg:col-span-5">
+              <div className="space-y-8">
+                <div>
+                  <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
+                    UAE
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">
+                    {company.offices.uae.address}
+                  </p>
+                  <p className="mt-2 text-sm text-muted">{company.offices.uae.poBox}</p>
+                  <a href={company.offices.uae.phoneHref} className="mt-3 inline-block text-navy">
+                    {company.offices.uae.phone}
+                  </a>
+                </div>
+                <div>
+                  <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
+                    United Kingdom
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">
+                    {company.offices.uk.address}
+                  </p>
+                  <a href={company.offices.uk.phoneHref} className="mt-3 inline-block text-navy">
+                    {company.offices.uk.phone}
+                  </a>
+                </div>
+              </div>
+              <div className="mt-12">
+                <Button href={company.offices.uae.phoneHref} variant="navy">
+                  Contact sales
+                </Button>
+              </div>
+              <div className="mt-10 flex flex-col gap-3">
+                {conversionPaths.map((path) => (
+                  <Button key={path.href} href={path.href} variant="ghost" magnetic={false}>
+                    {path.label}
+                  </Button>
+                ))}
+              </div>
+            </aside>
+          </div>
+        </Container>
+      </section>
+    </>
+  )
+}
