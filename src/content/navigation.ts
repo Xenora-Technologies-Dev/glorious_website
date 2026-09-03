@@ -1,5 +1,5 @@
 import { productCategories } from '@/content/products'
-import { catalogueBrands } from '@/content/brands'
+import { brands } from '@/content/brands'
 
 export const navCta = {
   label: 'Start a Conversation',
@@ -16,22 +16,46 @@ export const conversionPaths = [
 
 export const overlayRoutes = ['/', '/about', '/private-label', '/global-sourcing', '/packaging']
 
+export type MegaKey = 'products' | 'brands' | 'solutions'
+
+export type PrimaryNavItem = {
+  label: string
+  href?: string
+  mega?: MegaKey
+}
+
+export const primaryNav: PrimaryNavItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Products', href: '/products', mega: 'products' },
+  { label: 'Brands', href: '/brands', mega: 'brands' },
+  { label: 'Solutions', mega: 'solutions' },
+  { label: 'Insights', href: '/insights' },
+  { label: 'Contact Us', href: '/contact' },
+]
+
 export const productMega = {
   categories: productCategories.map((category) => ({
     label: category.navLabel,
     href: `/products/${category.slug}`,
   })),
-  featured: [
-    { label: 'American Hat', href: '/brands/american-hat' },
-    { label: 'Zahita', href: '/brands/zahita' },
-    { label: 'Ficus Food', href: '/brands/ficus' },
-  ],
+  featured: (['american-hat', 'zaitha', 'delicia'] as const).map((slug) => {
+    const brand = brands.find((item) => item.slug === slug)!
+    return {
+      label: brand.name,
+      href: brand.href,
+      logo: brand.logo,
+      logoAspect: brand.logoAspect,
+    }
+  }),
   extra: { label: 'Private Label', href: '/private-label' },
 }
 
-export const brandMega = catalogueBrands.map((brand) => ({
+export const brandMega = brands.map((brand) => ({
   label: brand.name,
   href: brand.href,
+  logo: brand.logo,
+  logoAspect: brand.logoAspect,
 }))
 
 export const solutionsMega = [
@@ -40,24 +64,20 @@ export const solutionsMega = [
   { label: 'Packaging', href: '/packaging', copy: 'Labeling and documentation' },
 ] as const
 
-export const companyMega = [
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-] as const
-
 export const footerLinks = {
   company: [
-    { label: 'About', href: '/about' },
+    { label: 'Home', href: '/' },
+    { label: 'About Us', href: '/about' },
     { label: 'Global Sourcing', href: '/global-sourcing' },
     { label: 'Insights', href: '/insights' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Contact Us', href: '/contact' },
   ],
   products: [
     { label: 'All products', href: '/products' },
     { label: 'Pasta', href: '/products/pasta' },
+    { label: 'Sauces', href: '/products/sauces' },
     { label: 'Oils', href: '/products/oils' },
-    { label: 'Tea', href: '/products/tea' },
-    { label: 'Grocery', href: '/products/grocery' },
+    { label: 'Dairy', href: '/products/dairy' },
   ],
   services: [
     { label: 'Private Label', href: '/private-label' },

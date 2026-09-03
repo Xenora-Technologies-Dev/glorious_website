@@ -1,14 +1,16 @@
 import { company } from '@/content/company'
 import {
   brandMega,
-  companyMega,
   navCta,
+  primaryNav,
   productMega,
   solutionsMega,
+  type MegaKey,
 } from '@/content/navigation'
 import { cn } from '@/lib/cn'
 import { gsap, useGSAP } from '@/lib/gsap'
 import { Button } from '@/components/ui/Button'
+import { BrandLogo } from '@/components/ui/BrandLogo'
 import { Menu, X } from 'lucide-react'
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
@@ -17,7 +19,7 @@ type NavbarProps = {
   overlay?: boolean
 }
 
-type MenuKey = 'products' | 'brands' | 'solutions' | 'company' | null
+type MenuKey = MegaKey | null
 
 export function Navbar({ overlay = false }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
@@ -100,7 +102,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
     <>
       <header
         className={cn(
-          'fixed top-0 right-0 left-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500',
+          'fixed top-0 right-0 left-0 z-50 pt-[env(safe-area-inset-top)] transition-[background-color,border-color,backdrop-filter] duration-500',
           solid
             ? 'border-b border-line bg-ivory/90 shadow-nav backdrop-blur-xl'
             : 'border-b border-transparent bg-transparent',
@@ -108,18 +110,23 @@ export function Navbar({ overlay = false }: NavbarProps) {
         onMouseLeave={scheduleMegaClose}
         onMouseEnter={() => window.clearTimeout(closeTimer.current)}
       >
-        <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5 sm:h-20 sm:px-8 lg:px-12 xl:px-16">
-          <Link to="/" className="flex items-center gap-3" aria-label={company.shortName} onClick={closeMenu}>
+        <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-4 px-4 sm:h-20 sm:px-8 lg:px-10 xl:px-16">
+          <Link
+            to="/"
+            className="flex min-w-0 shrink-0 items-center gap-3"
+            aria-label={company.shortName}
+            onClick={closeMenu}
+          >
             <img
               src="/brand/logo.png"
               alt=""
               width={48}
               height={48}
-              className="size-11 rounded-full object-cover sm:size-12"
+              className="size-10 rounded-full object-cover sm:size-12"
             />
             <span
               className={cn(
-                'hidden font-sans text-[11px] font-semibold tracking-[0.18em] uppercase sm:block',
+                'hidden truncate font-sans text-[11px] font-semibold tracking-[0.18em] uppercase sm:block lg:hidden 2xl:block',
                 light ? 'text-ivory' : 'text-navy',
               )}
             >
@@ -127,45 +134,36 @@ export function Navbar({ overlay = false }: NavbarProps) {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-8 xl:flex" aria-label="Primary">
-            <MegaTrigger
-              label="Products"
-              href="/products"
-              active={mega === 'products'}
-              light={light}
-              onEnter={() => openMega('products')}
-            />
-            <MegaTrigger
-              label="Brands"
-              href="/brands"
-              active={mega === 'brands'}
-              light={light}
-              onEnter={() => openMega('brands')}
-            />
-            <MegaTrigger
-              label="Solutions"
-              active={mega === 'solutions'}
-              light={light}
-              onEnter={() => openMega('solutions')}
-            />
-            <MegaTrigger
-              label="Company"
-              href="/about"
-              active={mega === 'company'}
-              light={light}
-              onEnter={() => openMega('company')}
-            />
-            <NavLink
-              to="/insights"
-              onMouseEnter={() => openMega(null)}
-              className={({ isActive }) => navClass(light, isActive)}
-            >
-              Insights
-            </NavLink>
+          <nav
+            className="hidden min-w-0 items-center justify-end gap-3 lg:flex xl:gap-5 2xl:gap-7"
+            aria-label="Primary"
+          >
+            {primaryNav.map((item) =>
+              item.mega ? (
+                <MegaTrigger
+                  key={item.label}
+                  label={item.label}
+                  href={item.href}
+                  active={mega === item.mega}
+                  light={light}
+                  onEnter={() => openMega(item.mega ?? null)}
+                />
+              ) : (
+                <NavLink
+                  key={item.href}
+                  to={item.href!}
+                  end={item.href === '/'}
+                  onMouseEnter={() => openMega(null)}
+                  className={({ isActive }) => navClass(light, isActive)}
+                >
+                  {item.label}
+                </NavLink>
+              ),
+            )}
           </nav>
 
-          <div className="flex items-center gap-3">
-            <div className="hidden md:block">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <div className="hidden xl:block">
               <Button href={navCta.href} variant={light ? 'outline' : 'navy'} size="md">
                 {navCta.label}
               </Button>
@@ -173,7 +171,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
             <button
               type="button"
               className={cn(
-                'inline-flex size-11 items-center justify-center xl:hidden',
+                'inline-flex size-11 items-center justify-center lg:hidden',
                 light ? 'text-ivory' : 'text-navy',
               )}
               aria-expanded={open}
@@ -187,25 +185,39 @@ export function Navbar({ overlay = false }: NavbarProps) {
         </div>
 
         {mega ? (
-          <div className="hidden border-t border-line bg-ivory xl:block">
-            <div className="mx-auto grid max-w-[1440px] grid-cols-12 gap-10 px-12 py-10 xl:px-16">
+          <div className="hidden border-t border-line bg-ivory lg:block">
+            <div className="mx-auto grid max-w-[1440px] grid-cols-12 gap-8 px-8 py-8 xl:gap-10 xl:px-16 xl:py-10">
               {mega === 'products' ? (
                 <>
-                  <MegaCol title="Categories" className="col-span-5">
+                  <MegaCol title="Categories" className="col-span-12 md:col-span-5">
                     {productMega.categories.map((item) => (
                       <MegaLink key={item.href} href={item.href}>
                         {item.label}
                       </MegaLink>
                     ))}
                   </MegaCol>
-                  <MegaCol title="Featured brands" className="col-span-4">
+                  <MegaCol title="Featured brands" className="col-span-12 md:col-span-4">
                     {productMega.featured.map((item) => (
-                      <MegaLink key={item.href} href={item.href}>
-                        {item.label}
-                      </MegaLink>
+                      <Link
+                        key={item.href}
+                        to={item.href}
+                        className="group flex items-center gap-3 py-1"
+                      >
+                        <BrandLogo
+                          brand={{
+                            name: item.label,
+                            logo: item.logo,
+                            logoAspect: item.logoAspect,
+                          }}
+                          size="sm"
+                        />
+                        <span className="text-base text-navy transition-colors group-hover:text-gold xl:text-lg">
+                          {item.label}
+                        </span>
+                      </Link>
                     ))}
                   </MegaCol>
-                  <MegaCol title="Programmes" className="col-span-3">
+                  <MegaCol title="Programmes" className="col-span-12 md:col-span-3">
                     <MegaLink href={productMega.extra.href}>{productMega.extra.label}</MegaLink>
                     <MegaLink href="/products">All products</MegaLink>
                   </MegaCol>
@@ -213,33 +225,40 @@ export function Navbar({ overlay = false }: NavbarProps) {
               ) : null}
               {mega === 'brands' ? (
                 <MegaCol title="Portfolio" className="col-span-12">
-                  <div className="grid grid-cols-4 gap-x-8 gap-y-3">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
                     {brandMega.map((item) => (
-                      <MegaLink key={item.href} href={item.href}>
-                        {item.label}
-                      </MegaLink>
+                      <Link
+                        key={item.href}
+                        to={item.href}
+                        className="group flex items-center gap-3 border border-line px-3 py-3 transition-colors hover:border-gold"
+                      >
+                        <BrandLogo
+                          brand={{
+                            name: item.label,
+                            logo: item.logo,
+                            logoAspect: item.logoAspect,
+                          }}
+                          size="sm"
+                        />
+                        <span className="text-sm text-navy transition-colors group-hover:text-gold xl:text-base">
+                          {item.label}
+                        </span>
+                      </Link>
                     ))}
                   </div>
                 </MegaCol>
               ) : null}
               {mega === 'solutions' ? (
-                <div className="col-span-12 grid grid-cols-3 gap-8">
+                <div className="col-span-12 grid gap-8 md:grid-cols-3">
                   {solutionsMega.map((item) => (
                     <Link key={item.href} to={item.href} className="group border-t border-line pt-5">
-                      <p className="font-display text-3xl text-navy group-hover:text-gold">{item.label}</p>
+                      <p className="font-display text-2xl text-navy group-hover:text-gold xl:text-3xl">
+                        {item.label}
+                      </p>
                       <p className="mt-2 text-sm text-muted">{item.copy}</p>
                     </Link>
                   ))}
                 </div>
-              ) : null}
-              {mega === 'company' ? (
-                <MegaCol title="Company" className="col-span-6">
-                  {companyMega.map((item) => (
-                    <MegaLink key={item.href} href={item.href}>
-                      {item.label}
-                    </MegaLink>
-                  ))}
-                </MegaCol>
               ) : null}
             </div>
           </div>
@@ -250,51 +269,94 @@ export function Navbar({ overlay = false }: NavbarProps) {
         <div
           id={menuId}
           ref={menuRef}
-          className="fixed inset-0 z-40 overflow-y-auto bg-navy-deep pt-28 pr-6 pb-10 pl-6 xl:hidden"
+          className="fixed inset-0 z-40 overflow-y-auto overscroll-contain bg-navy-deep pt-[calc(5.5rem+env(safe-area-inset-top))] pr-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pl-5 sm:px-8 lg:hidden"
         >
           <div className="mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1440px] flex-col justify-between">
-            <nav className="flex flex-col gap-8">
-              <MobileGroup title="Products">
-                <Link to="/products" data-menu-item onClick={closeMenu} className={mobileLink}>
-                  All products
-                </Link>
-                {productMega.categories.map((item) => (
-                  <Link key={item.href} to={item.href} data-menu-item onClick={closeMenu} className={mobileSub}>
+            <nav className="flex flex-col gap-7">
+              {primaryNav.map((item) => {
+                if (item.mega === 'products') {
+                  return (
+                    <MobileGroup key={item.label} title="Products">
+                      <Link to="/products" data-menu-item onClick={closeMenu} className={mobileLink}>
+                        All products
+                      </Link>
+                      {productMega.categories.map((entry) => (
+                        <Link
+                          key={entry.href}
+                          to={entry.href}
+                          data-menu-item
+                          onClick={closeMenu}
+                          className={mobileSub}
+                        >
+                          {entry.label}
+                        </Link>
+                      ))}
+                    </MobileGroup>
+                  )
+                }
+                if (item.mega === 'brands') {
+                  return (
+                    <MobileGroup key={item.label} title="Brands">
+                      {brandMega.map((entry) => (
+                        <Link
+                          key={entry.href}
+                          to={entry.href}
+                          data-menu-item
+                          onClick={closeMenu}
+                          className="flex items-center gap-3 py-1"
+                        >
+                          <BrandLogo
+                            brand={{
+                              name: entry.label,
+                              logo: entry.logo,
+                              logoAspect: entry.logoAspect,
+                            }}
+                            size="sm"
+                            plate
+                          />
+                          <span className={mobileSub}>{entry.label}</span>
+                        </Link>
+                      ))}
+                    </MobileGroup>
+                  )
+                }
+                if (item.mega === 'solutions') {
+                  return (
+                    <MobileGroup key={item.label} title="Solutions">
+                      {solutionsMega.map((entry) => (
+                        <Link
+                          key={entry.href}
+                          to={entry.href}
+                          data-menu-item
+                          onClick={closeMenu}
+                          className={mobileSub}
+                        >
+                          {entry.label}
+                        </Link>
+                      ))}
+                    </MobileGroup>
+                  )
+                }
+                return (
+                  <Link
+                    key={item.href}
+                    to={item.href!}
+                    data-menu-item
+                    onClick={closeMenu}
+                    className={mobileLink}
+                  >
                     {item.label}
                   </Link>
-                ))}
-              </MobileGroup>
-              <MobileGroup title="Brands">
-                {brandMega.map((item) => (
-                  <Link key={item.href} to={item.href} data-menu-item onClick={closeMenu} className={mobileSub}>
-                    {item.label}
-                  </Link>
-                ))}
-              </MobileGroup>
-              <MobileGroup title="Solutions">
-                {solutionsMega.map((item) => (
-                  <Link key={item.href} to={item.href} data-menu-item onClick={closeMenu} className={mobileSub}>
-                    {item.label}
-                  </Link>
-                ))}
-              </MobileGroup>
-              <MobileGroup title="Company">
-                <Link to="/about" data-menu-item onClick={closeMenu} className={mobileSub}>
-                  About
-                </Link>
-                <Link to="/contact" data-menu-item onClick={closeMenu} className={mobileSub}>
-                  Contact
-                </Link>
-              </MobileGroup>
-              <Link to="/insights" data-menu-item onClick={closeMenu} className={mobileLink}>
-                Insights
-              </Link>
+                )
+              })}
             </nav>
             <div data-menu-item className="mt-10 flex flex-col gap-4">
               <Button href={navCta.href} variant="gold" size="lg" onClick={closeMenu}>
                 {navCta.label}
               </Button>
-              <p className="text-sm text-ivory/60">{company.location} · International FMCG trading</p>
+              <p className="text-sm text-ivory/60">
+                {company.location} · International FMCG trading
+              </p>
             </div>
           </div>
         </div>
@@ -305,7 +367,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
 
 function navClass(light: boolean, isActive: boolean) {
   return cn(
-    'nav-link relative py-2 text-[12px] font-medium tracking-[0.16em] uppercase',
+    'nav-link relative shrink-0 py-2 text-[11px] font-medium tracking-[0.12em] uppercase whitespace-nowrap xl:text-[12px] xl:tracking-[0.16em]',
     light ? 'text-ivory/80 hover:text-gold' : 'text-navy/70 hover:text-navy',
     isActive && (light ? 'text-gold' : 'text-navy'),
   )
@@ -364,7 +426,9 @@ function MegaCol({
 }) {
   return (
     <div className={className}>
-      <p className="mb-4 text-[11px] font-semibold tracking-[0.2em] uppercase text-gold-muted">{title}</p>
+      <p className="mb-4 text-[11px] font-semibold tracking-[0.2em] uppercase text-gold-muted">
+        {title}
+      </p>
       <div className="flex flex-col gap-2">{children}</div>
     </div>
   )
@@ -372,7 +436,7 @@ function MegaCol({
 
 function MegaLink({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <Link to={href} className="text-lg text-navy transition-colors hover:text-gold">
+    <Link to={href} className="text-base text-navy transition-colors hover:text-gold xl:text-lg">
       {children}
     </Link>
   )
@@ -381,7 +445,7 @@ function MegaLink({ href, children }: { href: string; children: ReactNode }) {
 function MobileGroup({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div>
-      <p data-menu-item className="mb-3 font-display text-4xl text-ivory sm:text-5xl">
+      <p data-menu-item className="mb-3 font-display text-[2rem] text-ivory sm:text-5xl">
         {title}
       </p>
       <div className="flex flex-col gap-2">{children}</div>
@@ -389,5 +453,6 @@ function MobileGroup({ title, children }: { title: string; children: ReactNode }
   )
 }
 
-const mobileLink = 'font-display text-4xl text-ivory hover:text-gold sm:text-5xl'
-const mobileSub = 'text-lg text-ivory/70 hover:text-gold'
+const mobileLink =
+  'font-display text-[2rem] leading-tight text-ivory hover:text-gold sm:text-5xl'
+const mobileSub = 'text-base text-ivory/70 hover:text-gold sm:text-lg'

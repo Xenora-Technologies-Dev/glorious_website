@@ -12,7 +12,7 @@ export function Layout() {
   const overlay = overlayRoutes.includes(location.pathname)
 
   return (
-    <div className="min-h-svh bg-cream">
+    <div className="min-h-svh overflow-x-hidden bg-cream">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-gold focus:px-4 focus:py-2 focus:text-navy-deep"
@@ -22,7 +22,7 @@ export function Layout() {
       <Cursor />
       <PageTransition />
       <Navbar overlay={overlay} />
-      <main id="main">
+      <main id="main" className="min-w-0">
         <Outlet />
       </main>
       <Footer />

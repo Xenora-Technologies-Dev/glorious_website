@@ -15,12 +15,12 @@ export const pageMeta: Record<
   products: {
     title: 'Products | Glorious Ascent',
     description:
-      'Pasta, legumes, sauces, oils, honey, condiments, tea and grocery staples from the Glorious Ascent food catalogue.',
+      'Pasta, sauces, oils, condiments, dairy and grocery products from Glorious Ascent, including American Hat, Zaitha, Tash, Zarella and Legacy Valley.'
   },
   brands: {
     title: 'Brands | Glorious Ascent',
     description:
-      'Owned and private-label food brands from the Glorious Ascent catalogue, including American Hat, Zahita, Tash, Dachi, Zarella, Delicia and Ficus Food.',
+      'Owned and private-label food brands from Glorious Ascent, including American Hat, Zaitha, Tash, Dachi, Zarella, Delicia and Legacy Valley.',
   },
   privateLabel: {
     title: 'Private Label | Glorious Ascent',
@@ -30,7 +30,7 @@ export const pageMeta: Record<
   sourcing: {
     title: 'Global Sourcing | Glorious Ascent',
     description:
-      'Import, export and global food sourcing, with catalogue-supported origins including Italy, Spain, India and the UAE.',
+      'Import, export and global food sourcing, with manufacturing origins including Italy, Spain, India and the UAE.',
   },
   packaging: {
     title: 'Packaging & Labeling | Glorious Ascent',
@@ -40,7 +40,7 @@ export const pageMeta: Record<
   insights: {
     title: 'Insights | Glorious Ascent',
     description:
-      'Editorial notes on food trading, sourcing, packaging and FMCG. Sample articles are clearly marked until company publishing begins.',
+      'Insights on food trading, sourcing, packaging and FMCG from Glorious Ascent.',
   },
   contact: {
     title: 'Contact | Glorious Ascent',

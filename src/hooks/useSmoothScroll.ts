@@ -15,6 +15,7 @@ export function useSmoothScroll() {
 
   useEffect(() => {
     if (prefersReducedMotion()) return
+    if (window.matchMedia('(pointer: coarse)').matches) return
 
     const instance = new Lenis({
       duration: 1.1,
@@ -46,7 +47,11 @@ export function useSmoothScroll() {
   }, [])
 
   useEffect(() => {
-    lenis?.scrollTo(0, { immediate: true })
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true })
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    }
     requestAnimationFrame(() => ScrollTrigger.refresh())
   }, [location.pathname])
 }

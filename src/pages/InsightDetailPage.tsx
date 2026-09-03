@@ -25,7 +25,7 @@ export function InsightDetailPage() {
         ])}
       />
       <PageHero
-        eyebrow={`Sample · ${item.category}`}
+        eyebrow={item.category}
         lines={[item.title]}
         copy={item.excerpt}
         crumbs={[
@@ -36,11 +36,7 @@ export function InsightDetailPage() {
       />
       <section className="bg-ivory pb-24 lg:pb-32">
         <Container>
-          <p className="max-w-2xl text-lg leading-relaxed text-muted">
-            This is a clearly marked sample article. It is not a Glorious Ascent company
-            announcement. When official insights are published, they will replace this placeholder
-            copy.
-          </p>
+          <p className="max-w-2xl text-lg leading-relaxed text-muted">{item.body}</p>
           <div className="mt-10">
             <Button href="/insights" variant="navy">
               All insights

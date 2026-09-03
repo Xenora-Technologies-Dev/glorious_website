@@ -19,7 +19,7 @@ const journey = [
   },
   {
     title: 'Customization',
-    copy: 'Customized shapes, formats and grammage, with value-added products as described in the catalogue.',
+    copy: 'Customized shapes, formats and grammage, with value-added products made to the brief.',
     image: images.manufacturing,
   },
   {
@@ -64,14 +64,14 @@ export function PrivateLabelPage() {
           { name: 'Private Label', path: '/private-label' },
         ])}
       />
-      <section className="bg-navy-deep pt-32 pb-20 text-ivory lg:pt-40 lg:pb-28">
+      <section className="bg-navy-deep pt-[calc(7.5rem+env(safe-area-inset-top))] pb-16 text-ivory sm:pt-32 lg:pt-40 lg:pb-28">
         <Container>
           <p className="mb-6 text-[11px] font-semibold tracking-[0.24em] uppercase text-gold">
             Private label
           </p>
           <SplitHeading
             lines={['Your Brand.', 'Our Supply Chain.']}
-            className="font-display max-w-5xl text-[2.5rem] leading-[0.95] sm:text-7xl lg:text-8xl"
+            className="font-display max-w-5xl text-[clamp(2.25rem,6.5vw,6rem)] leading-[0.95]"
           />
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-ivory/72">
             Manufacture, customize, pack, label and supply — under your brand.
@@ -91,7 +91,7 @@ export function PrivateLabelPage() {
               <ImageReveal
                 src={images.packaging}
                 alt="Packaging prepared for private-label programmes"
-                className="h-[420px] w-full min-h-[280px]"
+                className="h-[min(58vw,420px)] w-full min-h-[220px]"
               />
             </div>
             <div className="lg:col-span-6">
@@ -145,7 +145,7 @@ export function PrivateLabelPage() {
       </section>
 
       <div className="sticky bottom-0 z-40 border-t border-gold/25 bg-navy-deep/95 text-ivory backdrop-blur-md">
-        <Container className="flex flex-col items-start justify-between gap-4 py-4 sm:flex-row sm:items-center">
+        <Container className="flex flex-col items-stretch justify-between gap-4 py-4 sm:flex-row sm:items-center [&>a]:w-full sm:[&>a]:w-auto">
           <p className="font-display text-xl sm:text-2xl">Your Brand. Our Supply Chain.</p>
           <Button href="/contact?intent=private-label" variant="gold">
             Discuss Your Brand

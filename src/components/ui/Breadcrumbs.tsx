@@ -17,7 +17,7 @@ export function Breadcrumbs({ items, className, tone = 'light' }: BreadcrumbsPro
   const link = tone === 'dark' ? 'text-ivory/60 hover:text-gold' : 'hover:text-gold'
 
   return (
-    <nav aria-label="Breadcrumb" className={cn('text-[12px] tracking-[0.16em] uppercase', className)}>
+    <nav aria-label="Breadcrumb" className={cn('text-[11px] tracking-[0.12em] uppercase sm:text-[12px] sm:tracking-[0.16em]', className)}>
       <ol className="flex flex-wrap items-center gap-2 text-muted">
         {items.map((item, index) => (
           <li key={item.label} className="flex items-center gap-2">

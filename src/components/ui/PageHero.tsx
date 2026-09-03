@@ -46,8 +46,8 @@ export function PageHero({
       ref={ref}
       className={
         dark
-          ? 'bg-navy-deep pt-32 pb-20 text-ivory lg:pt-40 lg:pb-28'
-          : 'bg-ivory pt-32 pb-20 lg:pt-40 lg:pb-28'
+          ? 'bg-navy-deep pt-[calc(7.5rem+env(safe-area-inset-top))] pb-16 text-ivory sm:pt-32 lg:pt-40 lg:pb-28'
+          : 'bg-ivory pt-[calc(7.5rem+env(safe-area-inset-top))] pb-16 sm:pt-32 lg:pt-40 lg:pb-28'
       }
     >
       <Container>
@@ -66,7 +66,7 @@ export function PageHero({
         </p>
         <SplitHeading
           lines={lines}
-          className="font-display max-w-5xl text-[2.15rem] leading-[0.95] tracking-[-0.03em] sm:text-6xl lg:text-7xl"
+          className="font-display max-w-5xl text-[clamp(2.05rem,4.8vw+0.55rem,4.5rem)] leading-[0.95] tracking-[-0.03em]"
         />
         {copy ? (
           <p

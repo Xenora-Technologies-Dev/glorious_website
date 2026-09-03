@@ -73,6 +73,38 @@ export const sourcingOrigins = [
   { id: 'uae', name: 'UAE', x: 62.5, y: 44, hub: true },
 ] as const
 
+export type ExportRegion = 'americas' | 'europe' | 'gulf' | 'asia'
+
+export type ExportMarket = {
+  id: string
+  name: string
+  short: string
+  region: ExportRegion
+  lat: number
+  lon: number
+  hub?: boolean
+}
+
+export const exportMarkets: ExportMarket[] = [
+  { id: 'usa', name: 'United States', short: 'USA', region: 'americas', lat: 39.8, lon: -98.5 },
+  { id: 'uk', name: 'United Kingdom', short: 'UK', region: 'europe', lat: 51.5, lon: -0.12 },
+  { id: 'germany', name: 'Germany', short: 'Germany', region: 'europe', lat: 51.16, lon: 10.45 },
+  { id: 'france', name: 'France', short: 'France', region: 'europe', lat: 46.6, lon: 2.45 },
+  { id: 'netherlands', name: 'Netherlands', short: 'Netherlands', region: 'europe', lat: 52.13, lon: 5.29 },
+  { id: 'italy', name: 'Italy', short: 'Italy', region: 'europe', lat: 42.5, lon: 12.5 },
+  { id: 'spain', name: 'Spain', short: 'Spain', region: 'europe', lat: 40.4, lon: -3.7 },
+  { id: 'ksa', name: 'Saudi Arabia', short: 'KSA', region: 'gulf', lat: 24.0, lon: 45.1 },
+  { id: 'qatar', name: 'Qatar', short: 'Qatar', region: 'gulf', lat: 25.3, lon: 51.2 },
+  { id: 'kuwait', name: 'Kuwait', short: 'Kuwait', region: 'gulf', lat: 29.3, lon: 47.5 },
+  { id: 'japan', name: 'Japan', short: 'Japan', region: 'asia', lat: 36.2, lon: 138.25 },
+  { id: 'korea', name: 'South Korea', short: 'Korea', region: 'asia', lat: 36.5, lon: 127.8 },
+  { id: 'china', name: 'China', short: 'China', region: 'asia', lat: 31.2, lon: 121.5 },
+  { id: 'singapore', name: 'Singapore', short: 'Singapore', region: 'asia', lat: 1.35, lon: 103.82 },
+  { id: 'malaysia', name: 'Malaysia', short: 'Malaysia', region: 'asia', lat: 4.21, lon: 101.98 },
+  { id: 'indonesia', name: 'Indonesia', short: 'Indonesia', region: 'asia', lat: -6.2, lon: 106.85 },
+  { id: 'philippines', name: 'Philippines', short: 'Philippines', region: 'asia', lat: 12.88, lon: 121.77 },
+]
+
 export const packagingSteps = [
   {
     step: '01',
@@ -110,12 +142,12 @@ export const whyStatements = [
   {
     index: '02',
     title: 'Global Network',
-    copy: 'Import, export and cross-trade from Dubai, with a London office and catalogue-supported sourcing and manufacturing origins including Italy, Spain, India and the UAE.',
+    copy: 'Import, export and cross-trade from Dubai, with a London office and sourcing and manufacturing origins including Italy, Spain, India and the UAE.',
   },
   {
     index: '03',
     title: 'Product Diversity',
-    copy: 'A food range spanning pasta, legumes, sauces, oils, honey, condiments, tea and grocery staples — with private-label programmes alongside owned brands.',
+    copy: 'A food range spanning pasta, sauces, oils, condiments, dairy and grocery — with private-label programmes alongside owned brands.',
   },
   {
     index: '04',

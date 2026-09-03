@@ -39,6 +39,13 @@ export function ProductCategoryPage() {
       />
       <section className="bg-cream pb-24 lg:pb-32">
         <Container>
+          <div className="mb-10 overflow-hidden border border-line bg-ivory lg:mb-14">
+            <img
+              src={data.image}
+              alt={`${data.name} — Glorious Ascent range`}
+              className="mx-auto aspect-[16/9] max-h-[min(52vw,420px)] w-full max-w-3xl object-contain p-6 sm:p-10"
+            />
+          </div>
           {items.map((product) => (
             <Link
               key={product.slug}
@@ -54,11 +61,11 @@ export function ProductCategoryPage() {
                 </div>
               </div>
               <div className="col-span-7 sm:col-span-7">
-                <h2 className="font-display text-[1.65rem] text-navy group-hover:text-gold sm:text-4xl">
+                <h2 className="font-display text-[clamp(1.35rem,3.4vw,2.25rem)] break-word text-navy group-hover:text-gold">
                   {product.name}
                 </h2>
                 <p className="mt-3 hidden text-sm text-muted sm:block">
-                  Pack size and origin are listed only where the catalogue states them.
+                  {product.packSize ?? 'Pack size and origin are available on request.'}
                 </p>
               </div>
               <span className="col-span-1 flex justify-end">

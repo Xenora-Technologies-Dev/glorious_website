@@ -1,103 +1,398 @@
-import { images, type ImageKey } from '@/content/images'
-
 export type ProductCategory = {
   slug: string
   name: string
   navLabel: string
   description: string
+  image: string
 }
 
 export type Product = {
   slug: string
   name: string
   categorySlug: string
-  imageKey: ImageKey
+  image: string
+  gallery?: string[]
   brandSlug?: string
   packSize?: string
   origin?: string
-  catalogueImage?: string
 }
+
+const img = (file: string) => `/Products/${file}`
 
 export const productCategories: ProductCategory[] = [
   {
     slug: 'pasta',
     name: 'Pasta',
     navLabel: 'Pasta',
-    description: 'Pasta from the Glorious Ascent food catalogue.',
-  },
-  {
-    slug: 'legumes',
-    name: 'Legumes',
-    navLabel: 'Legumes',
-    description: 'Legumes and canned beans as presented in the catalogue.',
+    description: 'Pasta for retail, foodservice and private-label programmes.',
+    image: img('penne_pasta_450gm_Packet_Zarella.jpeg'),
   },
   {
     slug: 'sauces',
     name: 'Sauces & Ketchup',
     navLabel: 'Sauces',
-    description: 'Sauces and tomato ketchup.',
+    description: 'Sauces, ketchup and ready-to-use cooking sauces.',
+    image: img('Pizza_Sause_American_Hat.jpeg'),
   },
   {
     slug: 'oils',
     name: 'Oils',
     navLabel: 'Oils',
-    description: 'Olive oil and vegetable cooking oil.',
+    description: 'Olive oil, edible oil and frying oil in retail and bulk formats.',
+    image: img('Olive_Oil_1L_bottle_Legacy_Valley.jpeg'),
   },
   {
     slug: 'condiments',
     name: 'Condiments',
     navLabel: 'Condiments',
-    description: 'Mayonnaise, mustard and vinegar.',
+    description: 'Mayonnaise, mustard, vinegar and tahina.',
+    image: img('Mayanoisse_American_Hat.jpeg'),
   },
   {
-    slug: 'tea',
-    name: 'Tea',
-    navLabel: 'Tea',
-    description: 'Black tea and green tea.',
+    slug: 'dairy',
+    name: 'Dairy',
+    navLabel: 'Dairy',
+    description: 'Milk powder, condensed and evaporated milk, cheese and flavoured cream.',
+    image: img('Milk_Powder_2.5Kg_tin_American_Hat.jpeg'),
   },
   {
     slug: 'grocery',
     name: 'Grocery',
     navLabel: 'Grocery',
-    description: 'Honey, custard powder, fine sugar and iodized salt.',
+    description: 'Custard powder, rose water and canned sardines.',
+    image: img('Sardines_in_sunflower_oil_125gm_box_American_Hat.jpeg'),
   },
 ]
 
 export const homeCategories = [
-  { slug: 'pasta', name: 'Pasta', imageKey: 'pasta' as const, href: '/products/pasta' },
-  { slug: 'legumes', name: 'Legumes', imageKey: 'legumes' as const, href: '/products/legumes' },
-  { slug: 'sauces', name: 'Sauces & Ketchup', imageKey: 'sauces' as const, href: '/products/sauces' },
-  { slug: 'olive-oil', name: 'Olive Oil', imageKey: 'oliveOil' as const, href: '/products/oils' },
-  { slug: 'cooking-oil', name: 'Cooking Oil', imageKey: 'cookingOil' as const, href: '/products/oils' },
-  { slug: 'honey', name: 'Honey', imageKey: 'honey' as const, href: '/products/grocery' },
-  { slug: 'mayonnaise', name: 'Mayonnaise', imageKey: 'mayonnaise' as const, href: '/products/condiments' },
-  { slug: 'mustard', name: 'Mustard', imageKey: 'mustard' as const, href: '/products/condiments' },
-  { slug: 'vinegar', name: 'Vinegar', imageKey: 'vinegar' as const, href: '/products/condiments' },
-  { slug: 'tea', name: 'Tea', imageKey: 'tea' as const, href: '/products/tea' },
-  { slug: 'sugar', name: 'Sugar', imageKey: 'sugar' as const, href: '/products/grocery' },
-  { slug: 'salt', name: 'Salt', imageKey: 'salt' as const, href: '/products/grocery' },
+  {
+    slug: 'pasta',
+    name: 'Pasta',
+    href: '/products/pasta',
+    image: img('penne_pasta_450gm_Packet_Zarella.jpeg'),
+  },
+  {
+    slug: 'sauces',
+    name: 'Sauces',
+    href: '/products/sauces',
+    image: img('Pizza_Sause_American_Hat.jpeg'),
+  },
+  {
+    slug: 'olive-oil',
+    name: 'Olive Oil',
+    href: '/products/oils',
+    image: img('Olive_Oil_1L_bottle_Legacy_Valley.jpeg'),
+  },
+  {
+    slug: 'cooking-oil',
+    name: 'Cooking Oil',
+    href: '/products/oils',
+    image: img('Frying_Oil_18L_American_Hat.jpeg'),
+  },
+  {
+    slug: 'mayonnaise',
+    name: 'Mayonnaise',
+    href: '/products/condiments',
+    image: img('Mayanoisse_American_Hat.jpeg'),
+  },
+  {
+    slug: 'mustard',
+    name: 'Mustard',
+    href: '/products/condiments',
+    image: img('Dijon_Mustard_1Kg_American_Hat.jpeg'),
+  },
+  {
+    slug: 'vinegar',
+    name: 'Vinegar',
+    href: '/products/condiments',
+    image: img('Vinegar_1USGallon_Bottle_American_Hat.jpeg'),
+  },
+  {
+    slug: 'dairy',
+    name: 'Dairy',
+    href: '/products/dairy',
+    image: img('Milk_Powder_2.5Kg_tin_American_Hat.jpeg'),
+  },
+  {
+    slug: 'cheese',
+    name: 'Cheese',
+    href: '/products/dairy',
+    image: img('Mozerella_Cheese_2Kg_American_Hat.jpeg'),
+  },
+  {
+    slug: 'seafood',
+    name: 'Seafood',
+    href: '/products/grocery',
+    image: img('Sardines_in_sunflower_oil_125gm_box_American_Hat.jpeg'),
+  },
 ]
 
 export const products: Product[] = [
-  { slug: 'pasta', name: 'Pasta', categorySlug: 'pasta', imageKey: 'pasta' },
-  { slug: 'legumes', name: 'Legumes', categorySlug: 'legumes', imageKey: 'legumes' },
-  { slug: 'canned-beans', name: 'Canned beans', categorySlug: 'legumes', imageKey: 'legumes' },
-  { slug: 'sauces', name: 'Sauces', categorySlug: 'sauces', imageKey: 'sauces' },
-  { slug: 'tomato-ketchup', name: 'Tomato ketchup', categorySlug: 'sauces', imageKey: 'ketchup' },
-  { slug: 'olive-oil', name: 'Olive oil', categorySlug: 'oils', imageKey: 'oliveOil' },
-  { slug: 'vegetable-cooking-oil', name: 'Vegetable cooking oil', categorySlug: 'oils', imageKey: 'cookingOil' },
-  { slug: 'honey', name: 'Honey', categorySlug: 'grocery', imageKey: 'honey' },
-  { slug: 'mayonnaise', name: 'Mayonnaise', categorySlug: 'condiments', imageKey: 'mayonnaise' },
-  { slug: 'mustard', name: 'Mustard', categorySlug: 'condiments', imageKey: 'mustard' },
-  { slug: 'vinegar', name: 'Vinegar', categorySlug: 'condiments', imageKey: 'vinegar' },
-  { slug: 'custard-powder', name: 'Custard powder', categorySlug: 'grocery', imageKey: 'custard' },
-  { slug: 'black-tea', name: 'Black tea', categorySlug: 'tea', imageKey: 'tea' },
-  { slug: 'green-tea', name: 'Green tea', categorySlug: 'tea', imageKey: 'greenTea' },
-  { slug: 'fine-sugar', name: 'Fine sugar', categorySlug: 'grocery', imageKey: 'sugar' },
-  { slug: 'iodized-salt', name: 'Iodized salt', categorySlug: 'grocery', imageKey: 'salt' },
+  {
+    slug: 'penne-pasta-450g',
+    name: 'Penne Pasta',
+    categorySlug: 'pasta',
+    brandSlug: 'zarella',
+    packSize: '450g packet',
+    image: img('penne_pasta_450gm_Packet_Zarella.jpeg'),
+  },
+  {
+    slug: 'rigatoni-pasta-400g',
+    name: 'Rigatoni Pasta',
+    categorySlug: 'pasta',
+    brandSlug: 'zarella',
+    packSize: '400g',
+    image: img('Rigatoni_Pasta_400gm_zarella.jpeg'),
+  },
+  {
+    slug: 'macaroni-pasta-400g',
+    name: 'Macaroni Pasta',
+    categorySlug: 'pasta',
+    brandSlug: 'zarella',
+    packSize: '400g',
+    image: img('Macaroni_Pasta_400gm_Zarella.jpeg'),
+  },
+  {
+    slug: 'vermicelli-450g',
+    name: 'Vermicelli',
+    categorySlug: 'pasta',
+    brandSlug: 'zarella',
+    packSize: '450g',
+    image: img('Vermicelli_450gm_Zarella.jpeg'),
+  },
+  {
+    slug: 'tomato-ketchup-340g',
+    name: 'Tomato Ketchup',
+    categorySlug: 'sauces',
+    brandSlug: 'american-hat',
+    packSize: '340g bottle',
+    image: img('Tomato_Ketchup_340gm_bottle_American_Hat.jpeg'),
+  },
+  {
+    slug: 'tomato-ketchup-5kg',
+    name: 'Tomato Ketchup',
+    categorySlug: 'sauces',
+    brandSlug: 'tash',
+    packSize: '5kg',
+    image: img('Tomato_Ketchup_5KG_Tash_Brand.jpeg'),
+  },
+  {
+    slug: 'hot-chilli-sauce',
+    name: 'Hot Chilli Sauce',
+    categorySlug: 'sauces',
+    brandSlug: 'american-hat',
+    image: img('Hot_Chilli_Sauce_American_Hat.jpeg'),
+  },
+  {
+    slug: 'bbq-sauce-510ml',
+    name: 'BBQ Sauce',
+    categorySlug: 'sauces',
+    brandSlug: 'american-hat',
+    packSize: '510ml',
+    image: img('BBQ_Sauce_510ML_America_Hat.jpeg'),
+  },
+  {
+    slug: 'pasta-sauce',
+    name: 'Pasta Sauce',
+    categorySlug: 'sauces',
+    brandSlug: 'american-hat',
+    image: img('Pasta_Sause_American_Hat.jpeg'),
+  },
+  {
+    slug: 'pizza-sauce',
+    name: 'Pizza Sauce',
+    categorySlug: 'sauces',
+    brandSlug: 'american-hat',
+    image: img('Pizza_Sause_American_Hat.jpeg'),
+    gallery: [img('Piza_Sause_American_Hat.jpeg')],
+  },
+  {
+    slug: 'olive-oil-250ml',
+    name: 'Olive Oil',
+    categorySlug: 'oils',
+    brandSlug: 'legacy-valley',
+    packSize: '250ml bottle',
+    image: img('Olive_Oil_250ml_bottle_Legacy_Valley.jpeg'),
+  },
+  {
+    slug: 'olive-oil-500ml',
+    name: 'Olive Oil',
+    categorySlug: 'oils',
+    brandSlug: 'legacy-valley',
+    packSize: '500ml bottle',
+    image: img('Olive_Oil_500ml_bottle_Legacy_Valley.jpeg'),
+  },
+  {
+    slug: 'olive-oil-1l',
+    name: 'Olive Oil',
+    categorySlug: 'oils',
+    brandSlug: 'legacy-valley',
+    packSize: '1L bottle',
+    image: img('Olive_Oil_1L_bottle_Legacy_Valley.jpeg'),
+  },
+  {
+    slug: 'olive-oil-4l-legacy-valley',
+    name: 'Olive Oil',
+    categorySlug: 'oils',
+    brandSlug: 'legacy-valley',
+    packSize: '4L tin',
+    image: img('Olive_Oil_4L_Tin_Legacy_Valley.jpeg'),
+  },
+  {
+    slug: 'olive-oil-4l-zaitha',
+    name: 'Olive Oil',
+    categorySlug: 'oils',
+    brandSlug: 'zaitha',
+    packSize: '4L tin',
+    image: img('Olive_Oil_4L_Tin_Zaitha.jpeg'),
+  },
+  {
+    slug: 'edible-oil-17-5l',
+    name: 'Edible Oil',
+    categorySlug: 'oils',
+    brandSlug: 'zaitha',
+    packSize: '17.5L tin',
+    image: img('Edible_Oil_17.5L_Tin_Zaitha.jpeg'),
+  },
+  {
+    slug: 'frying-oil-18l',
+    name: 'Frying Oil',
+    categorySlug: 'oils',
+    brandSlug: 'american-hat',
+    packSize: '18L',
+    image: img('Frying_Oil_18L_American_Hat.jpeg'),
+  },
+  {
+    slug: 'classic-mayonnaise',
+    name: 'Classic Mayonnaise',
+    categorySlug: 'condiments',
+    brandSlug: 'american-hat',
+    packSize: 'Retail and foodservice formats',
+    image: img('Mayanoisse_American_Hat.jpeg'),
+  },
+  {
+    slug: 'mayonnaise-5kg',
+    name: 'Mayonnaise',
+    categorySlug: 'condiments',
+    brandSlug: 'american-hat',
+    packSize: '5kg bucket',
+    image: img('Mayonnaise_5KG_Bucket_American_Hat.jpeg'),
+  },
+  {
+    slug: 'dijon-mustard-1kg',
+    name: 'Dijon Mustard',
+    categorySlug: 'condiments',
+    brandSlug: 'american-hat',
+    packSize: '1kg',
+    image: img('Dijon_Mustard_1Kg_American_Hat.jpeg'),
+    gallery: [img('Dijon_Mustard_1Kg_American_Hat_2.jpeg')],
+  },
+  {
+    slug: 'vinegar-1-us-gallon',
+    name: 'Vinegar',
+    categorySlug: 'condiments',
+    brandSlug: 'american-hat',
+    packSize: '1 US gallon bottle',
+    image: img('Vinegar_1USGallon_Bottle_American_Hat.jpeg'),
+  },
+  {
+    slug: 'tahina-10kg',
+    name: 'Tahina Sesame Paste',
+    categorySlug: 'condiments',
+    brandSlug: 'zaitha',
+    packSize: '10kg tin',
+    image: img('Tahina_Sesame_Paste_10KG_Tin_Zaitha.jpeg'),
+  },
+  {
+    slug: 'milk-powder-2-5kg',
+    name: 'Milk Powder',
+    categorySlug: 'dairy',
+    brandSlug: 'american-hat',
+    packSize: '2.5kg tin',
+    image: img('Milk_Powder_2.5Kg_tin_American_Hat.jpeg'),
+    gallery: [
+      img('Milk_Powder_2.5Kg_tin_American_Hat_2.jpeg'),
+      img('Milk_Powder_2.5Kg_tin_American_Hat_3.jpeg'),
+      img('Milk_Powder_2.5Kg_tin_American_Hat_4.jpeg'),
+    ],
+  },
+  {
+    slug: 'condensed-milk-390g',
+    name: 'Condensed Milk',
+    categorySlug: 'dairy',
+    brandSlug: 'american-hat',
+    packSize: '390g',
+    image: img('Condensed_Milk_390gm_American_Hat.jpeg'),
+  },
+  {
+    slug: 'evaporated-milk-410g',
+    name: 'Evaporated Milk',
+    categorySlug: 'dairy',
+    brandSlug: 'american-hat',
+    packSize: '410g tin',
+    image: img('Evapourated_Milk_410gm_Tin_American_Hat.jpeg'),
+  },
+  {
+    slug: 'mozzarella-cheese-2kg',
+    name: 'Mozzarella Cheese',
+    categorySlug: 'dairy',
+    brandSlug: 'american-hat',
+    packSize: '2kg',
+    image: img('Mozerella_Cheese_2Kg_American_Hat.jpeg'),
+  },
+  {
+    slug: 'cream-honey',
+    name: 'Cream — Honey Flavour',
+    categorySlug: 'dairy',
+    brandSlug: 'tash',
+    image: img('Cream_Honey_Flavour_Tash.png'),
+  },
+  {
+    slug: 'cream-banana',
+    name: 'Cream — Banana Flavour',
+    categorySlug: 'dairy',
+    brandSlug: 'tash',
+    image: img('Cream_Banana_Flavour_Tash.jpeg'),
+  },
+  {
+    slug: 'cream-strawberry',
+    name: 'Cream — Strawberry Flavour',
+    categorySlug: 'dairy',
+    brandSlug: 'tash',
+    image: img('Cream_Strawberry_Flavour_Tash.jpeg'),
+  },
+  {
+    slug: 'custard-powder-200g',
+    name: 'Custard Powder — Vanilla',
+    categorySlug: 'grocery',
+    brandSlug: 'american-hat',
+    packSize: '200g',
+    image: img('Custard_Powder_Vanilla_Flavour_200gm_American_Hat.jpeg'),
+  },
+  {
+    slug: 'rose-water',
+    name: 'Rose Water',
+    categorySlug: 'grocery',
+    brandSlug: 'tash',
+    image: img('Rose_Water_Tash.jpeg'),
+  },
+  {
+    slug: 'sardines-125g',
+    name: 'Sardines in Sunflower Oil',
+    categorySlug: 'grocery',
+    brandSlug: 'american-hat',
+    packSize: '125g',
+    origin: 'Morocco',
+    image: img('Sardines_in_sunflower_oil_125gm_box_American_Hat.jpeg'),
+    gallery: [
+      img('Sardines_in_sunflower_oil_125gm_box_American_Hat_2.jpeg'),
+      img('Sardines_in_sunflower_oil_125gm_box_American_Hat_3.jpeg'),
+      img('Sardines_in_sunflower_oil_125gm_box_American_Hat_4.jpeg'),
+    ],
+  },
 ]
 
-export const allProductNames = products.map((product) => product.name)
+export const allProductNames = [...new Set(products.map((product) => product.name))]
 
 export function getCategory(slug: string) {
   return productCategories.find((category) => category.slug === slug)
@@ -121,14 +416,14 @@ export function getRelatedProducts(product: Product, limit = 3) {
   return [...same, ...rest].slice(0, limit)
 }
 
-export function catalogueImagePath(slug: string) {
-  return `/catalogue/${slug}.jpg`
-}
-
 export function productHref(product: Product) {
   return `/products/${product.categorySlug}/${product.slug}`
 }
 
 export function productImage(product: Product) {
-  return images[product.imageKey]
+  return product.image
+}
+
+export function productGallery(product: Product) {
+  return [product.image, ...(product.gallery ?? [])]
 }

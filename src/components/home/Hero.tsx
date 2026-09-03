@@ -86,10 +86,10 @@ export function Hero() {
         <WorldMap className="h-full w-full" />
       </div>
 
-      <div className="relative z-10 flex min-h-svh flex-col justify-end pt-24 pb-0 lg:justify-center">
-        <div className="mx-auto w-full max-w-[1440px] px-5 pt-6 pb-12 sm:px-8 lg:px-12 xl:px-16">
+      <div className="relative z-10 flex min-h-svh flex-col justify-end pt-[calc(5.5rem+env(safe-area-inset-top))] pb-0 lg:justify-center">
+        <div className="mx-auto w-full min-w-0 max-w-[1440px] px-4 pt-6 pb-10 sm:px-8 sm:pb-12 lg:px-12 xl:px-16">
           <div className="grid items-end gap-8 lg:grid-cols-12">
-            <div className="lg:col-span-8">
+            <div className="min-w-0 lg:col-span-8">
               <p
                 data-hero-copy
                 className="mb-6 text-[10px] font-semibold tracking-[0.28em] uppercase text-gold sm:text-[11px]"
@@ -98,15 +98,15 @@ export function Hero() {
               </p>
               <SplitHeading
                 lines={['Connecting', 'Global Food', 'Markets.']}
-                className="font-display text-[2.4rem] leading-[0.92] tracking-[-0.03em] sm:text-7xl md:text-8xl lg:text-[7.2rem]"
+                className="font-display text-[clamp(2.35rem,7.2vw,7.2rem)] leading-[0.92] tracking-[-0.03em]"
               />
             </div>
-            <div className="lg:col-span-4 lg:pb-2">
+            <div className="min-w-0 lg:col-span-4 lg:pb-2">
               <p data-hero-copy className="max-w-sm text-[15px] leading-relaxed text-ivory/78 sm:text-base">
                 From sourcing and manufacturing to distribution, Glorious Ascent connects quality
                 food products with markets around the world.
               </p>
-              <div data-hero-copy className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div data-hero-copy className="mt-8 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:flex-wrap [&>a]:w-full sm:[&>a]:w-auto">
                 <Button href="/contact" variant="gold" size="lg">
                   Start a Conversation
                 </Button>
@@ -119,7 +119,7 @@ export function Hero() {
         </div>
 
         <div className="relative z-10 border-t border-ivory/12">
-          <div className="flex items-center gap-6 px-5 py-3 sm:px-8 lg:px-12 xl:px-16">
+          <div className="flex items-center gap-4 px-4 py-3 sm:gap-6 sm:px-8 lg:px-12 xl:px-16">
             <Marquee items={allProductNames} className="min-w-0 flex-1 text-ivory/70" />
             <a
               href="#who-we-are"

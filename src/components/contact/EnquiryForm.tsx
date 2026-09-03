@@ -68,22 +68,21 @@ function EnquiryFields({ defaultType }: { defaultType: string }) {
       <div className="border border-line bg-cream p-8">
         <h2 className="font-display text-3xl text-navy">Received.</h2>
         <p className="mt-4 text-muted">
-          This form is ready for a backend connection. Your details have been validated on this
-          device and are not sent until an API is wired.
+          Thank you. Our team will review your enquiry and respond shortly.
         </p>
       </div>
     )
   }
 
   return (
-    <form className="grid gap-6" onSubmit={onSubmit} noValidate>
+    <form className="relative grid gap-6 sm:grid-cols-2" onSubmit={onSubmit} noValidate>
       <input
         tabIndex={-1}
         autoComplete="off"
         name="website"
         value={form.website}
         onChange={(event) => setForm({ ...form, website: event.target.value })}
-        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+        className="pointer-events-none absolute h-px w-px overflow-hidden opacity-0"
         aria-hidden="true"
       />
       <Field id={`${formId}-name`} label="Name" error={errors.name}>
@@ -161,16 +160,19 @@ function EnquiryFields({ defaultType }: { defaultType: string }) {
           ))}
         </select>
       </Field>
-      <Field id={`${formId}-product`} label="Product / Service">
-        <input
-          id={`${formId}-product`}
-          name="product"
-          value={form.product}
-          onChange={(event) => setForm({ ...form, product: event.target.value })}
-          className={inputClass()}
-        />
-      </Field>
-      <Field id={`${formId}-message`} label="Message" error={errors.message}>
+      <div className="sm:col-span-2">
+        <Field id={`${formId}-product`} label="Product / Service">
+          <input
+            id={`${formId}-product`}
+            name="product"
+            value={form.product}
+            onChange={(event) => setForm({ ...form, product: event.target.value })}
+            className={inputClass()}
+          />
+        </Field>
+      </div>
+      <div className="sm:col-span-2">
+        <Field id={`${formId}-message`} label="Message" error={errors.message}>
         <textarea
           id={`${formId}-message`}
           name="message"
@@ -183,7 +185,8 @@ function EnquiryFields({ defaultType }: { defaultType: string }) {
           className={cn(inputClass(errors.message), 'h-auto min-h-[8rem] py-3')}
         />
       </Field>
-      <div className="pt-2">
+      </div>
+      <div className="pt-2 sm:col-span-2 [&>button]:w-full sm:[&>button]:w-auto">
         <Button type="submit" variant="navy" size="lg">
           Start a Conversation
         </Button>

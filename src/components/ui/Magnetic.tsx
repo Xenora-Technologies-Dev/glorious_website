@@ -48,7 +48,7 @@ export function Magnetic({ children, className, strength = 0.28 }: MagneticProps
   )
 
   return (
-    <div ref={ref} className={cn('inline-flex', className)}>
+    <div ref={ref} className={cn('inline-flex max-w-full', className)}>
       {children}
     </div>
   )

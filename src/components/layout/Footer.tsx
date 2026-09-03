@@ -2,12 +2,13 @@ import { company } from '@/content/company'
 import { conversionPaths, footerLinks } from '@/content/navigation'
 import { brands } from '@/content/brands'
 import { Container } from '@/components/ui/Container'
+import { BrandLogo } from '@/components/ui/BrandLogo'
 import { Link } from 'react-router-dom'
 
 export function Footer() {
   return (
     <footer className="bg-navy-deep text-ivory">
-      <Container className="pt-20 pb-10 lg:pt-28">
+      <Container className="pt-16 pb-10 lg:pt-28">
         <div className="grid gap-14 border-b border-line-light pb-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <div className="mb-8 flex items-center gap-4">
@@ -28,7 +29,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-4">
+          <div className="grid gap-10 sm:grid-cols-2 lg:col-span-8 xl:grid-cols-4">
             <FooterCol title="Company" links={footerLinks.company} />
             <FooterCol title="Products" links={footerLinks.products} />
             <FooterCol title="Services" links={footerLinks.services} />
@@ -36,11 +37,12 @@ export function Footer() {
               <p className="mb-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">
                 Brands
               </p>
-              <ul className="space-y-3 text-sm text-ivory/75">
-                {brands.filter((brand) => brand.hasPortfolio).map((brand) => (
+              <ul className="space-y-4 text-sm text-ivory/75">
+                {brands.map((brand) => (
                   <li key={brand.slug}>
-                    <Link to={brand.href} className="hover:text-gold">
-                      {brand.name}
+                    <Link to={brand.href} className="flex items-center gap-3 hover:text-gold">
+                      <BrandLogo brand={brand} size="sm" plate />
+                      <span>{brand.name}</span>
                     </Link>
                   </li>
                 ))}

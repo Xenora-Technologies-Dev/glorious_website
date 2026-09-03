@@ -28,7 +28,7 @@ export function InsightsPage() {
       <PageHero
         eyebrow="Insights"
         lines={['Notes from', 'the food trade.']}
-        copy="Sample editorial pieces until Glorious Ascent publishes live articles. Every card is marked as a sample. Nothing here is presented as company news."
+        copy="Notes on food trading, sourcing, packaging and building a reliable supply."
         crumbs={[
           { label: 'Home', href: '/' },
           { label: 'Insights' },
@@ -36,14 +36,14 @@ export function InsightsPage() {
       />
       <section className="bg-cream pb-24 lg:pb-32">
         <Container>
-          <div className="flex flex-wrap gap-2">
+          <div className="hide-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
             {['All', ...insightCategories].map((item) => (
               <button
                 key={item}
                 type="button"
                 onClick={() => setActive(item)}
                 className={cn(
-                  'h-10 px-4 text-[11px] font-semibold tracking-[0.16em] uppercase',
+                  'h-10 shrink-0 px-4 text-[11px] font-semibold tracking-[0.16em] uppercase',
                   active === item ? 'bg-navy text-ivory' : 'text-navy hover:bg-ivory-deep',
                 )}
                 aria-pressed={active === item}
@@ -60,9 +60,9 @@ export function InsightsPage() {
                 className="group border-t border-line pt-6"
               >
                 <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gold-muted">
-                  Sample · {item.category}
+                  {item.category}
                 </p>
-                <h2 className="mt-4 font-display text-3xl text-navy group-hover:text-gold">
+                <h2 className="mt-4 font-display text-[clamp(1.5rem,3vw,1.875rem)] break-word text-navy group-hover:text-gold">
                   {item.title}
                 </h2>
                 <p className="mt-3 text-muted">{item.excerpt}</p>

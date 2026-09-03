@@ -17,7 +17,7 @@ const sections = [
   },
   {
     title: 'Supplier network',
-    copy: 'Work is built with trusted manufacturing partners. Catalogue-supported origins include Italy, Spain, India and the UAE. These are not claimed as a complete global map.',
+    copy: 'Work is built with trusted manufacturing partners. Origins include Italy, Spain, India and the UAE, alongside other sources as each programme requires.',
   },
   {
     title: 'Quality focus',
@@ -69,7 +69,7 @@ export function GlobalSourcingPage() {
         tone="dark"
         eyebrow="Global sourcing"
         lines={['A bridge between', 'origin and market.']}
-        copy="Glorious Ascent sources and moves FMCG food products internationally. Shipping routes and additional offices are not invented here."
+        copy="Glorious Ascent sources and moves FMCG food products internationally — from origin through packaging and into market."
         crumbs={[
           { label: 'Home', href: '/' },
           { label: 'Global Sourcing' },
@@ -78,7 +78,7 @@ export function GlobalSourcingPage() {
       />
       <section className="bg-navy py-20 text-ivory sm:py-24 lg:py-32">
         <Container>
-          <div ref={mapRef} className="relative aspect-[16/9] border border-line-light bg-navy-deep">
+          <div ref={mapRef} className="relative aspect-[16/10] overflow-hidden border border-line-light bg-navy-deep sm:aspect-[16/9]">
             <WorldMap className="absolute inset-0 h-full w-full text-gold" />
             <svg viewBox="0 0 100 56" className="relative h-full w-full" aria-hidden="true">
               {sourcingOrigins.map((origin) => (

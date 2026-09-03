@@ -66,7 +66,7 @@ export function SectionHeader({
       <h2
         data-reveal
         className={cn(
-          'font-display text-[2.35rem] leading-[1.08] tracking-[-0.02em] sm:text-5xl lg:text-6xl',
+          'font-display text-[clamp(2.1rem,3.8vw+0.7rem,3.75rem)] leading-[1.08] tracking-[-0.02em]',
           tone === 'dark' ? 'text-navy' : 'text-ivory',
         )}
       >

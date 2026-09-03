@@ -53,6 +53,8 @@
   html {
     background: var(--color-cream);
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
@@ -65,6 +67,17 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  summary {
+    touch-action: manipulation;
   }
 
   a:focus-visible,
@@ -112,6 +125,10 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  .break-word {
+    overflow-wrap: anywhere;
   }
 
   .grain {

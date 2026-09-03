@@ -84,7 +84,7 @@ export function AboutPage() {
             <ImageReveal
               src={images.factory}
               alt="Food manufacturing atmosphere"
-              className="h-[52vw] max-h-[560px] min-h-[280px] w-full"
+              className="h-[min(52vw,560px)] min-h-[220px] w-full"
             />
           </div>
         </Container>
@@ -96,12 +96,12 @@ export function AboutPage() {
             <article
               key={panel.title}
               data-panel
-              className="flex min-h-[70svh] w-full shrink-0 flex-col justify-end px-5 py-20 sm:px-12 lg:h-svh lg:w-screen lg:px-16 lg:py-24"
+              className="flex min-h-[70svh] w-full shrink-0 flex-col justify-end px-4 py-16 sm:px-12 lg:h-svh lg:w-screen lg:px-16 lg:py-24"
             >
               <p className="mb-6 text-[11px] font-semibold tracking-[0.24em] uppercase text-gold">
                 {panel.title}
               </p>
-              <p className="font-display max-w-4xl text-4xl leading-[1.08] sm:text-6xl">
+              <p className="font-display max-w-4xl text-[clamp(1.75rem,4.5vw,3.75rem)] leading-[1.08]">
                 {panel.copy}
               </p>
             </article>
@@ -116,7 +116,7 @@ export function AboutPage() {
             {whyStatements.map((item) => (
               <article key={item.index} className="grid gap-3 border-t border-line py-8 lg:grid-cols-12">
                 <p className="text-gold-muted lg:col-span-2">{item.index}</p>
-                <h3 className="font-display text-3xl text-navy lg:col-span-3">{item.title}</h3>
+                <h3 className="font-display text-[clamp(1.5rem,3vw,1.875rem)] text-navy lg:col-span-3">{item.title}</h3>
                 <p className="text-muted lg:col-span-7">{item.copy}</p>
               </article>
             ))}
@@ -130,8 +130,8 @@ export function AboutPage() {
             <div className="lg:col-span-6">
               <h2 className="font-display text-4xl text-navy">Global approach</h2>
               <p className="mt-6 text-lg leading-relaxed text-muted">
-                Import, export and cross-trade, with offices in Dubai and London. Catalogue-supported
-                sourcing and manufacturing origins include Italy, Spain, India and the UAE.
+                Import, export and cross-trade, with offices in Dubai and London. Sourcing and
+                manufacturing origins include Italy, Spain, India and the UAE.
               </p>
             </div>
             <div className="lg:col-span-5 lg:col-start-8">

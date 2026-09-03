@@ -27,7 +27,7 @@ export function SplitHeading({
   )
 
   return (
-    <Tag ref={ref} className={cn(className)}>
+    <Tag ref={ref} className={cn('break-word', className)}>
       {lines.map((line) => (
         <span key={line} className="block overflow-hidden">
           <span data-line className={cn('block will-transform', lineClassName)}>

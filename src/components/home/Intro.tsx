@@ -25,7 +25,7 @@ export function Intro() {
             />
           </div>
           <div className="lg:col-span-5">
-            <p className="font-display text-3xl leading-snug text-navy italic sm:text-4xl">
+            <p className="font-display text-2xl leading-snug text-navy italic sm:text-3xl md:text-4xl">
               “{company.motto}”
             </p>
             <p className="mt-6 text-sm tracking-[0.18em] uppercase text-muted">
@@ -38,8 +38,8 @@ export function Intro() {
           <div className="lg:col-span-8">
             <ImageReveal
               src={images.oliveGrove}
-              alt="Olive grove used as atmospheric imagery for global food sourcing"
-              className="h-[58vw] max-h-[680px] min-h-[280px] w-full"
+              alt="Olive grove for global food sourcing"
+              className="h-[min(58vw,680px)] min-h-[220px] w-full"
             />
           </div>
           <div className="flex flex-col justify-between gap-10 lg:col-span-4 lg:pl-4">

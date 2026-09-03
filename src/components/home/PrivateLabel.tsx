@@ -14,7 +14,7 @@ export function PrivateLabel() {
             <p className="mb-5 text-[11px] font-semibold tracking-[0.24em] uppercase text-gold">
               05 · Private label
             </p>
-            <h2 className="font-display text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-7xl">
+            <h2 className="font-display text-[clamp(2.3rem,6vw,4.5rem)] leading-[1.02]">
               Your Brand.
               <br />
               Our Supply Chain.
@@ -46,7 +46,7 @@ export function PrivateLabel() {
             <ImageReveal
               src={images.packaging}
               alt="Packaged goods prepared for private-label labeling and distribution"
-              className="h-[520px] w-full min-h-[280px]"
+              className="h-[min(70vw,520px)] w-full min-h-[220px]"
             />
           </div>
         </div>

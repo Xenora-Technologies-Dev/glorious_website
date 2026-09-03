@@ -1,3 +1,4 @@
+import { ProductVisual } from '@/components/products/ProductVisual'
 import { Seo } from '@/components/seo/Seo'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
@@ -5,6 +6,7 @@ import { ImageReveal } from '@/components/ui/ImageReveal'
 import { PageHero } from '@/components/ui/PageHero'
 import { getBrand } from '@/content/brands'
 import { images } from '@/content/images'
+import { BrandLogo } from '@/components/ui/BrandLogo'
 import { breadcrumbJsonLd } from '@/content/jsonld'
 import { productHref, products } from '@/content/products'
 import { NotFoundPage } from '@/pages/NotFoundPage'
@@ -21,7 +23,7 @@ export function BrandDetailPage() {
     <>
       <Seo
         title={`${data.name} | Glorious Ascent`}
-        description={`${data.name} is part of the Glorious Ascent brand portfolio presented in the company catalogue.`}
+        description={`${data.name} is part of the Glorious Ascent brand portfolio.`}
         jsonLd={breadcrumbJsonLd([
           { name: 'Home', path: '/' },
           { name: 'Brands', path: '/brands' },
@@ -34,7 +36,7 @@ export function BrandDetailPage() {
         lines={[data.name]}
         copy={
           data.note ??
-          `${data.name} appears in the Glorious Ascent catalogue. Product assignment, pack formats and origin are shown only where the catalogue states them.`
+          `${data.name} is part of the Glorious Ascent brand house. Product lines and pack formats are available on request.`
         }
         crumbs={[
           { label: 'Home', href: '/' },
@@ -47,20 +49,29 @@ export function BrandDetailPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-6">
-              <ImageReveal
-                src={images[data.atmosphere]}
-                alt=""
-                className="h-[380px] w-full min-h-[240px]"
-              />
+              {linkedProducts[0] ? (
+                <ProductVisual
+                  product={linkedProducts[0]}
+                  className="h-[min(58vw,380px)] w-full min-h-[220px] border border-line"
+                  eager
+                />
+              ) : (
+                <ImageReveal
+                  src={images[data.atmosphere]}
+                  alt=""
+                  className="h-[min(58vw,380px)] w-full min-h-[220px]"
+                />
+              )}
             </div>
             <div className="lg:col-span-5 lg:col-start-8">
+              <BrandLogo brand={data} size="xl" eager className="mb-8" />
               <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
-                {data.hasPortfolio ? 'Catalogue brand' : 'Artwork only'}
+                {data.hasPortfolio ? 'House brand' : 'On request'}
               </p>
-              <h2 className="mt-4 font-display text-4xl text-navy">Catalogue presence</h2>
+              <h2 className="mt-4 font-display text-4xl text-navy">The brand</h2>
               <p className="mt-6 text-lg leading-relaxed text-muted">
                 {data.hasPortfolio
-                  ? `${data.name} is presented as part of the Glorious Ascent brand house. A written brand history is not published here beyond what the catalogue supports.`
+                  ? `${data.name} is part of the Glorious Ascent brand house, offered alongside private-label programmes for partners who need a finished food product under their own name.`
                   : data.note}
               </p>
             </div>
@@ -74,18 +85,30 @@ export function BrandDetailPage() {
             <ul className="mt-10 space-y-4">
               {linkedProducts.map((item) => (
                 <li key={item.slug} className="border-b border-line py-4">
-                  <Link to={productHref(item)} className="font-display text-3xl text-navy hover:text-gold">
-                    {item.name}
-                    {item.packSize ? ` · ${item.packSize}` : ''}
+                  <Link
+                    to={productHref(item)}
+                    className="group flex items-center gap-4 sm:gap-6"
+                  >
+                    <ProductVisual
+                      product={item}
+                      compact
+                      className="size-20 shrink-0 sm:size-24"
+                    />
+                    <span>
+                      <span className="font-display text-[clamp(1.35rem,3.2vw,1.875rem)] break-word text-navy group-hover:text-gold">
+                        {item.name}
+                      </span>
+                      {item.packSize ? (
+                        <span className="mt-1 block text-sm text-muted">{item.packSize}</span>
+                      ) : null}
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
           ) : (
             <p className="mt-6 max-w-xl text-lg text-muted">
-              Individual products are not assigned to this brand on the website, because those
-              mappings were not confirmed from the catalogue file in this workspace. Request the
-              current range for {data.name}.
+              The current {data.name} range is available on request. Share the products you need and we will confirm pack formats, origin and lead time.
             </p>
           )}
           <div className="mt-12">
@@ -93,7 +116,7 @@ export function BrandDetailPage() {
               Formats
             </h3>
             <p className="mt-3 max-w-xl text-muted">
-              Available pack formats are provided on request from the current catalogue.
+              Pack formats for {data.name} are confirmed with each enquiry.
             </p>
             <div className="mt-8">
               <Button href="/contact?intent=quote" variant="navy">

@@ -34,8 +34,7 @@ export function Packaging() {
               Finished, labelled, and ready for market.
             </h2>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-muted">
-              Packaging, labeling and design as described in the company catalogue — a five-step
-              path from materials to documentation.
+              Packaging, labeling and design as a five-step path from materials to documentation.
             </p>
             <div className="mt-10 hidden lg:block">
               <ImageReveal
@@ -50,12 +49,12 @@ export function Packaging() {
               <li
                 key={item.step}
                 data-step
-                className="grid grid-cols-12 gap-4 border-b border-line py-6 first:border-t"
+                className="grid grid-cols-[auto_minmax(0,1fr)] gap-4 border-b border-line py-6 first:border-t"
               >
-                <span className="col-span-2 text-[11px] font-semibold tracking-[0.18em] text-gold-muted">
+                <span className="text-[11px] font-semibold tracking-[0.18em] text-gold-muted">
                   {item.step}
                 </span>
-                <div className="col-span-10">
+                <div className="min-w-0">
                   <h3 className="font-display text-2xl text-navy">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted">{item.copy}</p>
                 </div>

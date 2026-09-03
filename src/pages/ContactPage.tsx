@@ -18,17 +18,17 @@ export function ContactPage() {
           { name: 'Contact', path: '/contact' },
         ])}
       />
-      <section className="bg-ivory pt-32 pb-24 lg:pt-40 lg:pb-32">
+      <section className="bg-ivory pt-[calc(7.5rem+env(safe-area-inset-top))] pb-20 sm:pt-32 lg:pt-40 lg:pb-32">
         <Container>
           <p className="mb-5 text-[11px] font-semibold tracking-[0.24em] uppercase text-gold-muted">
             Contact
           </p>
-          <h1 className="font-display max-w-4xl text-5xl leading-[1.05] text-navy sm:text-6xl lg:text-7xl">
+          <h1 className="font-display max-w-4xl text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.05] text-navy">
             Let’s Talk Business.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-            Product information, quotations, private-label programmes and partnerships. Email is
-            not listed here because it is not verified in the materials used for this site.
+            Product information, quotations, private-label programmes and partnerships. Use the
+            form or call our Dubai or London office.
           </p>
 
           <div className="mt-16 grid gap-12 lg:grid-cols-12">
@@ -66,7 +66,7 @@ export function ContactPage() {
                   Contact sales
                 </Button>
               </div>
-              <div className="mt-10 flex flex-col gap-3">
+              <div className="mt-10 flex flex-col gap-3 [&>a]:w-full sm:[&>a]:w-auto">
                 {conversionPaths.map((path) => (
                   <Button key={path.href} href={path.href} variant="ghost" magnetic={false}>
                     {path.label}

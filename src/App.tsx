@@ -1,6 +1,6 @@
 import { Layout } from '@/components/layout/Layout'
 import { Suspense, lazy } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 const HomePage = lazy(() =>
   import('@/pages/HomePage').then((module) => ({ default: module.HomePage })),
@@ -65,6 +65,7 @@ export default function App() {
             <Route path="products/:category" element={<ProductCategoryPage />} />
             <Route path="products/:category/:product" element={<ProductDetailPage />} />
             <Route path="brands" element={<BrandsPage />} />
+            <Route path="brands/zahita" element={<Navigate to="/brands/zaitha" replace />} />
             <Route path="brands/:brand" element={<BrandDetailPage />} />
             <Route path="private-label" element={<PrivateLabelPage />} />
             <Route path="global-sourcing" element={<GlobalSourcingPage />} />

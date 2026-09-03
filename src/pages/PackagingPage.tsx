@@ -53,7 +53,7 @@ export function PackagingPage() {
         tone="dark"
         eyebrow="Packaging"
         lines={['Packaging, labeling', 'and design.']}
-        copy="An interactive journey through the five catalogue steps — from materials to documentation."
+        copy="A five-step journey from materials to documentation."
         crumbs={[
           { label: 'Home', href: '/' },
           { label: 'Packaging' },
@@ -61,12 +61,12 @@ export function PackagingPage() {
       />
       <section ref={ref} className="bg-ivory py-24 lg:py-32">
         <Container>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             {focus.map((item) => (
               <span
                 key={item}
                 data-focus
-                className="border border-line px-4 py-2 text-[11px] font-semibold tracking-[0.16em] uppercase text-navy"
+                className="border border-line px-3 py-2 text-[10px] font-semibold tracking-[0.16em] uppercase text-navy sm:px-4 sm:text-[11px]"
               >
                 {item}
               </span>
@@ -77,7 +77,7 @@ export function PackagingPage() {
               <ImageReveal
                 src={images.packaging}
                 alt="Packaged goods prepared for labeling"
-                className="h-[420px] w-full"
+                className="h-[min(58vw,420px)] w-full min-h-[220px]"
               />
             </div>
             <div className="lg:col-span-7">
@@ -89,8 +89,8 @@ export function PackagingPage() {
                     onClick={() => setActive(index)}
                     className={
                       active === index
-                        ? 'h-11 px-4 bg-navy text-ivory text-[11px] font-semibold tracking-[0.16em] uppercase'
-                        : 'h-11 px-4 text-[11px] font-semibold tracking-[0.16em] uppercase text-navy hover:bg-ivory-deep'
+                        ? 'h-11 shrink-0 px-4 bg-navy text-ivory text-[11px] font-semibold tracking-[0.16em] uppercase'
+                        : 'h-11 shrink-0 px-4 text-[11px] font-semibold tracking-[0.16em] uppercase text-navy hover:bg-ivory-deep'
                     }
                     aria-pressed={active === index}
                   >

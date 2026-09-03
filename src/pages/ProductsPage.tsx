@@ -55,7 +55,7 @@ export function ProductsPage() {
       <PageHero
         eyebrow="Products"
         lines={['Products for', 'Every Market.']}
-        copy="An editorial catalogue. Specifications appear only where the company catalogue states them."
+        copy="A focused FMCG food range for international trade. Specifications are available on request."
         crumbs={[
           { label: 'Home', href: '/' },
           { label: 'Products' },
@@ -67,7 +67,7 @@ export function ProductsPage() {
           <div
             role="group"
             aria-label="Filter products"
-            className="hide-scrollbar sticky top-[72px] z-20 -mx-5 mb-6 flex gap-2 overflow-x-auto bg-cream/95 px-5 py-3 backdrop-blur-md sm:top-20 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"
+            className="hide-scrollbar sticky top-[calc(72px+env(safe-area-inset-top))] z-20 -mx-4 mb-6 flex gap-2 overflow-x-auto bg-cream/95 px-4 py-3 backdrop-blur-md sm:top-20 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"
           >
             <FilterChip label="All" active={active === 'all'} onClick={() => setActive('all')} />
             {productCategories.map((category) => (
@@ -98,6 +98,7 @@ export function ProductsPage() {
                     <div className="overflow-hidden">
                       <ProductVisual
                         product={product}
+                        compact
                         className="aspect-square transition-transform duration-700 group-hover:scale-105"
                       />
                     </div>
@@ -110,9 +111,12 @@ export function ProductsPage() {
                     <p className="text-[10px] tracking-[0.18em] uppercase text-gold-muted sm:text-[11px]">
                       {productCategories.find((item) => item.slug === product.categorySlug)?.name}
                     </p>
-                    <h2 className="mt-1 font-display text-[1.5rem] text-navy group-hover:text-gold sm:text-4xl">
+                    <h2 className="mt-1 font-display text-[clamp(1.25rem,3.2vw,2.25rem)] break-word text-navy group-hover:text-gold">
                       {product.name}
                     </h2>
+                    {product.packSize ? (
+                      <p className="mt-1 text-sm text-muted">{product.packSize}</p>
+                    ) : null}
                   </Link>
                   <Link
                     to={productHref(product)}
@@ -135,9 +139,11 @@ export function ProductsPage() {
                   <ProductVisual product={preview} className="aspect-[4/5]" />
                 </button>
                 <p className="mt-5 font-display text-4xl text-navy">{preview.name}</p>
-                <p className="mt-3 text-sm text-muted">
-                  Catalogue specifications available on request.
-                </p>
+                {preview.packSize ? (
+                  <p className="mt-2 text-sm text-muted">{preview.packSize}</p>
+                ) : (
+                  <p className="mt-3 text-sm text-muted">Specifications available on request.</p>
+                )}
                 <div className="mt-6 flex flex-col gap-3">
                   <Button href={productHref(preview)} variant="navy">
                     View product

@@ -51,10 +51,13 @@ export function Modal({ open, onClose, children, title, className, showHeading =
         className="absolute inset-0 bg-navy-deep/70"
         onClick={onClose}
       />
-      <div className="relative flex min-h-full items-center justify-center p-5">
+      <div className="relative flex min-h-full items-end justify-center p-0 sm:items-center sm:p-5">
         <div
           ref={panelRef}
-          className={cn('relative w-full max-w-lg bg-ivory p-8 text-navy shadow-nav', className)}
+          className={cn(
+            'relative max-h-[100svh] w-full max-w-lg overflow-y-auto bg-ivory p-6 text-navy shadow-nav sm:max-h-[90svh] sm:p-8',
+            className,
+          )}
         >
           <button
             type="button"
