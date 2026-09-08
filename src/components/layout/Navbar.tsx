@@ -201,7 +201,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                       <Link
                         key={item.href}
                         to={item.href}
-                        className="group flex items-center gap-3 py-1"
+                        className="group grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-3 py-1"
                       >
                         <BrandLogo
                           brand={{
@@ -230,7 +230,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                       <Link
                         key={item.href}
                         to={item.href}
-                        className="group flex items-center gap-3 border border-line px-3 py-3 transition-colors hover:border-gold"
+                        className="group grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-3 border border-line px-3 py-3 transition-colors hover:border-gold"
                       >
                         <BrandLogo
                           brand={{
@@ -303,7 +303,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                           to={entry.href}
                           data-menu-item
                           onClick={closeMenu}
-                          className="flex items-center gap-3 py-1"
+                          className="grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-3 py-1"
                         >
                           <BrandLogo
                             brand={{

@@ -1,7 +1,6 @@
-import { ProductLook } from '@/components/products/ProductLook'
-import { ProductVisual } from '@/components/products/ProductVisual'
+import { CategoryTileGrid } from '@/components/products/CategoryTileGrid'
+import { ProductCatalogueGrid } from '@/components/products/ProductCatalogueGrid'
 import { Seo } from '@/components/seo/Seo'
-import { Button } from '@/components/ui/Button'
 import { PageHero } from '@/components/ui/PageHero'
 import { Container } from '@/components/ui/Container'
 import { breadcrumbJsonLd } from '@/content/jsonld'
@@ -9,37 +8,16 @@ import { pageMeta } from '@/content/seo'
 import {
   getProductsByCategory,
   productCategories,
-  productHref,
   products,
-  type Product,
 } from '@/content/products'
 import { cn } from '@/lib/cn'
-import { prefersReducedMotion } from '@/lib/animations'
-import { gsap, useGSAP } from '@/lib/gsap'
-import { ArrowUpRight } from 'lucide-react'
-import { useMemo, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useMemo, useState } from 'react'
 
 export function ProductsPage() {
   const [active, setActive] = useState('all')
-  const [preview, setPreview] = useState<Product>(products[0])
-  const [look, setLook] = useState<Product | null>(null)
-  const listRef = useRef<HTMLDivElement>(null)
   const filtered = useMemo(
     () => (active === 'all' ? products : getProductsByCategory(active)),
     [active],
-  )
-
-  useGSAP(
-    () => {
-      if (!listRef.current || prefersReducedMotion()) return
-      gsap.fromTo(
-        listRef.current.querySelectorAll('[data-product-row]'),
-        { autoAlpha: 0, y: 16 },
-        { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.04, ease: 'power4.out' },
-      )
-    },
-    { dependencies: [active] },
   )
 
   return (
@@ -62,102 +40,47 @@ export function ProductsPage() {
         ]}
         cta={{ label: 'Request Product Information', href: '/contact?intent=product' }}
       />
-      <section className="bg-cream pb-24 lg:pb-32">
+      <section className="bg-cream pb-16 lg:pb-20">
         <Container>
-          <div
-            role="group"
-            aria-label="Filter products"
-            className="hide-scrollbar sticky top-[calc(72px+env(safe-area-inset-top))] z-20 -mx-4 mb-6 flex gap-2 overflow-x-auto bg-cream/95 px-4 py-3 backdrop-blur-md sm:top-20 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"
-          >
-            <FilterChip label="All" active={active === 'all'} onClick={() => setActive('all')} />
-            {productCategories.map((category) => (
-              <FilterChip
-                key={category.slug}
-                label={category.navLabel}
-                active={active === category.slug}
-                onClick={() => setActive(category.slug)}
-              />
-            ))}
-          </div>
-          <div className="grid gap-12 lg:grid-cols-12">
-            <div ref={listRef} className="lg:col-span-7">
-              {filtered.map((product) => (
-                <div
-                  key={product.slug}
-                  data-product-row
-                  className="group grid grid-cols-12 items-center gap-4 border-b border-line py-5"
-                  onMouseEnter={() => setPreview(product)}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setLook(product)}
-                    onFocus={() => setPreview(product)}
-                    className="col-span-4 overflow-hidden sm:col-span-2"
-                    aria-label={`Quick look: ${product.name}`}
-                  >
-                    <div className="overflow-hidden">
-                      <ProductVisual
-                        product={product}
-                        compact
-                        className="aspect-square transition-transform duration-700 group-hover:scale-105"
-                      />
-                    </div>
-                  </button>
-                  <Link
-                    to={productHref(product)}
-                    onFocus={() => setPreview(product)}
-                    className="col-span-7 sm:col-span-8"
-                  >
-                    <p className="text-[10px] tracking-[0.18em] uppercase text-gold-muted sm:text-[11px]">
-                      {productCategories.find((item) => item.slug === product.categorySlug)?.name}
-                    </p>
-                    <h2 className="mt-1 font-display text-[clamp(1.25rem,3.2vw,2.25rem)] break-word text-navy group-hover:text-gold">
-                      {product.name}
-                    </h2>
-                    {product.packSize ? (
-                      <p className="mt-1 text-sm text-muted">{product.packSize}</p>
-                    ) : null}
-                  </Link>
-                  <Link
-                    to={productHref(product)}
-                    className="col-span-1 flex justify-end"
-                    aria-label={`View ${product.name}`}
-                  >
-                    <ArrowUpRight className="size-4 text-navy/30 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gold" />
-                  </Link>
-                </div>
-              ))}
+          <div className="mb-8 flex flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
+                Categories
+              </p>
+              <h2 className="mt-2 font-display text-3xl text-navy sm:text-4xl">Shop by category</h2>
             </div>
-            <aside className="hidden lg:col-span-5 lg:block">
-              <div className="sticky top-28">
-                <button
-                  type="button"
-                  className="block w-full"
-                  onClick={() => setLook(preview)}
-                  aria-label={`Quick look: ${preview.name}`}
-                >
-                  <ProductVisual product={preview} className="aspect-[4/5]" />
-                </button>
-                <p className="mt-5 font-display text-4xl text-navy">{preview.name}</p>
-                {preview.packSize ? (
-                  <p className="mt-2 text-sm text-muted">{preview.packSize}</p>
-                ) : (
-                  <p className="mt-3 text-sm text-muted">Specifications available on request.</p>
-                )}
-                <div className="mt-6 flex flex-col gap-3">
-                  <Button href={productHref(preview)} variant="navy">
-                    View product
-                  </Button>
-                  <Button href="/contact?intent=product" variant="ghost" magnetic={false}>
-                    Request Product Information
-                  </Button>
-                </div>
-              </div>
-            </aside>
           </div>
+          <CategoryTileGrid categories={productCategories} />
         </Container>
       </section>
-      {look ? <ProductLook product={look} onClose={() => setLook(null)} /> : null}
+      <section className="bg-ivory pb-24 lg:pb-32">
+        <Container>
+          <div className="mb-8 flex flex-col gap-4 sm:mb-10">
+            <div>
+              <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
+                Catalogue
+              </p>
+              <h2 className="mt-2 font-display text-3xl text-navy sm:text-4xl">All products</h2>
+            </div>
+            <div
+              role="group"
+              aria-label="Filter products"
+              className="hide-scrollbar flex gap-2 overflow-x-auto py-1 sm:flex-wrap sm:overflow-visible"
+            >
+              <FilterChip label="All" active={active === 'all'} onClick={() => setActive('all')} />
+              {productCategories.map((category) => (
+                <FilterChip
+                  key={category.slug}
+                  label={category.navLabel}
+                  active={active === category.slug}
+                  onClick={() => setActive(category.slug)}
+                />
+              ))}
+            </div>
+          </div>
+          <ProductCatalogueGrid products={filtered} />
+        </Container>
+      </section>
     </>
   )
 }

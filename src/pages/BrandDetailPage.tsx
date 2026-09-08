@@ -1,3 +1,4 @@
+import { ProductCatalogueGrid } from '@/components/products/ProductCatalogueGrid'
 import { ProductVisual } from '@/components/products/ProductVisual'
 import { Seo } from '@/components/seo/Seo'
 import { Button } from '@/components/ui/Button'
@@ -8,9 +9,9 @@ import { getBrand } from '@/content/brands'
 import { images } from '@/content/images'
 import { BrandLogo } from '@/components/ui/BrandLogo'
 import { breadcrumbJsonLd } from '@/content/jsonld'
-import { productHref, products } from '@/content/products'
+import { products } from '@/content/products'
 import { NotFoundPage } from '@/pages/NotFoundPage'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 export function BrandDetailPage() {
   const { brand } = useParams()
@@ -82,33 +83,15 @@ export function BrandDetailPage() {
         <Container>
           <h2 className="font-display text-4xl text-navy">Product portfolio</h2>
           {linkedProducts.length > 0 ? (
-            <ul className="mt-10 space-y-4">
-              {linkedProducts.map((item) => (
-                <li key={item.slug} className="border-b border-line py-4">
-                  <Link
-                    to={productHref(item)}
-                    className="group flex items-center gap-4 sm:gap-6"
-                  >
-                    <ProductVisual
-                      product={item}
-                      compact
-                      className="size-20 shrink-0 sm:size-24"
-                    />
-                    <span>
-                      <span className="font-display text-[clamp(1.35rem,3.2vw,1.875rem)] break-word text-navy group-hover:text-gold">
-                        {item.name}
-                      </span>
-                      {item.packSize ? (
-                        <span className="mt-1 block text-sm text-muted">{item.packSize}</span>
-                      ) : null}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <ProductCatalogueGrid
+              products={linkedProducts}
+              showBrand={false}
+              className="mt-10"
+            />
           ) : (
             <p className="mt-6 max-w-xl text-lg text-muted">
-              The current {data.name} range is available on request. Share the products you need and we will confirm pack formats, origin and lead time.
+              The current {data.name} range is available on request. Share the products you need and we
+              will confirm pack formats, origin and lead time.
             </p>
           )}
           <div className="mt-12">

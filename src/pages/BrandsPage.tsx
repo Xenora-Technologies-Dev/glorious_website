@@ -83,7 +83,7 @@ export function BrandsPage() {
                 to={brand.href}
                 onMouseEnter={() => setActive(brand.slug)}
                 onFocus={() => setActive(brand.slug)}
-                className="group flex items-center gap-4 border-b border-line-light py-5 first:border-t"
+                className="group grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-4 border-b border-line-light py-5 first:border-t"
               >
                 <BrandLogo brand={brand} size="sm" plate />
                 <span

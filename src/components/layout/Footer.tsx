@@ -37,12 +37,15 @@ export function Footer() {
               <p className="mb-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">
                 Brands
               </p>
-              <ul className="space-y-4 text-sm text-ivory/75">
+              <ul className="space-y-3 text-sm text-ivory/75">
                 {brands.map((brand) => (
                   <li key={brand.slug}>
-                    <Link to={brand.href} className="flex items-center gap-3 hover:text-gold">
-                      <BrandLogo brand={brand} size="sm" plate />
-                      <span>{brand.name}</span>
+                    <Link
+                      to={brand.href}
+                      className="grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-3 hover:text-gold"
+                    >
+                      <BrandLogo brand={brand} size="sm" plate className="w-full" />
+                      <span className="leading-snug">{brand.name}</span>
                     </Link>
                   </li>
                 ))}
@@ -103,7 +106,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-3 border-t border-line-light pt-6 text-[12px] text-ivory/45 sm:flex-row sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {company.legalName}
+          <p>© {new Date().getFullYear()} {company.legalName}</p>
           </p>
           <p>International FMCG · Food trading · Private label</p>
         </div>
