@@ -97,8 +97,8 @@ export function ProductDetailPage() {
                       aria-pressed={index === Math.min(shot, shots.length - 1)}
                       className={
                         index === Math.min(shot, shots.length - 1)
-                          ? 'border border-gold bg-ivory'
-                          : 'border border-line bg-ivory hover:border-gold'
+                          ? 'border border-gold bg-transparent'
+                          : 'border border-line bg-transparent hover:border-gold'
                       }
                     >
                       <ProductVisual product={product} src={src} compact className="aspect-square" />

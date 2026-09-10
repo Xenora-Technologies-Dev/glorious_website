@@ -1,4 +1,4 @@
-﻿import type { ProductCategory } from '@/content/products'
+import type { ProductCategory } from '@/content/products'
 import { cn } from '@/lib/cn'
 import { Link } from 'react-router-dom'
 
@@ -21,7 +21,7 @@ export function CategoryTileGrid({ categories, className }: CategoryTileGridProp
           to={`/products/${category.slug}`}
           className="group flex flex-col overflow-hidden border border-line bg-cream transition-colors duration-300 hover:border-gold hover:bg-ivory"
         >
-          <div className="relative aspect-square overflow-hidden bg-ivory sm:aspect-[4/5]">
+          <div className="relative aspect-square overflow-hidden bg-transparent sm:aspect-[4/5]">
             <img
               src={category.image}
               alt={`${category.name} — Glorious Ascent range`}

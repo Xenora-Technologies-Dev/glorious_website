@@ -1,4 +1,4 @@
-﻿import { ProductVisual } from '@/components/products/ProductVisual'
+import { ProductVisual } from '@/components/products/ProductVisual'
 import { getBrand } from '@/content/brands'
 import { productHref, type Product } from '@/content/products'
 import { cn } from '@/lib/cn'
@@ -25,7 +25,7 @@ export function ProductCatalogueCard({
         className,
       )}
     >
-      <div className="relative aspect-square overflow-hidden bg-ivory sm:aspect-[4/5]">
+      <div className="relative aspect-square overflow-hidden bg-transparent sm:aspect-[4/5]">
         <ProductVisual
           product={product}
           className="h-full w-full transition-transform duration-700 group-hover:scale-105"

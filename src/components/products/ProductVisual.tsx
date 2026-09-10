@@ -15,8 +15,8 @@ export function ProductVisual({ product, className, eager, src, compact }: Produ
     <SmartImage
       src={src ?? productImage(product)}
       alt={`${product.name}${product.packSize ? ` — ${product.packSize}` : ''}`}
-      className={cn('h-full w-full bg-ivory', className)}
-      imgClassName={cn('object-contain', compact ? 'p-1' : 'p-3 sm:p-5')}
+      className={cn('h-full w-full bg-transparent', className)}
+      imgClassName={cn('object-contain', compact ? 'p-1.5' : 'p-2 sm:p-3')}
       eager={eager}
     />
   )

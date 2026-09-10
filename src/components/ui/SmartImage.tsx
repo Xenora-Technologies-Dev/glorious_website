@@ -22,7 +22,7 @@ export function SmartImage({
   const [failed, setFailed] = useState(false)
 
   return (
-    <div className={cn('relative overflow-hidden bg-ivory', className)}>
+    <div className={cn('relative overflow-hidden bg-transparent', className)}>
       {failed && !fallback ? (
         <div className="flex h-full min-h-[220px] items-end p-6">
           <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold">

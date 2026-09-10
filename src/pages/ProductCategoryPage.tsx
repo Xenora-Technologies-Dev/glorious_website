@@ -38,7 +38,7 @@ export function ProductCategoryPage() {
       />
       <section className="bg-cream pb-24 lg:pb-32">
         <Container>
-          <div className="mb-10 overflow-hidden border border-line bg-ivory lg:mb-14">
+          <div className="mb-10 overflow-hidden border border-line bg-transparent lg:mb-14">
             <img
               src={data.image}
               alt={`${data.name} — Glorious Ascent range`}
