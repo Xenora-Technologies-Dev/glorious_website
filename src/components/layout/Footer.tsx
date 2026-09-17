@@ -19,7 +19,7 @@ export function Footer() {
               />
               <div>
                 <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">
-                  Dubai · UAE
+                  Dubai Â· UAE
                 </p>
                 <p className="mt-1 font-display text-3xl">{company.shortName}</p>
               </div>
@@ -116,9 +116,9 @@ export function Footer() {
 
         <div className="flex flex-col gap-3 border-t border-line-light pt-6 text-[12px] text-ivory/45 sm:flex-row sm:justify-between">
           <p>
-          <p>© {new Date().getFullYear()} {company.legalName}</p>
+          <p>Â© {new Date().getFullYear()} {company.legalName}</p>
           </p>
-          <p>International FMCG · Trading · Private label</p>
+          <p>International FMCG Â· Trading Â· Private label</p>
         </div>
       </Container>
     </footer>

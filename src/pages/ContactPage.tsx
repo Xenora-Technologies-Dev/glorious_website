@@ -24,7 +24,7 @@ export function ContactPage() {
             Contact
           </p>
           <h1 className="font-display max-w-4xl text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.05] text-navy">
-            Let’s Talk Business.
+            Letâ€™s Talk Business.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
             Product information, quotations, private-label programmes and partnerships. Use the

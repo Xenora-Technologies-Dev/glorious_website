@@ -6,7 +6,7 @@ export const company = {
   location: 'Dubai, UAE',
   tagline: 'Connecting global FMCG markets.',
   positioning:
-    'A global FMCG trading house connecting quality products, trusted manufacturing partners and international markets — across ambient FMCG, frozen, non-food and commodities.',
+    'A global FMCG trading house connecting quality products, trusted manufacturing partners and international markets â€” across ambient FMCG, frozen, non-food and commodities.',
   story:
     'Glorious Ascent General Trading L.L.C. is an international import, export and cross-trade FMCG company headquartered in Dubai, with operations in the United Kingdom, India and Ethiopia. We source, manufacture under private label, package and distribute own brands, partner brands and commodity programmes for partners who need a reliable route from origin to market.',
   motto: 'We only succeed if our customers succeed.',
@@ -14,7 +14,7 @@ export const company = {
   mission:
     'We only succeed if our customers succeed. Service is a key factor in this trade: we support customers for their growth, no matter how big or small.',
   vision:
-    'Our business is committed to make a difference in the world — building transparent, ethical partnerships with brands and markets we sell into.',
+    'Our business is committed to make a difference in the world â€” building transparent, ethical partnerships with brands and markets we sell into.',
   quality:
     'Our products under our own brands are designed to be on par with, if not better quality than market leaders, but with a lesser price. Quality is always our priority.',
   partnerships:
@@ -67,10 +67,10 @@ export const company = {
     },
   },
   forwarding: [
-    'Export documentation — Health Certificate, Certificate of Origin, and Certificate of Free Sale',
+    'Export documentation â€” Health Certificate, Certificate of Origin, and Certificate of Free Sale',
     'Consolidations',
     'Inspection arrangements',
-    'Labelling — date coding and ink jetting in any language',
+    'Labelling â€” date coding and ink jetting in any language',
   ],
   privateLabel: [
     'Private-label manufacturing',
@@ -107,7 +107,7 @@ export type ExportMarket = {
 export const exportMarkets: ExportMarket[] = [
   // Americas
   { id: 'usa', name: 'United States', short: 'USA', region: 'americas', lat: 39.8, lon: -98.5, kind: 'export' },
-  // Europe — fewer, spaced markets
+  // Europe â€” fewer, spaced markets
   { id: 'germany', name: 'Germany', short: 'Germany', region: 'europe', lat: 51.16, lon: 10.45, kind: 'export' },
   { id: 'france', name: 'France', short: 'France', region: 'europe', lat: 46.2, lon: 1.8, kind: 'export' },
   { id: 'italy', name: 'Italy', short: 'Italy', region: 'europe', lat: 42.5, lon: 12.5, kind: 'export' },
@@ -129,7 +129,7 @@ export const exportMarkets: ExportMarket[] = [
   { id: 'nigeria', name: 'Nigeria', short: 'Nigeria', region: 'africa', lat: 9.1, lon: 7.5, kind: 'export' },
   { id: 'kenya', name: 'Kenya', short: 'Kenya', region: 'africa', lat: 0.5, lon: 37.9, kind: 'export' },
   { id: 'south-africa', name: 'South Africa', short: 'S. Africa', region: 'africa', lat: -30.6, lon: 24.0, kind: 'export' },
-  // Offices — slightly nudged so labels clear nearby exports
+  // Offices â€” slightly nudged so labels clear nearby exports
   { id: 'uae-office', name: 'United Arab Emirates', short: 'UAE', region: 'gulf', lat: 25.2, lon: 55.6, kind: 'office' },
   { id: 'uk-office', name: 'United Kingdom', short: 'UK', region: 'europe', lat: 53.5, lon: -1.8, kind: 'office' },
   { id: 'india-office', name: 'India', short: 'India', region: 'asia', lat: 20.5, lon: 78.5, kind: 'office' },
@@ -178,7 +178,7 @@ export const whyStatements = [
   {
     index: '03',
     title: 'Product Diversity',
-    copy: 'A diversified FMCG range spanning ambient food, frozen & protein, non-food disposables, confectionery, beverages and commodities — with private-label programmes alongside owned and partner brands.',
+    copy: 'A diversified FMCG range spanning ambient food, frozen & protein, non-food disposables, confectionery, beverages and commodities â€” with private-label programmes alongside owned and partner brands.',
   },
   {
     index: '04',
