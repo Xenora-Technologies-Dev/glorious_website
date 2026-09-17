@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/Button'
+﻿import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { ImageReveal } from '@/components/ui/ImageReveal'
 import { images } from '@/content/images'
@@ -44,9 +44,11 @@ export function PrivateLabel() {
           </div>
           <div className="lg:col-span-6">
             <ImageReveal
-              src={images.packaging}
-              alt="Packaged goods prepared for private-label labeling and distribution"
-              className="h-[min(70vw,520px)] w-full min-h-[220px]"
+              src={images.privateLabel}
+              alt="Be a Brand Owner Today — private-label packaging formats ready for your brand"
+              className="aspect-[5/6] w-full max-h-[640px] bg-ivory"
+              imgClassName="object-contain object-center"
+              parallaxAmount={0}
             />
           </div>
         </div>

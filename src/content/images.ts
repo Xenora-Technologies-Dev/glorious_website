@@ -22,6 +22,7 @@ export const images = {
   warehouse:
     'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2000&q=80',
   packaging: '/brand/catalogue/private_label_lifestyle.jpg',
+  privateLabel: '/brand/private-label-brand-owner.png',
   manufacturing:
     'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1800&q=80',
   logistics:

@@ -6,6 +6,8 @@ export type ProductCategory = {
   image: string
 }
 
+export type FrozenGroup = 'chicken' | 'meat' | 'seafood' | 'breaded'
+
 export type Product = {
   slug: string
   name: string
@@ -15,6 +17,7 @@ export type Product = {
   brandSlug?: string
   packSize?: string
   origin?: string
+  frozenGroup?: FrozenGroup
 }
 
 const img = (file: string) => `/Products/${file}`
@@ -68,8 +71,8 @@ export const productCategories: ProductCategory[] = [
     slug: 'frozen',
     name: 'Frozen & Protein',
     navLabel: 'Frozen',
-    description: 'Frozen chicken, meat, processed protein and vegetables for local trade, import and export under the Tash brand.',
-    image: '/Products/frozen/chicken-legs.jpg',
+    description: 'Frozen chicken, meat, seafood and breaded or prepared lines for local trade, import and export under the Tash brand.',
+    image: '/Products/frozen/frozen-products-intro.png',
   },
   {
     slug: 'non-food',
@@ -83,7 +86,7 @@ export const productCategories: ProductCategory[] = [
     name: 'Commodities',
     navLabel: 'Commodities',
     description: 'Generic commodity trading with containerised exports Ã¢â‚¬â€ grains and related lines. Details coming soon.',
-    image: '/Products/frozen/mixed-vegetables.jpg',
+    image: '/Products/frozen/mixed-vegetables.png',
   },
   {
     slug: 'confectionery',
@@ -431,112 +434,126 @@ export const products: Product[] = [
     slug: 'whole-chicken',
     name: 'Whole Chicken',
     categorySlug: 'frozen',
+    frozenGroup: 'chicken',
     brandSlug: 'tash',
-    image: '/Products/frozen/chicken-whole.jpg',
+    image: '/Products/frozen/chicken-whole.png',
     packSize: 'Frozen',
   },
   {
     slug: 'chicken-leg-quarters',
     name: 'Chicken Leg Quarters',
     categorySlug: 'frozen',
+    frozenGroup: 'chicken',
     brandSlug: 'tash',
-    image: '/Products/frozen/chicken-legs.jpg',
+    image: '/Products/frozen/chicken-legs.png',
     packSize: 'Frozen',
   },
   {
     slug: 'chicken-breast',
     name: 'Chicken Breast',
     categorySlug: 'frozen',
+    frozenGroup: 'chicken',
     brandSlug: 'tash',
-    image: '/Products/frozen/chicken-breast.jpg',
+    image: '/Products/frozen/chicken-breast.png',
     packSize: 'Frozen',
   },
   {
     slug: 'chicken-wings',
     name: 'Chicken Wings',
     categorySlug: 'frozen',
+    frozenGroup: 'chicken',
     brandSlug: 'tash',
-    image: '/Products/frozen/chicken-wings.jpg',
+    image: '/Products/frozen/chicken-wings.png',
     packSize: 'Frozen',
   },
   {
     slug: 'chicken-drumsticks',
     name: 'Chicken Drumsticks',
     categorySlug: 'frozen',
+    frozenGroup: 'chicken',
     brandSlug: 'tash',
-    image: '/Products/frozen/chicken-legs.jpg',
+    image: '/Products/frozen/chicken-legs.png',
     packSize: 'Frozen',
   },
   {
     slug: 'indian-beef-cuts',
     name: 'Indian Beef Cuts',
     categorySlug: 'frozen',
+    frozenGroup: 'meat',
     brandSlug: 'tash',
-    image: '/Products/frozen/beef-cuts.jpg',
+    image: '/Products/frozen/beef-cuts.png',
     packSize: 'Frozen',
   },
   {
     slug: 'mutton-cuts',
     name: 'Mutton / Lamb Cuts',
     categorySlug: 'frozen',
+    frozenGroup: 'meat',
     brandSlug: 'tash',
-    image: '/Products/frozen/mutton.jpg',
+    image: '/Products/frozen/mutton.png',
     packSize: 'Frozen',
   },
   {
     slug: 'beef-burger-patties',
     name: 'Beef Burger Patties',
     categorySlug: 'frozen',
+    frozenGroup: 'meat',
     brandSlug: 'tash',
-    image: '/Products/frozen/burger-patties.jpg',
+    image: '/Products/frozen/burger-patties.png',
     packSize: 'Frozen',
   },
   {
     slug: 'chicken-nuggets',
     name: 'Chicken Nuggets',
     categorySlug: 'frozen',
+    frozenGroup: 'breaded',
     brandSlug: 'tash',
-    image: '/Products/frozen/chicken-nuggets.jpg',
+    image: '/Products/frozen/chicken-nuggets.png',
     packSize: 'Frozen',
   },
   {
     slug: 'sausages',
     name: 'Sausages',
     categorySlug: 'frozen',
+    frozenGroup: 'meat',
     brandSlug: 'tash',
-    image: '/Products/frozen/sausages.jpg',
+    image: '/Products/frozen/sausages.png',
     packSize: 'Frozen',
   },
   {
     slug: 'frozen-mixed-vegetables',
     name: 'Frozen Mixed Vegetables',
     categorySlug: 'frozen',
+    frozenGroup: 'breaded',
     brandSlug: 'tash',
-    image: '/Products/frozen/mixed-vegetables.jpg',
+    image: '/Products/frozen/mixed-vegetables.png',
     packSize: 'Frozen',
   },
   {
     slug: 'french-fries',
     name: 'French Fries',
     categorySlug: 'frozen',
+    frozenGroup: 'breaded',
     brandSlug: 'tash',
-    image: '/Products/frozen/frozen-fries.jpg',
+    image: '/Products/frozen/frozen-fries.png',
     packSize: 'Frozen',
   },
   {
     slug: 'fish-fillets',
     name: 'Fish Fillets',
     categorySlug: 'frozen',
+    frozenGroup: 'seafood',
     brandSlug: 'tash',
-    image: '/Products/frozen/fish-fillet.jpg',
+    image: '/Products/frozen/fish-fillet.png',
     packSize: 'Frozen',
   },
   {
     slug: 'minced-meat',
     name: 'Minced Beef / Chicken',
     categorySlug: 'frozen',
+    frozenGroup: 'meat',
     brandSlug: 'tash',
-    image: '/Products/frozen/beef-cuts.jpg',
+    image: '/Products/frozen/beef-cuts.png',
     packSize: 'Frozen',
   },
   {
@@ -552,7 +569,7 @@ export const products: Product[] = [
     name: 'Disposable Plates',
     categorySlug: 'non-food',
     brandSlug: 'glorious-pack',
-    image: '/Products/non-food/disposable-plates.jpg',
+    image: '/Products/non-food/disposable-plates.png',
     packSize: 'Foodservice packs',
   },
   {
@@ -560,7 +577,7 @@ export const products: Product[] = [
     name: 'Disposable Cups',
     categorySlug: 'non-food',
     brandSlug: 'glorious-pack',
-    image: '/Products/non-food/disposable-cups.jpg',
+    image: '/Products/non-food/disposable-cups.png',
     packSize: 'Foodservice packs',
   },
   {
@@ -568,7 +585,7 @@ export const products: Product[] = [
     name: 'Disposable Glasses',
     categorySlug: 'non-food',
     brandSlug: 'glorious-pack',
-    image: '/Products/non-food/disposable-glasses.jpg',
+    image: '/Products/non-food/disposable-glasses.png',
     packSize: 'Foodservice packs',
   },
   {
@@ -576,7 +593,7 @@ export const products: Product[] = [
     name: 'Disposable Cutlery',
     categorySlug: 'non-food',
     brandSlug: 'glorious-pack',
-    image: '/Products/non-food/disposable-cutlery.jpg',
+    image: '/Products/non-food/disposable-cutlery.png',
     packSize: 'Foodservice packs',
   },
   {
@@ -584,7 +601,7 @@ export const products: Product[] = [
     name: 'Disposable Bowls',
     categorySlug: 'non-food',
     brandSlug: 'glorious-pack',
-    image: '/Products/non-food/disposable-bowls.jpg',
+    image: '/Products/non-food/disposable-bowls.png',
     packSize: 'Foodservice packs',
   },
   // --- Catalogue additions: Dachi beans ---
@@ -984,6 +1001,42 @@ export const products: Product[] = [
   },
 
 ]
+
+
+export const frozenSections = [
+  {
+    id: 'chicken' as const,
+    title: 'Chicken',
+    eyebrow: 'Poultry',
+    copy: 'Whole birds and cut chicken for retail, foodservice and export — frozen for consistent quality and dependable lead times under the Tash programme.',
+    image: '/Products/frozen/chicken-whole.png',
+  },
+  {
+    id: 'meat' as const,
+    title: 'Meat',
+    eyebrow: 'Red meat & processed',
+    copy: 'Beef, lamb and processed meat lines including cuts, mince, burger patties and sausages for wholesale and foodservice partners.',
+    image: '/Products/frozen/beef-cuts.png',
+  },
+  {
+    id: 'seafood' as const,
+    title: 'Seafood',
+    eyebrow: 'Fish',
+    copy: 'Frozen fish fillets for trade partners who need reliable seafood alongside poultry and meat in one cold-chain conversation.',
+    image: '/Products/frozen/fish-fillet.png',
+  },
+  {
+    id: 'breaded' as const,
+    title: 'Breaded items',
+    eyebrow: 'Coated & prepared',
+    copy: 'Breaded proteins and prepared frozen sides — chicken nuggets, french fries and mixed vegetables for kitchens that need speed and consistency.',
+    image: '/Products/frozen/chicken-nuggets.png',
+  },
+]
+
+export function getFrozenProductsByGroup(group: FrozenGroup) {
+  return products.filter((product) => product.categorySlug === 'frozen' && product.frozenGroup === group)
+}
 
 export const allProductNames = [...new Set(products.map((product) => product.name))]
 

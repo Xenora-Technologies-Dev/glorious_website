@@ -3,7 +3,12 @@ import { Seo } from '@/components/seo/Seo'
 import { PageHero } from '@/components/ui/PageHero'
 import { Container } from '@/components/ui/Container'
 import { breadcrumbJsonLd } from '@/content/jsonld'
-import { getCategory, getProductsByCategory } from '@/content/products'
+import {
+  frozenSections,
+  getCategory,
+  getFrozenProductsByGroup,
+  getProductsByCategory,
+} from '@/content/products'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { useParams } from 'react-router-dom'
 
@@ -22,12 +27,29 @@ const nonFoodHighlights = [
   },
 ]
 
+const frozenHighlights = [
+  {
+    title: 'Local and export',
+    copy: 'Tash frozen lines support UAE and regional trade as well as containerised export programmes with clear pack specs.',
+  },
+  {
+    title: 'Cold-chain ready',
+    copy: 'Chicken, meat, seafood and prepared items packed for freezer logistics from warehouse through to the buyer.',
+  },
+  {
+    title: 'Foodservice packs',
+    copy: 'Cut chicken, processed meat, fish fillets and breaded sides sized for kitchens, distributors and retail freezers.',
+  },
+]
+
 export function ProductCategoryPage() {
   const { category } = useParams()
   const data = category ? getCategory(category) : undefined
   if (!data) return <NotFoundPage />
 
   const items = getProductsByCategory(data.slug)
+  const isFrozen = data.slug === 'frozen'
+  const isNonFood = data.slug === 'non-food'
 
   return (
     <>
@@ -60,7 +82,8 @@ export function ProductCategoryPage() {
               className="mx-auto aspect-[16/9] max-h-[min(52vw,420px)] w-full max-w-3xl object-contain p-6 sm:p-10"
             />
           </div>
-          {data.slug === 'non-food' ? (
+
+          {isNonFood ? (
             <div className="mb-14 grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-5">
                 <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
@@ -86,7 +109,83 @@ export function ProductCategoryPage() {
               </div>
             </div>
           ) : null}
-          {items.length > 0 ? (
+
+          {isFrozen ? (
+            <>
+              <div className="mb-16 grid gap-10 lg:grid-cols-12">
+                <div className="lg:col-span-5">
+                  <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
+                    Tash
+                  </p>
+                  <h2 className="mt-3 font-display text-3xl text-navy sm:text-4xl">
+                    Frozen & protein, organised for trade
+                  </h2>
+                  <p className="mt-5 text-base leading-relaxed text-muted">
+                    Browse the Tash frozen programme by chicken, meat, seafood and breaded or
+                    prepared lines. Each group is packed for foodservice, retail and export partners
+                    who need clear categories and reliable cold-chain supply.
+                  </p>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-3 lg:col-span-7">
+                  {frozenHighlights.map((item) => (
+                    <article key={item.title} className="border border-line bg-ivory px-5 py-6">
+                      <h3 className="font-display text-xl text-navy">{item.title}</h3>
+                      <p className="mt-3 text-sm leading-relaxed text-muted">{item.copy}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              <nav className="mb-12 flex flex-wrap gap-3" aria-label="Frozen categories">
+                {frozenSections.map((section) => (
+                  <a
+                    key={section.id}
+                    href={`#${section.id}`}
+                    className="border border-line bg-ivory px-4 py-2 text-[11px] font-semibold tracking-[0.16em] uppercase text-navy transition-colors hover:border-gold hover:text-gold"
+                  >
+                    {section.title}
+                  </a>
+                ))}
+              </nav>
+
+              <div className="space-y-20">
+                {frozenSections.map((section) => {
+                  const sectionProducts = getFrozenProductsByGroup(section.id)
+                  return (
+                    <section key={section.id} id={section.id} className="scroll-mt-28">
+                      <div className="mb-8 grid items-center gap-8 border-t border-line pt-12 lg:grid-cols-12">
+                        <div className="overflow-hidden border border-line bg-ivory p-4 lg:col-span-4">
+                          <img
+                            src={section.image}
+                            alt=""
+                            className="mx-auto aspect-square max-h-56 w-full object-contain"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                        <div className="lg:col-span-8">
+                          <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
+                            {section.eyebrow}
+                          </p>
+                          <h2 className="mt-3 font-display text-3xl text-navy sm:text-4xl">
+                            {section.title}
+                          </h2>
+                          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+                            {section.copy}
+                          </p>
+                        </div>
+                      </div>
+                      {sectionProducts.length > 0 ? (
+                        <ProductCatalogueGrid products={sectionProducts} />
+                      ) : (
+                        <p className="text-muted">Products in this group are available on request.</p>
+                      )}
+                    </section>
+                  )
+                })}
+              </div>
+            </>
+          ) : items.length > 0 ? (
             <ProductCatalogueGrid products={items} />
           ) : (
             <p className="max-w-xl text-lg text-muted">

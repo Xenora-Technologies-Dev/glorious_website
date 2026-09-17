@@ -46,6 +46,7 @@ export const company = {
     },
     uk: {
       label: 'United Kingdom',
+      operatingName: 'Glorious Ascent UK LTD',
       address: '118a Church Road, Hanwell, London, England W7 3BE',
       hours: 'Mon - Fri: 9AM - 5PM',
       phone: '+44 7500 204384',
@@ -55,10 +56,12 @@ export const company = {
       label: 'India',
       operatingName: 'Sunshine General Trading',
       address: '1st Floor, 66 Geetha Mahal, Iddya NH, Surathkal 575014, Mangaluru, India',
+      phone: '+91 86552 79039',
+      phoneHref: 'tel:+918655279039',
     },
     ethiopia: {
       label: 'Ethiopia',
-      operatingName: 'Glories Ascent PLC',
+      operatingName: 'Glorious Ascent PLC',
       address: 'Marcato Market, Addis Ababa, Ethiopia',
       phone: '+251 911 684 178',
       phoneHref: 'tel:+251911684178',
