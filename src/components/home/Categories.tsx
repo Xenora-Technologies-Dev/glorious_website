@@ -41,7 +41,7 @@ export function Categories() {
               for trade.
             </>
           }
-          copy="A focused FMCG food range. Browse the categories, then open a product page for the full detail."
+          copy="A focused FMCG range. Browse the categories, then open a product page for the full detail."
         />
       </Container>
 

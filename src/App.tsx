@@ -45,6 +45,11 @@ const InsightDetailPage = lazy(() =>
 const ContactPage = lazy(() =>
   import('@/pages/ContactPage').then((module) => ({ default: module.ContactPage })),
 )
+const FactoriesPartnersPage = lazy(() =>
+  import('@/pages/FactoriesPartnersPage').then((module) => ({
+    default: module.FactoriesPartnersPage,
+  })),
+)
 const NotFoundPage = lazy(() =>
   import('@/pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage })),
 )
@@ -70,6 +75,7 @@ export default function App() {
             <Route path="private-label" element={<PrivateLabelPage />} />
             <Route path="global-sourcing" element={<GlobalSourcingPage />} />
             <Route path="packaging" element={<PackagingPage />} />
+            <Route path="factories" element={<FactoriesPartnersPage />} />
             <Route path="insights" element={<InsightsPage />} />
             <Route path="insights/:slug" element={<InsightDetailPage />} />
             <Route path="contact" element={<ContactPage />} />

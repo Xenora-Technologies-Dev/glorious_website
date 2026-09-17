@@ -1,6 +1,7 @@
 import { BrandPortfolio } from '@/components/home/BrandPortfolio'
 import { Categories } from '@/components/home/Categories'
 import { CtaBanner } from '@/components/home/CtaBanner'
+import { DistributionBrandsSlider } from '@/components/home/DistributionBrandsSlider'
 import { GlobalPresence } from '@/components/home/GlobalPresence'
 import { Hero } from '@/components/home/Hero'
 import { Intro } from '@/components/home/Intro'
@@ -23,6 +24,7 @@ export function HomePage() {
       <GlobalPresence />
       <Categories />
       <BrandPortfolio />
+      <DistributionBrandsSlider />
       <PrivateLabel />
       <Packaging />
       <CtaBanner />

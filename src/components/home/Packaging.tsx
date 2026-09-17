@@ -39,7 +39,7 @@ export function Packaging() {
             <div className="mt-10 hidden lg:block">
               <ImageReveal
                 src={images.warehouse}
-                alt="Warehouse distribution for packaged food products"
+                alt="Warehouse distribution for packaged FMCG products"
                 className="h-[360px] w-full"
               />
             </div>

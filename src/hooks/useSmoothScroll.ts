@@ -10,6 +10,31 @@ export function getLenis() {
   return lenis
 }
 
+const NAV_OFFSET = 112
+
+function scrollToHash(hash: string, immediate = false) {
+  const id = decodeURIComponent(hash.replace(/^#/, ''))
+  if (!id) return false
+  const el = document.getElementById(id)
+  if (!el) return false
+
+  if (lenis) {
+    lenis.scrollTo(el, { offset: -NAV_OFFSET, immediate, duration: 1.05 })
+  } else {
+    const top = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET
+    window.scrollTo({ top, left: 0, behavior: immediate ? 'auto' : 'smooth' })
+  }
+  return true
+}
+
+function scrollToTop(immediate = true) {
+  if (lenis) {
+    lenis.scrollTo(0, { immediate })
+  } else {
+    window.scrollTo({ top: 0, left: 0, behavior: immediate ? 'auto' : 'smooth' })
+  }
+}
+
 export function useSmoothScroll() {
   const location = useLocation()
 
@@ -47,11 +72,30 @@ export function useSmoothScroll() {
   }, [])
 
   useEffect(() => {
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true })
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    const hash = location.hash
+    let cancelled = false
+    let attempts = 0
+
+    const run = () => {
+      if (cancelled) return
+      if (hash) {
+        const ok = scrollToHash(hash, attempts === 0 && !lenis)
+        if (!ok && attempts < 20) {
+          attempts += 1
+          window.setTimeout(run, 50)
+          return
+        }
+      } else {
+        scrollToTop(true)
+      }
+      requestAnimationFrame(() => ScrollTrigger.refresh())
     }
-    requestAnimationFrame(() => ScrollTrigger.refresh())
-  }, [location.pathname])
+
+    // Wait a frame so lazy routes mount (#distribution)
+    requestAnimationFrame(run)
+
+    return () => {
+      cancelled = true
+    }
+  }, [location.pathname, location.hash])
 }

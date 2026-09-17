@@ -62,6 +62,7 @@ export const solutionsMega = [
   { label: 'Global Sourcing', href: '/global-sourcing', copy: 'Origin to market' },
   { label: 'Private Label', href: '/private-label', copy: 'Manufacture under your brand' },
   { label: 'Packaging', href: '/packaging', copy: 'Labeling and documentation' },
+  { label: 'Factories & Partners', href: '/factories', copy: 'Manufacturing network' },
 ] as const
 
 export const footerLinks = {
@@ -74,15 +75,18 @@ export const footerLinks = {
   ],
   products: [
     { label: 'All products', href: '/products' },
-    { label: 'Pasta', href: '/products/pasta' },
-    { label: 'Sauces', href: '/products/sauces' },
-    { label: 'Oils', href: '/products/oils' },
-    { label: 'Dairy', href: '/products/dairy' },
+    { label: 'Food', href: '/products' },
+    { label: 'Frozen & Protein', href: '/products/frozen' },
+    { label: 'Non-food', href: '/products/non-food' },
+    { label: 'Commodities', href: '/products/commodities' },
+    { label: 'Confectionery', href: '/products/confectionery' },
+    { label: 'Beverages', href: '/products/beverages' },
   ],
   services: [
     { label: 'Private Label', href: '/private-label' },
     { label: 'Packaging', href: '/packaging' },
     { label: 'Global Sourcing', href: '/global-sourcing' },
+    { label: 'Factories & Partners', href: '/factories' },
     { label: 'Request a Quote', href: '/contact?intent=quote' },
   ],
 } as const

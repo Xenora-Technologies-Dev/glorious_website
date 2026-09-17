@@ -14,7 +14,7 @@ import { useRef } from 'react'
 const journey = [
   {
     title: 'Manufacturing',
-    copy: 'Private-label manufacturing for partners who need a finished food product under their own brand.',
+    copy: 'Private-label manufacturing for partners who need a finished FMCG product under their own brand.',
     image: images.factory,
   },
   {
@@ -98,7 +98,7 @@ export function PrivateLabelPage() {
               <h2 className="font-display text-4xl text-navy">The proposition</h2>
               <p className="mt-6 text-lg leading-relaxed text-muted">
                 Glorious Ascent undertakes private-label manufacturing for partners who want a
-                finished food product under their own brand — including customized shapes, grammage
+                finished FMCG product under their own brand — including customized shapes, grammage
                 and value-added products.
               </p>
               <ul className="mt-10 space-y-4">

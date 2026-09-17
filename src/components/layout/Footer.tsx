@@ -15,11 +15,11 @@ export function Footer() {
               <img
                 src="/brand/logo.png"
                 alt="Glorious Ascent"
-                className="size-16 rounded-full object-cover"
+                className="size-[4.5rem] object-contain"
               />
               <div>
                 <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">
-                  Dubai Â· UAE
+                  Dubai · UAE
                 </p>
                 <p className="mt-1 font-display text-3xl">{company.shortName}</p>
               </div>
@@ -54,37 +54,47 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="grid gap-10 border-b border-line-light py-14 md:grid-cols-2">
-          <div>
-            <p className="mb-3 text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">
-              {company.offices.uae.label}
-            </p>
-            <p className="max-w-sm text-sm leading-relaxed text-ivory/75">
-              {company.offices.uae.address}
-            </p>
-            <p className="mt-2 text-sm text-ivory/60">{company.offices.uae.poBox}</p>
-            <a
-              href={company.offices.uae.phoneHref}
-              className="mt-4 inline-block text-sm text-ivory hover:text-gold"
-            >
-              {company.offices.uae.phone}
-            </a>
-          </div>
-          <div>
-            <p className="mb-3 text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">
-              {company.offices.uk.label}
-            </p>
-            <p className="max-w-sm text-sm leading-relaxed text-ivory/75">
-              {company.offices.uk.address}
-            </p>
-            <p className="mt-2 text-sm text-ivory/60">{company.offices.uk.hours}</p>
-            <a
-              href={company.offices.uk.phoneHref}
-              className="mt-4 inline-block text-sm text-ivory hover:text-gold"
-            >
-              {company.offices.uk.phone}
-            </a>
-          </div>
+                <div className="grid gap-10 border-b border-line-light py-14 sm:grid-cols-2 xl:grid-cols-4">
+          {Object.values(company.offices).map((office) => {
+            const detail = office as {
+              label: string
+              address: string
+              operatingName?: string
+              role?: string
+              hours?: string
+              phone?: string
+              phoneHref?: string
+              phoneSecondary?: string
+              phoneSecondaryHref?: string
+            }
+            return (
+              <div key={detail.label}>
+                <p className="mb-3 text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">
+                  {detail.label}
+                </p>
+                {detail.operatingName ? (
+                  <p className="mb-2 text-sm font-semibold text-ivory">{detail.operatingName}</p>
+                ) : null}
+                <p className="max-w-sm text-sm leading-relaxed text-ivory/75">{detail.address}</p>
+                {detail.role ? (
+                  <p className="mt-2 text-sm text-ivory/60">{detail.role}</p>
+                ) : null}
+                {detail.hours ? (
+                  <p className="mt-2 text-sm text-ivory/60">{detail.hours}</p>
+                ) : null}
+                {detail.phone && detail.phoneHref ? (
+                  <a href={detail.phoneHref} className="mt-4 inline-block text-sm text-ivory hover:text-gold">
+                    {detail.phone}
+                  </a>
+                ) : null}
+                {detail.phoneSecondary && detail.phoneSecondaryHref ? (
+                  <a href={detail.phoneSecondaryHref} className="mt-2 inline-block text-sm text-ivory hover:text-gold">
+                    {detail.phoneSecondary}
+                  </a>
+                ) : null}
+              </div>
+            )
+          })}
         </div>
 
         <div className="flex flex-col gap-6 py-10 lg:flex-row lg:items-center lg:justify-between">
@@ -106,9 +116,9 @@ export function Footer() {
 
         <div className="flex flex-col gap-3 border-t border-line-light pt-6 text-[12px] text-ivory/45 sm:flex-row sm:justify-between">
           <p>
-          <p>Â© {new Date().getFullYear()} {company.legalName}</p>
+          <p>© {new Date().getFullYear()} {company.legalName}</p>
           </p>
-          <p>International FMCG Â· Food trading Â· Private label</p>
+          <p>International FMCG · Trading · Private label</p>
         </div>
       </Container>
     </footer>

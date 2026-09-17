@@ -29,7 +29,7 @@ export function BrandPortfolio() {
         <SectionHeader
           index="04"
           eyebrow="Our brands"
-          title="A house of food brands."
+          title="A house of FMCG brands."
           copy="Owned and private-label brands from the Glorious Ascent house. Hover to see the atmosphere behind each name."
         />
         <div className="mt-14 grid gap-px bg-line sm:grid-cols-2 xl:grid-cols-4">

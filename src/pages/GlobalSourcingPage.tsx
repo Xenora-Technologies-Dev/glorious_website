@@ -13,7 +13,7 @@ import { useRef } from 'react'
 const sections = [
   {
     title: 'Global sourcing',
-    copy: 'Glorious Ascent sits between suppliers, manufacturers and international markets — sourcing food products for trade, private label and distribution.',
+    copy: 'Glorious Ascent sits between suppliers, manufacturers and international markets — sourcing FMCG products for trade, private label and distribution.',
   },
   {
     title: 'Supplier network',
@@ -69,7 +69,7 @@ export function GlobalSourcingPage() {
         tone="dark"
         eyebrow="Global sourcing"
         lines={['A bridge between', 'origin and market.']}
-        copy="Glorious Ascent sources and moves FMCG food products internationally — from origin through packaging and into market."
+        copy="Glorious Ascent sources and moves FMCG products internationally — from origin through packaging and into market."
         crumbs={[
           { label: 'Home', href: '/' },
           { label: 'Global Sourcing' },

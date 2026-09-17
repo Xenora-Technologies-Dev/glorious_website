@@ -24,7 +24,7 @@ export function ContactPage() {
             Contact
           </p>
           <h1 className="font-display max-w-4xl text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.05] text-navy">
-            Letâ€™s Talk Business.
+            Let’s Talk Business.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
             Product information, quotations, private-label programmes and partnerships. Use the
@@ -37,29 +37,46 @@ export function ContactPage() {
             </div>
             <aside className="lg:col-span-5">
               <div className="space-y-8">
-                <div>
-                  <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
-                    UAE
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">
-                    {company.offices.uae.address}
-                  </p>
-                  <p className="mt-2 text-sm text-muted">{company.offices.uae.poBox}</p>
-                  <a href={company.offices.uae.phoneHref} className="mt-3 inline-block text-navy">
-                    {company.offices.uae.phone}
-                  </a>
-                </div>
-                <div>
-                  <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
-                    United Kingdom
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">
-                    {company.offices.uk.address}
-                  </p>
-                  <a href={company.offices.uk.phoneHref} className="mt-3 inline-block text-navy">
-                    {company.offices.uk.phone}
-                  </a>
-                </div>
+                {(
+                  [
+                    company.offices.uae,
+                    company.offices.uk,
+                    company.offices.india,
+                    company.offices.ethiopia,
+                  ] as Array<{
+                    label: string
+                    address: string
+                    operatingName?: string
+                    role?: string
+                    phone?: string
+                    phoneHref?: string
+                    phoneSecondary?: string
+                    phoneSecondaryHref?: string
+                  }>
+                ).map((office) => (
+                  <div key={office.label}>
+                    <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
+                      {office.label}
+                    </p>
+                    {office.operatingName ? (
+                      <p className="mt-2 text-sm font-semibold text-navy">{office.operatingName}</p>
+                    ) : null}
+                    <p className="mt-3 text-sm leading-relaxed text-muted">{office.address}</p>
+                    {office.role ? (
+                      <p className="mt-2 text-sm text-muted">{office.role}</p>
+                    ) : null}
+                    {office.phone && office.phoneHref ? (
+                      <a href={office.phoneHref} className="mt-3 inline-block text-navy">
+                        {office.phone}
+                      </a>
+                    ) : null}
+                    {office.phoneSecondary && office.phoneSecondaryHref ? (
+                      <a href={office.phoneSecondaryHref} className="mt-2 inline-block text-navy">
+                        {office.phoneSecondary}
+                      </a>
+                    ) : null}
+                  </div>
+                ))}
               </div>
               <div className="mt-12">
                 <Button href={company.offices.uae.phoneHref} variant="navy">

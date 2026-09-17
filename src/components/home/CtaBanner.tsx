@@ -10,7 +10,7 @@ export function CtaBanner() {
           07 · Let’s work together
         </p>
         <h2 className="font-display max-w-5xl text-[clamp(2.1rem,5vw,4.5rem)] leading-[1.05]">
-          Let’s Build Your Next Food Supply.
+          Let’s Build Your Next FMCG Programme.
         </h2>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/70">
           Product information, quotations, private-label programmes and distribution

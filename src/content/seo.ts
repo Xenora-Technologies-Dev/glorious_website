@@ -3,9 +3,9 @@ export const pageMeta: Record<
   { title: string; description: string }
 > = {
   home: {
-    title: 'Glorious Ascent | Connecting Global Food Markets',
+    title: 'Glorious Ascent | Connecting Global FMCG Markets',
     description:
-      'Glorious Ascent General Trading L.L.C. is a Dubai-based FMCG food trading partner for sourcing, private-label manufacturing, packaging and international distribution.',
+      'Glorious Ascent General Trading L.L.C. is a Dubai-headquartered FMCG trading house for sourcing, private-label manufacturing, packaging and international distribution.',
   },
   about: {
     title: 'About | Glorious Ascent',
@@ -20,17 +20,17 @@ export const pageMeta: Record<
   brands: {
     title: 'Brands | Glorious Ascent',
     description:
-      'Owned and private-label food brands from Glorious Ascent, including American Hat, Zaitha, Tash, Dachi, Zarella, Delicia and Legacy Valley.',
+      'Owned and private-label FMCG brands from Glorious Ascent, including American Hat, Zaitha, Tash, Dachi, Zarella, Delicia and Legacy Valley.',
   },
   privateLabel: {
     title: 'Private Label | Glorious Ascent',
     description:
-      'Private-label manufacturing with customized formats, grammage, packaging, labeling and value-added food products.',
+      'Private-label manufacturing with customized formats, grammage, packaging, labeling and value-added FMCG products.',
   },
   sourcing: {
     title: 'Global Sourcing | Glorious Ascent',
     description:
-      'Import, export and global food sourcing, with manufacturing origins including Italy, Spain, India and the UAE.',
+      'Import, export and global FMCG sourcing, with manufacturing origins including Italy, Spain, India and the UAE.',
   },
   packaging: {
     title: 'Packaging & Labeling | Glorious Ascent',
@@ -40,7 +40,7 @@ export const pageMeta: Record<
   insights: {
     title: 'Insights | Glorious Ascent',
     description:
-      'Insights on food trading, sourcing, packaging and FMCG from Glorious Ascent.',
+      'Insights on FMCG trading, sourcing, packaging and distribution from Glorious Ascent.',
   },
   contact: {
     title: 'Contact | Glorious Ascent',

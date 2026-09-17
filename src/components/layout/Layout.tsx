@@ -1,4 +1,5 @@
 import { Footer } from '@/components/layout/Footer'
+import { WhatsAppFab } from '@/components/ui/WhatsAppFab'
 import { Navbar } from '@/components/layout/Navbar'
 import { PageTransition } from '@/components/layout/PageTransition'
 import { Cursor } from '@/components/ui/Cursor'
@@ -26,6 +27,7 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <WhatsAppFab />
     </div>
   )
 }

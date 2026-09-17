@@ -60,7 +60,7 @@ export function AboutPage() {
       <PageHero
         tone="dark"
         eyebrow="About"
-        lines={['An international', 'food trading house.']}
+        lines={['An international', 'FMCG trading house.']}
         copy={company.positioning}
         crumbs={[
           { label: 'Home', href: '/' },
@@ -83,7 +83,7 @@ export function AboutPage() {
           <div className="mt-16">
             <ImageReveal
               src={images.factory}
-              alt="Food manufacturing atmosphere"
+              alt="FMCG manufacturing atmosphere"
               className="h-[min(52vw,560px)] min-h-[220px] w-full"
             />
           </div>

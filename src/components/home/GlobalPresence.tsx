@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container'
-import { ExportWorldMap } from '@/components/ui/ExportWorldMap'
+import { ExportWorldMap, MapLegend } from '@/components/ui/ExportWorldMap'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { prefersReducedMotion } from '@/lib/animations'
 import { gsap, useGSAP } from '@/lib/gsap'
@@ -33,13 +33,14 @@ export function GlobalPresence() {
           index="02"
           eyebrow="Where we export"
           tone="light"
-          title="From Dubai to the world."
-          copy="Glorious Ascent exports branded and private-label food products from Dubai. We manage packaging, labeling and documentation so every shipment reaches our buyers ready for distribution."
+          title="From Dubai to the world — with UK, India and Ethiopia."
+          copy="Glorious Ascent exports branded and private-label FMCG products from Dubai. We manage packaging, labeling and documentation so every shipment reaches our buyers ready for distribution."
         />
         <div className="mt-12 overflow-hidden border border-line-light bg-navy-deep">
           <div className="aspect-[2/1] min-h-[240px]">
             <ExportWorldMap />
           </div>
+          <MapLegend />
         </div>
       </Container>
     </section>

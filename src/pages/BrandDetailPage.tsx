@@ -71,9 +71,11 @@ export function BrandDetailPage() {
               </p>
               <h2 className="mt-4 font-display text-4xl text-navy">The brand</h2>
               <p className="mt-6 text-lg leading-relaxed text-muted">
-                {data.hasPortfolio
-                  ? `${data.name} is part of the Glorious Ascent brand house, offered alongside private-label programmes for partners who need a finished food product under their own name.`
-                  : data.note}
+                {data.slug === 'glorious-pack'
+                  ? 'Glorious Pack is the disposable and non-food arm of Glorious Ascent. The range opens with Glory Wrap cling film (45cm x 300m) for foodservice and retail packing, with further disposable formats available on request or under private label.'
+                  : data.hasPortfolio
+                    ? `${data.name} is part of the Glorious Ascent brand house, offered alongside private-label programmes for partners who need a finished FMCG product under their own name.`
+                    : data.note}
               </p>
             </div>
           </div>

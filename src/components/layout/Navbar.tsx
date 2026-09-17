@@ -1,4 +1,4 @@
-import { company } from '@/content/company'
+﻿import { company } from '@/content/company'
 import {
   brandMega,
   navCta,
@@ -11,7 +11,7 @@ import { cn } from '@/lib/cn'
 import { gsap, useGSAP } from '@/lib/gsap'
 import { Button } from '@/components/ui/Button'
 import { BrandLogo } from '@/components/ui/BrandLogo'
-import { Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 
@@ -110,23 +110,25 @@ export function Navbar({ overlay = false }: NavbarProps) {
         onMouseLeave={scheduleMegaClose}
         onMouseEnter={() => window.clearTimeout(closeTimer.current)}
       >
-        <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-4 px-4 sm:h-20 sm:px-8 lg:px-10 xl:px-16">
+        <div className="mx-auto flex h-[5.25rem] max-w-[1440px] items-center justify-between gap-3 px-4 sm:h-24 sm:gap-4 sm:px-8 lg:px-10 xl:px-16">
           <Link
             to="/"
-            className="flex min-w-0 shrink-0 items-center gap-3"
+            className="flex min-w-0 max-w-[min(100%,20rem)] shrink items-center gap-3 sm:max-w-none sm:shrink-0 sm:gap-4"
             aria-label={company.shortName}
             onClick={closeMenu}
           >
             <img
               src="/brand/logo.png"
               alt=""
-              width={48}
-              height={48}
-              className="size-10 rounded-full object-cover sm:size-12"
+              width={80}
+              height={80}
+              decoding="async"
+              fetchPriority="high"
+              className="size-14 shrink-0 object-contain sm:size-16 md:size-[4.5rem]"
             />
             <span
               className={cn(
-                'hidden truncate font-sans text-[11px] font-semibold tracking-[0.18em] uppercase sm:block lg:hidden 2xl:block',
+                'min-w-0 truncate font-sans text-[13px] font-semibold tracking-[0.14em] uppercase sm:text-[15px] sm:tracking-[0.16em] md:text-base md:tracking-[0.18em]',
                 light ? 'text-ivory' : 'text-navy',
               )}
             >
@@ -246,6 +248,17 @@ export function Navbar({ overlay = false }: NavbarProps) {
                       </Link>
                     ))}
                   </div>
+                  <Link
+                    to="/brands#distribution"
+                    onClick={() => {
+                      setMega(null)
+                      closeMenu()
+                    }}
+                    className="group mt-6 inline-flex items-center gap-2 border-t border-line pt-5 text-[11px] font-semibold tracking-[0.18em] uppercase text-navy transition-colors hover:text-gold"
+                  >
+                    Distribution brands
+                    <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
                 </MegaCol>
               ) : null}
               {mega === 'solutions' ? (
@@ -269,7 +282,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
         <div
           id={menuId}
           ref={menuRef}
-          className="fixed inset-0 z-40 overflow-y-auto overscroll-contain bg-navy-deep pt-[calc(5.5rem+env(safe-area-inset-top))] pr-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pl-5 sm:px-8 lg:hidden"
+          className="fixed inset-0 z-40 overflow-y-auto overscroll-contain bg-navy-deep pt-[calc(6.75rem+env(safe-area-inset-top))] pr-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pl-5 sm:px-8 lg:hidden"
         >
           <div className="mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1440px] flex-col justify-between">
             <nav className="flex flex-col gap-7">
@@ -317,6 +330,15 @@ export function Navbar({ overlay = false }: NavbarProps) {
                           <span className={mobileSub}>{entry.label}</span>
                         </Link>
                       ))}
+                      <Link
+                        to="/brands#distribution"
+                        data-menu-item
+                        onClick={closeMenu}
+                        className="mt-3 inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase text-gold"
+                      >
+                        Distribution brands
+                        <ArrowUpRight className="size-4" />
+                      </Link>
                     </MobileGroup>
                   )
                 }
@@ -355,7 +377,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                 {navCta.label}
               </Button>
               <p className="text-sm text-ivory/60">
-                {company.location} · International FMCG trading
+                {company.location} Â· International FMCG trading
               </p>
             </div>
           </div>

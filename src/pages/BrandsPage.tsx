@@ -1,21 +1,37 @@
 import { Seo } from '@/components/seo/Seo'
 import { PageHero } from '@/components/ui/PageHero'
 import { Container } from '@/components/ui/Container'
-import { brands } from '@/content/brands'
+import { brands , partnerBrands } from '@/content/brands'
 import { images } from '@/content/images'
 import { BrandLogo } from '@/components/ui/BrandLogo'
 import { breadcrumbJsonLd } from '@/content/jsonld'
 import { pageMeta } from '@/content/seo'
 import { gsap, useGSAP } from '@/lib/gsap'
 import { prefersReducedMotion } from '@/lib/animations'
-import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { getLenis } from '@/hooks/useSmoothScroll'
 
 export function BrandsPage() {
+  const location = useLocation()
   const [active, setActive] = useState(brands[0].slug)
   const current = brands.find((brand) => brand.slug === active) ?? brands[0]
   const imageRef = useRef<HTMLImageElement>(null)
   const washRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (location.hash !== '#distribution') return
+    const el = document.getElementById('distribution')
+    if (!el) return
+    const offset = 112
+    const lenis = getLenis()
+    const top = el.getBoundingClientRect().top + window.scrollY - offset
+    const id = window.setTimeout(() => {
+      if (lenis) lenis.scrollTo(el, { offset: -offset, duration: 1.05 })
+      else window.scrollTo({ top, behavior: 'smooth' })
+    }, 80)
+    return () => window.clearTimeout(id)
+  }, [location.hash, location.pathname])
 
   useGSAP(
     () => {
@@ -125,6 +141,34 @@ export function BrandsPage() {
           </div>
         </Container>
       </section>
+      <section id="distribution" className="scroll-mt-28 bg-ivory py-20 sm:py-24 lg:pb-32">
+        <Container>
+          <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
+            Distribution
+          </p>
+          <h2 className="mt-3 font-display text-4xl text-navy">International brands we work with</h2>
+          <p className="mt-4 max-w-2xl text-muted">
+            A selection of international brands in our trading and distribution conversations. Logos shown for portfolio context.
+          </p>
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {partnerBrands.map((brand) => (
+              <div
+                key={brand.slug}
+                className="flex aspect-[5/3] items-center justify-center border border-line bg-cream p-3"
+              >
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  className="max-h-full max-w-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
     </>
   )
 }

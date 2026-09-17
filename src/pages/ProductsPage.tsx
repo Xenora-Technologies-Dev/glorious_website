@@ -33,7 +33,7 @@ export function ProductsPage() {
       <PageHero
         eyebrow="Products"
         lines={['Products for', 'Every Market.']}
-        copy="A focused FMCG food range for international trade. Specifications are available on request."
+        copy="A focused FMCG range for international trade. Specifications are available on request."
         crumbs={[
           { label: 'Home', href: '/' },
           { label: 'Products' },

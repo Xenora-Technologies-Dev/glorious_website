@@ -27,8 +27,8 @@ export function InsightsPage() {
       />
       <PageHero
         eyebrow="Insights"
-        lines={['Notes from', 'the food trade.']}
-        copy="Notes on food trading, sourcing, packaging and building a reliable supply."
+        lines={['Notes from', 'the FMCG trade.']}
+        copy="Notes on FMCG trading, sourcing, packaging and building a reliable supply."
         crumbs={[
           { label: 'Home', href: '/' },
           { label: 'Insights' },

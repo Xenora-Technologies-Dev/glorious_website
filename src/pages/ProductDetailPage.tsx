@@ -54,7 +54,7 @@ export function ProductDetailPage() {
     <>
       <Seo
         title={`${product.name} | Glorious Ascent`}
-        description={`${product.name} from the Glorious Ascent food range.`}
+        description={`${product.name} from the Glorious Ascent FMCG range.`}
         image={productImage(product)}
         type="product"
         jsonLd={[

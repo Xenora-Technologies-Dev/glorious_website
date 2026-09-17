@@ -4,25 +4,25 @@ export const company = {
   legalName: 'Glorious Ascent General Trading L.L.C.',
   shortName: 'Glorious Ascent',
   location: 'Dubai, UAE',
-  tagline: 'Connecting global food markets.',
+  tagline: 'Connecting global FMCG markets.',
   positioning:
-    'A global FMCG and food trading partner connecting quality products, trusted manufacturing partners and international markets.',
+    'A global FMCG trading house connecting quality products, trusted manufacturing partners and international markets — across ambient FMCG, frozen, non-food and commodities.',
   story:
-    'Glorious Ascent General Trading L.L.C. is an international import, export and cross-trade FMCG company. From Dubai, we source, manufacture under private label, package and distribute food products for partners who need a reliable route from origin to shelf.',
+    'Glorious Ascent General Trading L.L.C. is an international import, export and cross-trade FMCG company headquartered in Dubai, with operations in the United Kingdom, India and Ethiopia. We source, manufacture under private label, package and distribute own brands, partner brands and commodity programmes for partners who need a reliable route from origin to market.',
   motto: 'We only succeed if our customers succeed.',
   difference: 'Our business committed to make a difference in the world.',
   mission:
     'We only succeed if our customers succeed. Service is a key factor in this trade: we support customers for their growth, no matter how big or small.',
   vision:
-    'Our business is committed to make a difference in the world â€” building transparent, ethical partnerships with brands and markets we sell into.',
+    'Our business is committed to make a difference in the world — building transparent, ethical partnerships with brands and markets we sell into.',
   quality:
     'Our products under our own brands are designed to be on par with, if not better quality than market leaders, but with a lesser price. Quality is always our priority.',
   partnerships:
-    'We build partnerships for growth with leading brands and the whoâ€™s who of the FMCG industry, based on an understanding of the markets that weâ€™re selling into. We are completely transparent with regards to sharing markets we work in.',
+    'We build partnerships for growth with leading brands and the who\'s who of the FMCG industry, based on an understanding of the markets that we\'re selling into. We are completely transparent with regards to sharing markets we work in.',
   service:
     'Service is a key factor in this trade. We look after basic necessity and support our customers for their growth, no matter how big or small.',
   capabilities: [
-    'Food trading',
+    'FMCG trading',
     'Import / export',
     'Global sourcing',
     'FMCG distribution',
@@ -30,30 +30,47 @@ export const company = {
     'Product development',
     'Packaging',
     'Labeling',
+    'Frozen & protein',
+    'Non-food disposables',
+    'Commodity trading',
     'Customized product formats',
     'International supply',
   ],
   offices: {
     uae: {
-      label: 'United Arab Emirates',
-      address: 'Office 1504, Latifa Tower, Dubai Central 1, Sheikh Zayed Road, Dubai, UAE',
-      poBox: 'P.O. Box 91032',
-      phone: '+971 4 353 3006',
-      phoneHref: 'tel:+97143533006',
+      label: 'United Arab Emirates (Headquarters)',
+      address: 'Kamali (B) building - Office M03 - Al Ras Rd - Al Ras - Deira - Dubai',
+      phone: '+971 4 359 0199',
+      phoneHref: 'tel:+97143590199',
+      role: 'Headquarters',
     },
     uk: {
       label: 'United Kingdom',
       address: '118a Church Road, Hanwell, London, England W7 3BE',
-      hours: 'Mon â€“ Fri: 9AM â€“ 5PM',
+      hours: 'Mon - Fri: 9AM - 5PM',
       phone: '+44 7500 204384',
       phoneHref: 'tel:+447500204384',
     },
+    india: {
+      label: 'India',
+      operatingName: 'Sunshine General Trading',
+      address: '1st Floor, 66 Geetha Mahal, Iddya NH, Surathkal 575014, Mangaluru, India',
+    },
+    ethiopia: {
+      label: 'Ethiopia',
+      operatingName: 'Glories Ascent PLC',
+      address: 'Marcato Market, Addis Ababa, Ethiopia',
+      phone: '+251 911 684 178',
+      phoneHref: 'tel:+251911684178',
+      phoneSecondary: '+251 935 410 893',
+      phoneSecondaryHref: 'tel:+251935410893',
+    },
   },
   forwarding: [
-    'Export documentation â€” Health Certificate, Certificate of Origin, and Certificate of Free Sale',
+    'Export documentation — Health Certificate, Certificate of Origin, and Certificate of Free Sale',
     'Consolidations',
     'Inspection arrangements',
-    'Labelling â€” date coding and ink jetting in any language',
+    'Labelling — date coding and ink jetting in any language',
   ],
   privateLabel: [
     'Private-label manufacturing',
@@ -73,7 +90,9 @@ export const sourcingOrigins = [
   { id: 'uae', name: 'UAE', x: 62.5, y: 44, hub: true },
 ] as const
 
-export type ExportRegion = 'americas' | 'europe' | 'gulf' | 'asia'
+export type ExportRegion = 'americas' | 'europe' | 'gulf' | 'asia' | 'africa'
+
+export type PresenceKind = 'export' | 'office'
 
 export type ExportMarket = {
   id: string
@@ -82,27 +101,39 @@ export type ExportMarket = {
   region: ExportRegion
   lat: number
   lon: number
-  hub?: boolean
+  kind: PresenceKind
 }
 
 export const exportMarkets: ExportMarket[] = [
-  { id: 'usa', name: 'United States', short: 'USA', region: 'americas', lat: 39.8, lon: -98.5 },
-  { id: 'uk', name: 'United Kingdom', short: 'UK', region: 'europe', lat: 51.5, lon: -0.12 },
-  { id: 'germany', name: 'Germany', short: 'Germany', region: 'europe', lat: 51.16, lon: 10.45 },
-  { id: 'france', name: 'France', short: 'France', region: 'europe', lat: 46.6, lon: 2.45 },
-  { id: 'netherlands', name: 'Netherlands', short: 'Netherlands', region: 'europe', lat: 52.13, lon: 5.29 },
-  { id: 'italy', name: 'Italy', short: 'Italy', region: 'europe', lat: 42.5, lon: 12.5 },
-  { id: 'spain', name: 'Spain', short: 'Spain', region: 'europe', lat: 40.4, lon: -3.7 },
-  { id: 'ksa', name: 'Saudi Arabia', short: 'KSA', region: 'gulf', lat: 24.0, lon: 45.1 },
-  { id: 'qatar', name: 'Qatar', short: 'Qatar', region: 'gulf', lat: 25.3, lon: 51.2 },
-  { id: 'kuwait', name: 'Kuwait', short: 'Kuwait', region: 'gulf', lat: 29.3, lon: 47.5 },
-  { id: 'japan', name: 'Japan', short: 'Japan', region: 'asia', lat: 36.2, lon: 138.25 },
-  { id: 'korea', name: 'South Korea', short: 'Korea', region: 'asia', lat: 36.5, lon: 127.8 },
-  { id: 'china', name: 'China', short: 'China', region: 'asia', lat: 31.2, lon: 121.5 },
-  { id: 'singapore', name: 'Singapore', short: 'Singapore', region: 'asia', lat: 1.35, lon: 103.82 },
-  { id: 'malaysia', name: 'Malaysia', short: 'Malaysia', region: 'asia', lat: 4.21, lon: 101.98 },
-  { id: 'indonesia', name: 'Indonesia', short: 'Indonesia', region: 'asia', lat: -6.2, lon: 106.85 },
-  { id: 'philippines', name: 'Philippines', short: 'Philippines', region: 'asia', lat: 12.88, lon: 121.77 },
+  // Americas
+  { id: 'usa', name: 'United States', short: 'USA', region: 'americas', lat: 39.8, lon: -98.5, kind: 'export' },
+  // Europe — fewer, spaced markets
+  { id: 'germany', name: 'Germany', short: 'Germany', region: 'europe', lat: 51.16, lon: 10.45, kind: 'export' },
+  { id: 'france', name: 'France', short: 'France', region: 'europe', lat: 46.2, lon: 1.8, kind: 'export' },
+  { id: 'italy', name: 'Italy', short: 'Italy', region: 'europe', lat: 42.5, lon: 12.5, kind: 'export' },
+  { id: 'spain', name: 'Spain', short: 'Spain', region: 'europe', lat: 40.0, lon: -4.5, kind: 'export' },
+  { id: 'poland', name: 'Poland', short: 'Poland', region: 'europe', lat: 52.1, lon: 19.4, kind: 'export' },
+  { id: 'sweden', name: 'Sweden', short: 'Sweden', region: 'europe', lat: 62.0, lon: 15.0, kind: 'export' },
+  // Gulf
+  { id: 'ksa', name: 'Saudi Arabia', short: 'KSA', region: 'gulf', lat: 23.5, lon: 44.5, kind: 'export' },
+  { id: 'qatar', name: 'Qatar', short: 'Qatar', region: 'gulf', lat: 25.3, lon: 51.5, kind: 'export' },
+  // Asia
+  { id: 'japan', name: 'Japan', short: 'Japan', region: 'asia', lat: 36.2, lon: 138.25, kind: 'export' },
+  { id: 'korea', name: 'South Korea', short: 'Korea', region: 'asia', lat: 36.5, lon: 127.8, kind: 'export' },
+  { id: 'china', name: 'China', short: 'China', region: 'asia', lat: 34.0, lon: 108.0, kind: 'export' },
+  { id: 'singapore', name: 'Singapore', short: 'Singapore', region: 'asia', lat: 1.35, lon: 103.82, kind: 'export' },
+  { id: 'indonesia', name: 'Indonesia', short: 'Indonesia', region: 'asia', lat: -4.0, lon: 120.0, kind: 'export' },
+  // Africa
+  { id: 'egypt', name: 'Egypt', short: 'Egypt', region: 'africa', lat: 26.8, lon: 29.5, kind: 'export' },
+  { id: 'morocco', name: 'Morocco', short: 'Morocco', region: 'africa', lat: 31.8, lon: -7.1, kind: 'export' },
+  { id: 'nigeria', name: 'Nigeria', short: 'Nigeria', region: 'africa', lat: 9.1, lon: 7.5, kind: 'export' },
+  { id: 'kenya', name: 'Kenya', short: 'Kenya', region: 'africa', lat: 0.5, lon: 37.9, kind: 'export' },
+  { id: 'south-africa', name: 'South Africa', short: 'S. Africa', region: 'africa', lat: -30.6, lon: 24.0, kind: 'export' },
+  // Offices — slightly nudged so labels clear nearby exports
+  { id: 'uae-office', name: 'United Arab Emirates', short: 'UAE', region: 'gulf', lat: 25.2, lon: 55.6, kind: 'office' },
+  { id: 'uk-office', name: 'United Kingdom', short: 'UK', region: 'europe', lat: 53.5, lon: -1.8, kind: 'office' },
+  { id: 'india-office', name: 'India', short: 'India', region: 'asia', lat: 20.5, lon: 78.5, kind: 'office' },
+  { id: 'ethiopia-office', name: 'Ethiopia', short: 'Ethiopia', region: 'africa', lat: 9.03, lon: 40.5, kind: 'office' },
 ]
 
 export const packagingSteps = [
@@ -142,12 +173,12 @@ export const whyStatements = [
   {
     index: '02',
     title: 'Global Network',
-    copy: 'Import, export and cross-trade from Dubai, with a London office and sourcing and manufacturing origins including Italy, Spain, India and the UAE.',
+    copy: 'Import, export and cross-trade from Dubai headquarters, with offices in the UK, India and Ethiopia, and sourcing and manufacturing origins including Italy, Spain, India and the UAE.',
   },
   {
     index: '03',
     title: 'Product Diversity',
-    copy: 'A food range spanning pasta, sauces, oils, condiments, dairy and grocery â€” with private-label programmes alongside owned brands.',
+    copy: 'A diversified FMCG range spanning ambient food, frozen & protein, non-food disposables, confectionery, beverages and commodities — with private-label programmes alongside owned and partner brands.',
   },
   {
     index: '04',

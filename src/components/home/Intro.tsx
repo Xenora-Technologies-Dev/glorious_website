@@ -37,9 +37,11 @@ export function Intro() {
         <div className="mt-20 grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <ImageReveal
-              src={images.oliveGrove}
-              alt="Olive grove for global food sourcing"
-              className="h-[min(58vw,680px)] min-h-[220px] w-full"
+              src={images.whoWeAre}
+              alt="Glorious Ascent capabilities — FMCG trading, global sourcing, product development, private-label manufacturing, distribution and import export"
+              className="aspect-[4/3] min-h-[240px] w-full bg-navy-deep sm:aspect-[16/11] lg:min-h-[420px]"
+              imgClassName="object-contain object-center"
+              parallaxAmount={24}
             />
           </div>
           <div className="flex flex-col justify-between gap-10 lg:col-span-4 lg:pl-4">
@@ -54,12 +56,9 @@ export function Intro() {
               ))}
             </ul>
             <div>
-              <p className="max-w-sm text-base leading-relaxed text-muted">{company.quality}</p>
-              <div className="mt-8">
-                <Button href="/contact" variant="navy">
-                  Start a Conversation
-                </Button>
-              </div>
+              <Button href="/contact" variant="navy">
+                Start a Conversation
+              </Button>
             </div>
           </div>
         </div>
