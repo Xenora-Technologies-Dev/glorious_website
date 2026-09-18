@@ -76,9 +76,9 @@ export const productCategories: ProductCategory[] = [
   },
   {
     slug: 'non-food',
-    name: 'Non-food / Disposables',
-    navLabel: 'Non-food',
-    description: 'Disposable products from Glorious Pack for foodservice, retail and institutional buyers Ã¢â‚¬â€ cling film, packaging consumables and everyday disposables built for hygiene and efficiency.',
+    name: 'Disposables',
+    navLabel: 'Disposables',
+    description: 'Disposable products from Glorious Pack for foodservice, retail and institutional buyers — cling film, packaging consumables and everyday disposables built for hygiene and efficiency.',
     image: '/Products/non-food/Glory_Wrap_45cm_300m.png',
   },
   {

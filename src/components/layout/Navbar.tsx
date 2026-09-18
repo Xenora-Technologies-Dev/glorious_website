@@ -192,10 +192,19 @@ export function Navbar({ overlay = false }: NavbarProps) {
               {mega === 'products' ? (
                 <>
                   <MegaCol title="Categories" className="col-span-12 md:col-span-5">
-                    {productMega.categories.map((item) => (
-                      <MegaLink key={item.href} href={item.href}>
-                        {item.label}
-                      </MegaLink>
+                    {productMega.categoryGroups.map((group) => (
+                      <div key={group.heading} className="mb-5 last:mb-0">
+                        <p className="mb-2 text-[10px] font-semibold tracking-[0.2em] uppercase text-gold-muted">
+                          {group.heading}
+                        </p>
+                        <div className="flex flex-col">
+                          {group.items.map((item) => (
+                            <MegaLink key={item.href} href={item.href}>
+                              {item.label}
+                            </MegaLink>
+                          ))}
+                        </div>
+                      </div>
                     ))}
                   </MegaCol>
                   <MegaCol title="Featured brands" className="col-span-12 md:col-span-4">
@@ -293,16 +302,23 @@ export function Navbar({ overlay = false }: NavbarProps) {
                       <Link to="/products" data-menu-item onClick={closeMenu} className={mobileLink}>
                         All products
                       </Link>
-                      {productMega.categories.map((entry) => (
-                        <Link
-                          key={entry.href}
-                          to={entry.href}
-                          data-menu-item
-                          onClick={closeMenu}
-                          className={mobileSub}
-                        >
-                          {entry.label}
-                        </Link>
+                      {productMega.categoryGroups.map((group) => (
+                        <div key={group.heading} className="mt-3 first:mt-1">
+                          <p className="mb-1 text-[10px] font-semibold tracking-[0.2em] uppercase text-gold/80">
+                            {group.heading}
+                          </p>
+                          {group.items.map((entry) => (
+                            <Link
+                              key={entry.href}
+                              to={entry.href}
+                              data-menu-item
+                              onClick={closeMenu}
+                              className={mobileSub}
+                            >
+                              {entry.label}
+                            </Link>
+                          ))}
+                        </div>
                       ))}
                     </MobileGroup>
                   )

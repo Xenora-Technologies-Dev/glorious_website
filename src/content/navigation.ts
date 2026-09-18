@@ -34,11 +34,40 @@ export const primaryNav: PrimaryNavItem[] = [
   { label: 'Contact Us', href: '/contact' },
 ]
 
+const foodCategorySlugs = [
+  'pasta',
+  'sauces',
+  'oils',
+  'condiments',
+  'dairy',
+  'grocery',
+  'frozen',
+  'commodities',
+  'confectionery',
+  'beverages',
+] as const
+
+const nonFoodCategorySlugs = ['non-food'] as const
+
+function megaCategoryLinks(slugs: readonly string[]) {
+  return slugs
+    .map((slug) => productCategories.find((category) => category.slug === slug))
+    .filter((category): category is (typeof productCategories)[number] => Boolean(category))
+    .map((category) => ({
+      label: category.navLabel,
+      href: `/products/${category.slug}`,
+    }))
+}
+
 export const productMega = {
-  categories: productCategories.map((category) => ({
-    label: category.navLabel,
-    href: `/products/${category.slug}`,
-  })),
+  categoryGroups: [
+    { heading: 'Food', items: megaCategoryLinks(foodCategorySlugs) },
+    { heading: 'Non Food', items: megaCategoryLinks(nonFoodCategorySlugs) },
+  ],
+  categories: [
+    ...megaCategoryLinks(foodCategorySlugs),
+    ...megaCategoryLinks(nonFoodCategorySlugs),
+  ],
   featured: (['american-hat', 'zaitha', 'delicia'] as const).map((slug) => {
     const brand = brands.find((item) => item.slug === slug)!
     return {
@@ -77,7 +106,7 @@ export const footerLinks = {
     { label: 'All products', href: '/products' },
     { label: 'Food', href: '/products' },
     { label: 'Frozen & Protein', href: '/products/frozen' },
-    { label: 'Non-food', href: '/products/non-food' },
+    { label: 'Disposables', href: '/products/non-food' },
     { label: 'Commodities', href: '/products/commodities' },
     { label: 'Confectionery', href: '/products/confectionery' },
     { label: 'Beverages', href: '/products/beverages' },
