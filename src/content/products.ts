@@ -54,18 +54,18 @@ export const productCategories: ProductCategory[] = [
     image: '/Products/american-hat/classic-mayonnaise-1-gallon.jpeg',
   },
   {
-    slug: 'dairy',
-    name: 'Dairy',
-    navLabel: 'Dairy',
-    description: 'Milk powder, condensed and evaporated milk, cheese and flavoured cream.',
-    image: '/Products/american-hat/cheese-triangles-120g.jpeg',
+    slug: 'canned-food',
+    name: 'Canned Food',
+    navLabel: 'Canned Food',
+    description: 'Canned seafood, beans, vegetables and pulses for retail and foodservice programmes.',
+    image: '/Products/american-hat/baked-beans-in-tomato-sauce-400g.jpeg',
   },
   {
     slug: 'grocery',
     name: 'Grocery',
     navLabel: 'Grocery',
-    description: 'Beans, custard powder, honey, salt, rose water and canned sardines.',
-    image: cat('dachi_chick_peas_400g.png'),
+    description: 'Honey, spreads, pancake syrup, salt, cheese, popcorn and everyday grocery staples.',
+    image: '/Products/american-hat/honey-3kg.jpeg',
   },
   {
     slug: 'frozen',
@@ -99,7 +99,7 @@ export const productCategories: ProductCategory[] = [
     slug: 'beverages',
     name: 'Beverages & Juice Powders',
     navLabel: 'Beverages',
-    description: 'Tea and beverage programmes for retail and foodservice distribution.',
+    description: 'Black and green tea, fruit cordials, drink syrups, rose water and related beverage programmes for retail and foodservice distribution.',
     image: brandCat('black_tea_lifestyle.jpg'),
   },
 ]
@@ -148,22 +148,22 @@ export const homeCategories = [
     image: img('Vinegar_1USGallon_Bottle_American_Hat.png'),
   },
   {
-    slug: 'dairy',
-    name: 'Dairy',
-    href: '/products/dairy',
-    image: '/Products/american-hat/cheese-triangles-120g.jpeg',
-  },
-  {
-    slug: 'cheese',
-    name: 'Cheese',
-    href: '/products/dairy',
-    image: '/Products/american-hat/cheese-triangles-120g.jpeg',
+    slug: 'canned-food',
+    name: 'Canned Food',
+    href: '/products/canned-food',
+    image: '/Products/american-hat/baked-beans-in-tomato-sauce-400g.jpeg',
   },
   {
     slug: 'frozen',
     name: 'Frozen',
     href: '/products/frozen',
     image: '/Products/frozen/frozen-products-intro.png',
+  },
+  {
+    slug: 'beverages',
+    name: 'Beverages',
+    href: '/products/beverages',
+    image: brandCat('black_tea_lifestyle.jpg'),
   },
 ]
 
@@ -250,54 +250,77 @@ export const products: Product[] = [
   },
   {
     slug: 'edible-oil-17-5l',
-    name: 'Edible Oil',
+    name: 'Premium Palm Olein',
     categorySlug: 'oils',
     brandSlug: 'zaitha',
     packSize: '17.5L tin',
-    image: img('Edible_Oil_17.5L_Tin_Zaitha.png'),
+    image: '/Products/zaitha/palm-olein-17-5l.png',
+  },
+
+  {
+    slug: 'zaitha-coconut-oil-2l',
+    name: 'Pure Coconut Oil',
+    categorySlug: 'oils',
+    brandSlug: 'zaitha',
+    packSize: '2L',
+    image: '/Products/zaitha/coconut-oil-2l.png',
   },
   {
-    slug: 'frying-oil-18l',
-    name: 'Frying Oil',
+    slug: 'zaitha-coconut-oil-1l',
+    name: 'Pure Coconut Oil',
     categorySlug: 'oils',
-    brandSlug: 'american-hat',
-    packSize: '18L',
-    image: img('Frying_Oil_18L_American_Hat.png'),
+    brandSlug: 'zaitha',
+    packSize: '1L',
+    image: '/Products/zaitha/coconut-oil-1l.png',
+    gallery: [
+      '/Products/zaitha/coconut-oil-1l-b.png',
+      '/Products/zaitha/coconut-oil-1l-c.png',
+    ],
   },
+  {
+    slug: 'zaitha-sunflower-oil-5l',
+    name: 'Sunflower Oil',
+    categorySlug: 'oils',
+    brandSlug: 'zaitha',
+    packSize: '5L',
+    image: '/Products/zaitha/sunflower-oil-5l.png',
+  },
+
   {
     slug: 'tahinx10kg',
     name: 'Tahina Sesame Paste',
     categorySlug: 'condiments',
     brandSlug: 'zaitha',
     packSize: '10kg tin',
-    image: img('Tahina_Sesame_Paste_10KG_Tin_Zaitha.png'),
+    image: '/Products/zaitha/tahina-10kg.png',
   },
   {
     slug: 'cream-honey',
     name: 'Cream — Honey Flavour',
-    categorySlug: 'dairy',
+    categorySlug: 'canned-food',
     brandSlug: 'tash',
     image: img('Cream_Honey_Flavour_Tash.png'),
   },
   {
     slug: 'cream-banana',
     name: 'Cream — Banana Flavour',
-    categorySlug: 'dairy',
+    categorySlug: 'canned-food',
     brandSlug: 'tash',
     image: img('Cream_Banana_Flavour_Tash.png'),
   },
   {
     slug: 'cream-strawberry',
     name: 'Cream — Strawberry Flavour',
-    categorySlug: 'dairy',
+    categorySlug: 'canned-food',
     brandSlug: 'tash',
     image: img('Cream_Strawberry_Flavour_Tash.png'),
   },
   {
     slug: 'rose-water',
     name: 'Rose Water',
-    categorySlug: 'grocery',
+    categorySlug: 'beverages',
     brandSlug: 'tash',
+    packSize: 'Bottle',
     image: img('Rose_Water_Tash.png'),
   },
   {
@@ -477,7 +500,7 @@ export const products: Product[] = [
   {
     slug: 'dachi-chick-peas-400g',
     name: 'Chick Peas',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'dachi',
     packSize: '400g',
     image: cat('dachi_chick_peas_400g.png'),
@@ -485,7 +508,7 @@ export const products: Product[] = [
   {
     slug: 'dachi-red-kidney-beans-400g',
     name: 'Red Kidney Beans',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'dachi',
     packSize: '400g',
     image: cat('dachi_red_kidney_beans_400g.png'),
@@ -493,7 +516,7 @@ export const products: Product[] = [
   {
     slug: 'dachi-baked-beans-400g',
     name: 'Baked Beans',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'dachi',
     packSize: '400g',
     image: cat('dachi_baked_beans_400g.png'),
@@ -501,7 +524,7 @@ export const products: Product[] = [
   {
     slug: 'dachi-fava-beans-400g',
     name: 'Fava Beans',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'dachi',
     packSize: '400g',
     image: cat('dachi_fava_beans_400g.png'),
@@ -525,49 +548,36 @@ export const products: Product[] = [
     image: cat('zarella_conchiglie_400g.png'),
   },
   {
-    slug: 'delicia-spaghetti-500g',
-    name: 'Spaghetti',
-    categorySlug: 'pasta',
-    brandSlug: 'delicia',
-    packSize: '500g',
-    origin: 'Italy',
-    image: cat('delicia_spaghetti_500g.png'),
-  },
-  {
-    slug: 'delicia-elbow-500g',
+    slug: 'delicia-elbow-400g',
     name: 'Elbow Pasta',
     categorySlug: 'pasta',
     brandSlug: 'delicia',
-    packSize: '500g',
-    origin: 'Italy',
-    image: cat('delicia_elbow_500g.png'),
+    packSize: '400g (packing 400Grm x 20bag)',
+    image: '/Products/delicia/elbow-400g.png',
   },
   {
-    slug: 'delicia-penne-500g',
+    slug: 'delicia-penne-400g',
     name: 'Penne Pasta',
     categorySlug: 'pasta',
     brandSlug: 'delicia',
-    packSize: '500g',
-    origin: 'Italy',
-    image: cat('delicia_penne_500g.png'),
+    packSize: '400g (packing 400Grm x 20bag)',
+    image: '/Products/delicia/penne-400g.png',
   },
   {
-    slug: 'delicia-vermicelli-500g',
+    slug: 'delicia-vermicelli-400g',
     name: 'Vermicelli',
     categorySlug: 'pasta',
     brandSlug: 'delicia',
-    packSize: '500g',
-    origin: 'Italy',
-    image: cat('delicia_vermicelli_500g.png'),
+    packSize: '400g (packing 400Grm x 20bag)',
+    image: '/Products/delicia/vermicelli-400g.png',
   },
   {
-    slug: 'delicia-fusilli-500g',
-    name: 'Fusilli Pasta',
+    slug: 'delicia-spaghetti-400g',
+    name: 'Spaghetti',
     categorySlug: 'pasta',
     brandSlug: 'delicia',
-    packSize: '500g',
-    origin: 'Italy',
-    image: cat('delicia_fusilli_500g.png'),
+    packSize: '400g (packing 400Grm x 20bag)',
+    image: '/Products/delicia/spaghetti-400g.png',
   },
   {
     slug: 'zaitha-olive-oil-5l',
@@ -604,6 +614,15 @@ export const products: Product[] = [
     packSize: '250ml',
     origin: 'Spain',
     image: cat('zaitha_olive_oil_250ml.png'),
+  },
+
+  {
+    slug: 'frying-oil-18l',
+    name: 'Frying Oil',
+    categorySlug: 'oils',
+    brandSlug: 'american-hat',
+    packSize: '18L',
+    image: img('Frying_Oil_18L_American_Hat.png'),
   },
   {
     slug: 'iodized-salt-1kg',
@@ -818,7 +837,7 @@ export const products: Product[] = [
   {
     slug: 'cheese-triangles-120g',
     name: 'Cheese Triangles',
-    categorySlug: 'dairy',
+    categorySlug: 'grocery',
     brandSlug: 'american-hat',
     packSize: '120g / 8 triangles',
     image: '/Products/american-hat/cheese-triangles-120g.jpeg',
@@ -875,7 +894,7 @@ export const products: Product[] = [
   {
     slug: 'chocolate-syrup-500g',
     name: 'Chocolate Syrup',
-    categorySlug: 'grocery',
+    categorySlug: 'beverages',
     brandSlug: 'american-hat',
     packSize: '500g',
     image: '/Products/american-hat/fruit-syrups-lifestyle.jpeg',
@@ -891,7 +910,7 @@ export const products: Product[] = [
   {
     slug: 'strawberry-syrup-500g',
     name: 'Strawberry Syrup',
-    categorySlug: 'grocery',
+    categorySlug: 'beverages',
     brandSlug: 'american-hat',
     packSize: '500g',
     image: '/Products/american-hat/fruit-syrups-lifestyle.jpeg',
@@ -899,7 +918,7 @@ export const products: Product[] = [
   {
     slug: 'hot-sardines-in-tomato-sauce-155g',
     name: 'Hot Sardines in Tomato Sauce',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'american-hat',
     packSize: '155g',
     image: '/Products/american-hat/hot-sardines-in-tomato-sauce-155g.jpeg',
@@ -907,7 +926,7 @@ export const products: Product[] = [
   {
     slug: 'tuna-chunks-in-vegetable-oil-1850g',
     name: 'Tuna Chunks in Vegetable Oil',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'american-hat',
     packSize: '1850g',
     image: '/Products/american-hat/tuna-chunks-in-vegetable-oil-1850g.jpeg',
@@ -915,7 +934,7 @@ export const products: Product[] = [
   {
     slug: 'tuna-chunks-in-brine-1850g',
     name: 'Tuna Chunks in Brine',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'american-hat',
     packSize: '1850g',
     image: '/Products/american-hat/tuna-chunks-in-brine-1850g.jpeg',
@@ -923,7 +942,7 @@ export const products: Product[] = [
   {
     slug: 'red-kidney-beans-400g',
     name: 'Red Kidney Beans',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'american-hat',
     packSize: '400g',
     origin: 'UAE',
@@ -932,7 +951,7 @@ export const products: Product[] = [
   {
     slug: 'processed-peas-400g',
     name: 'Processed Peas',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'american-hat',
     packSize: '400g',
     origin: 'UAE',
@@ -941,7 +960,7 @@ export const products: Product[] = [
   {
     slug: 'baked-beans-in-tomato-sauce-400g',
     name: 'Baked Beans in Tomato Sauce',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'american-hat',
     packSize: '400g',
     origin: 'UAE',
@@ -950,7 +969,7 @@ export const products: Product[] = [
   {
     slug: 'foul-medammes-400g',
     name: 'Foul Medammes',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'american-hat',
     packSize: '400g',
     origin: 'UAE',
@@ -959,7 +978,7 @@ export const products: Product[] = [
   {
     slug: 'mushroom-whole-champignon-400g',
     name: 'Mushroom Whole Champignon',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'american-hat',
     packSize: '400g',
     image: '/Products/american-hat/mushroom-whole-champignon-400g.jpeg',
@@ -967,10 +986,66 @@ export const products: Product[] = [
   {
     slug: 'mixed-vegetables-400g',
     name: 'Mixed Vegetables',
-    categorySlug: 'grocery',
+    categorySlug: 'canned-food',
     brandSlug: 'american-hat',
     packSize: '400g',
     image: '/Products/american-hat/mixed-vegetables-400g.jpeg',
+  },
+
+  // --- Beverages: tea ---
+  {
+    slug: 'black-tea-100bags',
+    name: 'Black Tea',
+    categorySlug: 'beverages',
+    brandSlug: 'american-hat',
+    packSize: '100 tea bags',
+    origin: 'India',
+    image: cat('american_hat_black_tea_100bags.png'),
+  },
+  {
+    slug: 'black-tea-500g',
+    name: 'Black Tea',
+    categorySlug: 'beverages',
+    brandSlug: 'american-hat',
+    packSize: '500g',
+    origin: 'India',
+    image: cat('american_hat_black_tea_500g.png'),
+  },
+  {
+    slug: 'black-tea-1kg',
+    name: 'Black Tea',
+    categorySlug: 'beverages',
+    brandSlug: 'american-hat',
+    packSize: '1kg',
+    origin: 'India',
+    image: cat('american_hat_black_tea_1kg.png'),
+  },
+  {
+    slug: 'green-tea-100bags',
+    name: 'Green Tea',
+    categorySlug: 'beverages',
+    brandSlug: 'american-hat',
+    packSize: '100 tea bags',
+    origin: 'India',
+    image: cat('american_hat_green_tea_100bags.png'),
+  },
+  {
+    slug: 'lemon-green-tea-100bags',
+    name: 'Lemon Green Tea',
+    categorySlug: 'beverages',
+    brandSlug: 'american-hat',
+    packSize: '100 tea bags',
+    origin: 'India',
+    image: cat('american_hat_lemon_green_tea_100bags.png'),
+  },
+  {
+    slug: 'mint-green-tea-100bags',
+    name: 'Mint Green Tea',
+    categorySlug: 'beverages',
+    brandSlug: 'american-hat',
+    packSize: '100 tea bags',
+    origin: 'India',
+    image: cat('american_hat_mint_green_tea_100bags.png'),
   },
 
 ]
@@ -1033,6 +1108,53 @@ export function getRelatedProducts(product: Product, limit = 3) {
     (item) => item.slug !== product.slug && item.categorySlug !== product.categorySlug,
   )
   return [...same, ...rest].slice(0, limit)
+}
+
+
+export function getBrandPortfolioProducts(brandSlug: string) {
+  return products.filter(
+    (item) => item.brandSlug === brandSlug && item.categorySlug !== 'frozen',
+  )
+}
+
+/** Score how well a product image/path represents a brand (for brand-page heroes). */
+function brandHeroScore(product: Product, brandSlug: string) {
+  const img = product.image.toLowerCase()
+  const slug = brandSlug.toLowerCase()
+  const compact = slug.replace(/-/g, '')
+  const loose = slug.replace(/-/g, '[-_]?')
+  let score = 0
+  if (img.includes(`/products/${slug}/`)) score += 100
+  if (new RegExp(loose, 'i').test(product.image)) score += 50
+  if (product.slug.toLowerCase().includes(slug) || product.slug.toLowerCase().includes(compact)) score += 20
+  return score
+}
+
+/**
+ * Opening product for a brand detail page.
+ * Prefer explicit heroProductSlug (when it belongs to the brand), else the
+ * product whose image path best matches the brand, else first linked product.
+ */
+export function pickBrandHeroProduct(
+  brandSlug: string,
+  linked: Product[],
+  heroProductSlug?: string,
+) {
+  if (!linked.length) return undefined
+  if (heroProductSlug) {
+    const named = linked.find((item) => item.slug === heroProductSlug && item.brandSlug === brandSlug)
+    if (named) return named
+  }
+  let best = linked[0]
+  let bestScore = brandHeroScore(best, brandSlug)
+  for (const item of linked.slice(1)) {
+    const score = brandHeroScore(item, brandSlug)
+    if (score > bestScore) {
+      best = item
+      bestScore = score
+    }
+  }
+  return best
 }
 
 export function productHref(product: Product) {

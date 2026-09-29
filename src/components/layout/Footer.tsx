@@ -83,12 +83,12 @@ export function Footer() {
                   <p className="mt-2 text-sm text-ivory/60">{detail.hours}</p>
                 ) : null}
                 {detail.phone && detail.phoneHref ? (
-                  <a href={detail.phoneHref} className="mt-4 inline-block text-sm text-ivory hover:text-gold">
+                  <a href={detail.phoneHref} className="mt-4 block text-sm text-ivory hover:text-gold">
                     {detail.phone}
                   </a>
                 ) : null}
                 {detail.phoneSecondary && detail.phoneSecondaryHref ? (
-                  <a href={detail.phoneSecondaryHref} className="mt-2 inline-block text-sm text-ivory hover:text-gold">
+                  <a href={detail.phoneSecondaryHref} className="mt-2 block text-sm text-ivory hover:text-gold">
                     {detail.phoneSecondary}
                   </a>
                 ) : null}

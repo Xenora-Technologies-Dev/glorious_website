@@ -66,12 +66,12 @@ export function ContactPage() {
                       <p className="mt-2 text-sm text-muted">{office.role}</p>
                     ) : null}
                     {office.phone && office.phoneHref ? (
-                      <a href={office.phoneHref} className="mt-3 inline-block text-navy">
+                      <a href={office.phoneHref} className="mt-3 block text-navy">
                         {office.phone}
                       </a>
                     ) : null}
                     {office.phoneSecondary && office.phoneSecondaryHref ? (
-                      <a href={office.phoneSecondaryHref} className="mt-2 inline-block text-navy">
+                      <a href={office.phoneSecondaryHref} className="mt-2 block text-navy">
                         {office.phoneSecondary}
                       </a>
                     ) : null}

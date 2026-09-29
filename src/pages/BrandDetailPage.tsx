@@ -9,7 +9,7 @@ import { getBrand } from '@/content/brands'
 import { images } from '@/content/images'
 import { BrandLogo } from '@/components/ui/BrandLogo'
 import { breadcrumbJsonLd } from '@/content/jsonld'
-import { products } from '@/content/products'
+import { getBrandPortfolioProducts, pickBrandHeroProduct } from '@/content/products'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { useParams } from 'react-router-dom'
 
@@ -18,7 +18,8 @@ export function BrandDetailPage() {
   const data = brand ? getBrand(brand) : undefined
   if (!data) return <NotFoundPage />
 
-  const linkedProducts = products.filter((item) => item.brandSlug === data.slug)
+  const linkedProducts = getBrandPortfolioProducts(data.slug)
+  const heroProduct = pickBrandHeroProduct(data.slug, linkedProducts, data.heroProductSlug)
 
   return (
     <>
@@ -50,9 +51,9 @@ export function BrandDetailPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-6">
-              {linkedProducts[0] ? (
+              {heroProduct ? (
                 <ProductVisual
-                  product={linkedProducts[0]}
+                  product={heroProduct}
                   className="h-[min(58vw,380px)] w-full min-h-[220px] border border-line"
                   eager
                 />

@@ -15,7 +15,7 @@ export const pageMeta: Record<
   products: {
     title: 'Products | Glorious Ascent',
     description:
-      'Pasta, sauces, oils, condiments, dairy and grocery products from Glorious Ascent, including American Hat, Zaitha, Tash, Zarella and Legacy Valley.'
+      'Pasta, sauces, oils, condiments, canned food and grocery products from Glorious Ascent, including American Hat, Zaitha, Tash, Zarella and Legacy Valley.'
   },
   brands: {
     title: 'Brands | Glorious Ascent',

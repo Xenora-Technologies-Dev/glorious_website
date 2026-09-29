@@ -11,6 +11,8 @@ export type Brand = {
   logoAspect: BrandLogoAspect
   note?: string
   hasPortfolio: boolean
+  /** Preferred opening product on BrandDetailPage (must match brandSlug). */
+  heroProductSlug?: string
   atmosphere: ImageKey
   kind: BrandKind
 }
@@ -23,6 +25,7 @@ export const brands: Brand[] = [
     logo: '/brand/brand_logos/American_Hat_Logo.png',
     logoAspect: 'landscape',
     hasPortfolio: true,
+    heroProductSlug: 'sriracha-chili-sauce-475g',
     atmosphere: 'sauces',
     kind: 'owned',
   },
@@ -33,6 +36,7 @@ export const brands: Brand[] = [
     logo: '/brand/brand_logos/Zaitha_logo.png',
     logoAspect: 'landscape',
     hasPortfolio: true,
+    heroProductSlug: 'olive-oil-4l-zaitha',
     atmosphere: 'oliveOil',
     kind: 'owned',
   },
@@ -43,9 +47,10 @@ export const brands: Brand[] = [
     logo: '/brand/brand_logos/Tash_Logo.png',
     logoAspect: 'landscape',
     hasPortfolio: true,
-    atmosphere: 'spices',
+    heroProductSlug: 'tomato-ketchup-5kg',
+    atmosphere: 'tashKetchup',
     kind: 'owned',
-    note: 'Includes frozen & protein alongside ambient grocery lines.',
+    note: 'Ambient grocery, beverages and house lines for retail and foodservice.',
   },
   {
     slug: 'dachi',
@@ -54,6 +59,7 @@ export const brands: Brand[] = [
     logo: '/brand/brand_logos/Dachi_Logo.png',
     logoAspect: 'square',
     hasPortfolio: true,
+    heroProductSlug: 'dachi-chick-peas-400g',
     atmosphere: 'legumes',
     kind: 'owned',
   },
@@ -64,6 +70,7 @@ export const brands: Brand[] = [
     logo: '/brand/brand_logos/Zarella_Logo.png',
     logoAspect: 'portrait',
     hasPortfolio: true,
+    heroProductSlug: 'penne-pastx450g',
     atmosphere: 'pasta',
     kind: 'owned',
   },
@@ -74,7 +81,8 @@ export const brands: Brand[] = [
     logo: '/brand/brand_logos/Delicia_Logo.png',
     logoAspect: 'landscape',
     hasPortfolio: true,
-    atmosphere: 'pasta',
+    heroProductSlug: 'delicia-elbow-400g',
+    atmosphere: 'deliciaPasta',
     kind: 'owned',
   },
   {
@@ -84,7 +92,8 @@ export const brands: Brand[] = [
     logo: '/brand/brand_logos/Legacy_Valley_Logo.png',
     logoAspect: 'portrait',
     hasPortfolio: true,
-    atmosphere: 'oliveGrove',
+    heroProductSlug: 'olive-oil-500ml',
+    atmosphere: 'legacyValleyOil',
     kind: 'owned',
   },
   {
@@ -94,7 +103,8 @@ export const brands: Brand[] = [
     logo: '/brand/glorious-pack/logo.png',
     logoAspect: 'square',
     hasPortfolio: true,
-    atmosphere: 'warehouse',
+    heroProductSlug: 'glory-wrap',
+    atmosphere: 'gloriousPack',
     kind: 'owned',
     note: 'Disposable products for foodservice and retail — Cleaner Today / Greener Tomorrow.',
   },

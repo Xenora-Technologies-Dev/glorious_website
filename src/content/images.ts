@@ -6,11 +6,14 @@ export const images = {
   hero1280: '/brand/hero-global-map-1280.webp',
   heroLqip: '/brand/hero-global-map-lqip.webp',
   oliveGrove: '/brand/catalogue/zaitha_olive_grove.jpg',
+  legacyValleyOil: '/Products/Olive_Oil_500ml_bottle_Legacy_Valley.png',
   oliveOil: '/brand/catalogue/zaitha_olive_oil_lifestyle.jpg',
   pasta: '/brand/catalogue/zarella_pasta_lifestyle.jpg',
+  deliciaPasta: '/brand/catalogue/delicia_pasta_lifestyle.jpg',
   legumes: '/brand/catalogue/dachi_beans_lifestyle.jpg',
   sauces: '/brand/catalogue/american_hat_sauces_lifestyle.jpg',
   ketchup: '/brand/catalogue/tomato_ketchup_lifestyle.jpg',
+  tashKetchup: '/Products/Tomato_Ketchup_5KG_Tash_Brand.png',
   cookingOil: '/brand/catalogue/cooking_oil_lifestyle.jpg',
   honey: '/brand/catalogue/honey_lifestyle.jpg',
   mayonnaise: '/brand/catalogue/mayonnaise_lifestyle.jpg',
@@ -26,6 +29,7 @@ export const images = {
   warehouse:
     'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2000&q=80',
   packaging: '/brand/catalogue/private_label_lifestyle.jpg',
+  gloriousPack: '/Products/non-food/Glory_Wrap_45cm_300m.png',
   privateLabel: '/brand/private-label-brand-owner.png',
   manufacturing:
     'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1800&q=80',

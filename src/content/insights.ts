@@ -61,8 +61,8 @@ export const insights: Insight[] = [
     title: 'Staples that hold a grocery aisle together',
     category: 'Food Industry',
     excerpt:
-      'Pasta, oils, condiments, dairy and grocery staples remain the commercial core of many international food ranges.',
-    body: 'Pasta, oils, condiments, dairy and grocery staples are the products that keep a food range commercially useful. They are ordered often, travel well and sit at the centre of retail and foodservice programmes. Glorious Ascent builds its offer around those staples, with private-label options for partners who want the same quality under their own brand.',
+      'Pasta, oils, condiments, canned food and grocery staples remain the commercial core of many international food ranges.',
+    body: 'Pasta, oils, condiments, canned food and grocery staples are the products that keep a food range commercially useful. They are ordered often, travel well and sit at the centre of retail and foodservice programmes. Glorious Ascent builds its offer around those staples, with private-label options for partners who want the same quality under their own brand.',
   },
   {
     slug: 'building-partnerships-for-growth',

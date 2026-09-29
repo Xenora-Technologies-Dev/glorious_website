@@ -39,7 +39,7 @@ const foodCategorySlugs = [
   'sauces',
   'oils',
   'condiments',
-  'dairy',
+  'canned-food',
   'grocery',
   'frozen',
   'commodities',
