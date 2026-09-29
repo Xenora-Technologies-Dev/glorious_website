@@ -9,6 +9,7 @@ import { useRef } from 'react'
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null)
+  const imageRef = useRef<HTMLImageElement>(null)
 
   useGSAP(
     () => {
@@ -24,30 +25,48 @@ export function Hero() {
         duration: 1.1,
       })
 
-      const image = root.querySelector('[data-hero-image]')
-      if (image) {
+      const image = imageRef.current
+      if (!image) return
+
+      const startImageReveal = () => {
+        gsap.to(image, {
+          opacity: 1,
+          duration: reduced ? 0 : 0.5,
+          ease: 'power2.out',
+        })
+
+        if (reduced) {
+          gsap.set(image, { scale: 1, clipPath: 'inset(0% 0% 0% 0%)' })
+          return
+        }
+
         gsap.fromTo(
           image,
-          { scale: 1.08, clipPath: reduced ? 'inset(0% 0% 0% 0%)' : 'inset(0% 0% 100% 0%)' },
+          { scale: 1.08, clipPath: 'inset(0% 0% 100% 0%)' },
           {
             scale: 1,
             clipPath: 'inset(0% 0% 0% 0%)',
-            duration: reduced ? 0 : 1.8,
+            duration: 1.8,
             ease: 'power4.out',
           },
         )
-        if (!reduced) {
-          gsap.to(image, {
-            yPercent: 10,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: root,
-              start: 'top top',
-              end: 'bottom top',
-              scrub: true,
-            },
-          })
-        }
+
+        gsap.to(image, {
+          yPercent: 10,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: root,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        })
+      }
+
+      if (image.complete && image.naturalWidth > 0) {
+        startImageReveal()
+      } else {
+        image.addEventListener('load', startImageReveal, { once: true })
       }
     },
     { scope: ref },
@@ -60,12 +79,27 @@ export function Hero() {
     >
       <div className="absolute inset-0">
         <img
-          data-hero-image
-          src={images.hero}
-          alt="Global trade routes connecting FMCG markets"
-          fetchPriority="high"
-          className="h-full w-full object-cover will-transform"
+          src={images.heroLqip}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full scale-110 object-cover object-[62%_42%] blur-2xl sm:object-[55%_40%] lg:object-center"
         />
+        <picture>
+          <source
+            type="image/webp"
+            srcSet={`${images.hero1280} 1280w, ${images.heroWebp} 1810w`}
+            sizes="100vw"
+          />
+          <img
+            ref={imageRef}
+            data-hero-image
+            src={images.hero}
+            alt="Global trade routes connecting FMCG markets"
+            fetchPriority="high"
+            decoding="async"
+            className="relative h-full w-full object-cover object-[62%_42%] opacity-0 will-transform sm:object-[55%_40%] lg:object-center"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/88 via-navy-deep/72 to-navy-deep/55" />
       </div>
 

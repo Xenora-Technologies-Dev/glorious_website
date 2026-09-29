@@ -1,4 +1,4 @@
-﻿import { company } from '@/content/company'
+import { company } from '@/content/company'
 import {
   brandMega,
   navCta,
@@ -137,7 +137,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
           </Link>
 
           <nav
-            className="hidden min-w-0 items-center justify-end gap-3 lg:flex xl:gap-5 2xl:gap-7"
+            className="hidden min-w-0 items-center justify-end gap-2.5 lg:flex xl:gap-5 2xl:gap-7"
             aria-label="Primary"
           >
             {primaryNav.map((item) =>
@@ -165,8 +165,13 @@ export function Navbar({ overlay = false }: NavbarProps) {
           </nav>
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <div className="hidden xl:block">
-              <Button href={navCta.href} variant={light ? 'outline' : 'navy'} size="md">
+            <div className="hidden lg:block">
+              <Button
+                href={navCta.href}
+                variant={light ? 'outline' : 'navy'}
+                size="md"
+                className="!px-3 text-[10px] tracking-[0.12em] xl:!px-5 xl:text-[11px]"
+              >
                 {navCta.label}
               </Button>
             </div>
@@ -291,22 +296,19 @@ export function Navbar({ overlay = false }: NavbarProps) {
         <div
           id={menuId}
           ref={menuRef}
-          className="fixed inset-0 z-40 overflow-y-auto overscroll-contain bg-navy-deep pt-[calc(6.75rem+env(safe-area-inset-top))] pr-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pl-5 sm:px-8 lg:hidden"
+          className="fixed inset-0 z-40 flex flex-col overflow-hidden bg-navy-deep pt-[calc(6.75rem+env(safe-area-inset-top))] lg:hidden"
         >
-          <div className="mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1440px] flex-col justify-between">
-            <nav className="flex flex-col gap-7">
+          <div className="mx-auto flex min-h-0 w-full max-w-[1440px] flex-1 flex-col">
+            <nav className="flex flex-1 flex-col gap-7 overflow-y-auto overscroll-contain px-5 pb-6 sm:px-8">
               {primaryNav.map((item) => {
                 if (item.mega === 'products') {
                   return (
-                    <MobileGroup key={item.label} title="Products">
-                      <Link to="/products" data-menu-item onClick={closeMenu} className={mobileLink}>
+                    <MobileAccordionGroup key={item.label} title="Products">
+                      <Link to="/products" data-menu-item onClick={closeMenu} className={mobileSub}>
                         All products
                       </Link>
                       {productMega.categoryGroups.map((group) => (
-                        <div key={group.heading} className="mt-3 first:mt-1">
-                          <p className="mb-1 text-[10px] font-semibold tracking-[0.2em] uppercase text-gold/80">
-                            {group.heading}
-                          </p>
+                        <MobileAccordion key={group.heading} title={group.heading}>
                           {group.items.map((entry) => (
                             <Link
                               key={entry.href}
@@ -318,9 +320,9 @@ export function Navbar({ overlay = false }: NavbarProps) {
                               {entry.label}
                             </Link>
                           ))}
-                        </div>
+                        </MobileAccordion>
                       ))}
-                    </MobileGroup>
+                    </MobileAccordionGroup>
                   )
                 }
                 if (item.mega === 'brands') {
@@ -388,12 +390,15 @@ export function Navbar({ overlay = false }: NavbarProps) {
                 )
               })}
             </nav>
-            <div data-menu-item className="mt-10 flex flex-col gap-4">
-              <Button href={navCta.href} variant="gold" size="lg" onClick={closeMenu}>
+            <div
+              data-menu-item
+              className="shrink-0 border-t border-line-light bg-navy-deep px-5 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-8"
+            >
+              <Button href={navCta.href} variant="gold" size="lg" onClick={closeMenu} className="w-full">
                 {navCta.label}
               </Button>
-              <p className="text-sm text-ivory/60">
-                {company.location} Â· International FMCG trading
+              <p className="mt-3 text-sm text-ivory/60">
+                {company.location} · International FMCG trading
               </p>
             </div>
           </div>
@@ -487,6 +492,38 @@ function MobileGroup({ title, children }: { title: string; children: ReactNode }
         {title}
       </p>
       <div className="flex flex-col gap-2">{children}</div>
+    </div>
+  )
+}
+
+function MobileAccordionGroup({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div>
+      <p data-menu-item className="mb-3 font-display text-[2rem] text-ivory sm:text-5xl">
+        {title}
+      </p>
+      <div className="flex flex-col gap-2">{children}</div>
+    </div>
+  )
+}
+
+function MobileAccordion({ title, children }: { title: string; children: ReactNode }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="border-b border-line-light/40">
+      <button
+        type="button"
+        data-menu-item
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        className="flex min-h-11 w-full items-center justify-between gap-3 py-3 text-left text-[11px] font-semibold tracking-[0.2em] uppercase text-gold/90"
+      >
+        {title}
+        <span className="text-ivory/50" aria-hidden>
+          {open ? '?' : '+'}
+        </span>
+      </button>
+      {open ? <div className="flex flex-col gap-2 pb-3">{children}</div> : null}
     </div>
   )
 }

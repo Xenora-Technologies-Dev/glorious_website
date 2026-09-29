@@ -78,25 +78,44 @@ export function GlobalSourcingPage() {
       />
       <section className="bg-navy py-20 text-ivory sm:py-24 lg:py-32">
         <Container>
-          <div ref={mapRef} className="relative aspect-[16/10] overflow-hidden border border-line-light bg-navy-deep sm:aspect-[16/9]">
-            <WorldMap className="absolute inset-0 h-full w-full text-gold" />
-            <svg viewBox="0 0 100 56" className="relative h-full w-full" aria-hidden="true">
-              {sourcingOrigins.map((origin) => (
-                <g key={origin.id} data-origin>
-                  <circle cx={origin.x} cy={origin.y - 6} r={1.4} fill="#c6a56a" />
-                  <text
-                    x={origin.x}
-                    y={origin.y - 8.5}
-                    textAnchor="middle"
-                    fill="#f4efe4"
-                    fontSize="2.6"
-                    fontFamily="Manrope, sans-serif"
+          <div className="overflow-hidden border border-line-light bg-navy-deep">
+            <div ref={mapRef} className="relative aspect-[5/4] sm:aspect-[16/10] lg:aspect-[16/9]">
+              <WorldMap className="absolute inset-0 h-full w-full text-gold" />
+              <svg viewBox="0 0 100 56" className="relative h-full w-full" aria-hidden="true">
+                {sourcingOrigins.map((origin) => (
+                  <g key={origin.id} data-origin>
+                    <circle cx={origin.x} cy={origin.y - 6} r={1.4} fill="#c6a56a" />
+                    <text
+                      className="max-md:hidden"
+                      x={origin.x}
+                      y={origin.y - 8.5}
+                      textAnchor="middle"
+                      fill="#f4efe4"
+                      fontSize="2.6"
+                      fontFamily="Manrope, sans-serif"
+                    >
+                      {origin.name}
+                    </text>
+                  </g>
+                ))}
+              </svg>
+            </div>
+            <div className="border-t border-line-light px-5 py-4 md:hidden sm:px-8">
+              <p className="mb-3 text-[10px] font-semibold tracking-[0.2em] uppercase text-gold/80">
+                Sourcing origins
+              </p>
+              <ul className="flex flex-wrap gap-2">
+                {sourcingOrigins.map((origin) => (
+                  <li
+                    key={origin.id}
+                    className="inline-flex items-center gap-1.5 border border-line-light px-2.5 py-1.5 text-[11px] font-semibold tracking-[0.06em] text-ivory/85"
                   >
+                    <span className="size-1.5 shrink-0 rounded-full bg-gold" aria-hidden />
                     {origin.name}
-                  </text>
-                </g>
-              ))}
-            </svg>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </Container>
       </section>

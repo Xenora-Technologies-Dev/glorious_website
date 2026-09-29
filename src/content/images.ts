@@ -1,6 +1,10 @@
 export const images = {
+  aboutGlobal: '/brand/about-global-logistics.png',
   whoWeAre: '/brand/who-we-are-capabilities.png',
   hero: '/brand/hero-global-map.png',
+  heroWebp: '/brand/hero-global-map.webp',
+  hero1280: '/brand/hero-global-map-1280.webp',
+  heroLqip: '/brand/hero-global-map-lqip.webp',
   oliveGrove: '/brand/catalogue/zaitha_olive_grove.jpg',
   oliveOil: '/brand/catalogue/zaitha_olive_oil_lifestyle.jpg',
   pasta: '/brand/catalogue/zarella_pasta_lifestyle.jpg',

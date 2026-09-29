@@ -113,7 +113,7 @@ export function PrivateLabelPage() {
         </Container>
       </section>
 
-      <section ref={journeyRef} className="bg-cream py-20 sm:py-24 lg:py-32">
+      <section ref={journeyRef} className="bg-cream py-20 pb-28 sm:py-24 sm:pb-28 lg:py-32 lg:pb-32">
         <Container>
           <h2 className="font-display text-4xl text-navy sm:text-5xl">The journey</h2>
           <ol className="mt-12">
@@ -144,7 +144,7 @@ export function PrivateLabelPage() {
         </Container>
       </section>
 
-      <div className="sticky bottom-0 z-40 border-t border-gold/25 bg-navy-deep/95 text-ivory backdrop-blur-md">
+      <div className="sticky bottom-0 z-40 border-t border-gold/25 bg-navy-deep/95 text-ivory backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
         <Container className="flex flex-col items-stretch justify-between gap-4 py-4 sm:flex-row sm:items-center [&>a]:w-full sm:[&>a]:w-auto">
           <p className="font-display text-xl sm:text-2xl">Your Brand. Our Supply Chain.</p>
           <Button href="/contact?intent=private-label" variant="gold">

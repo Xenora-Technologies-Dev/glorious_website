@@ -1,12 +1,24 @@
+import { useLocation } from 'react-router-dom'
+import { cn } from '@/lib/cn'
+
 export function WhatsAppFab() {
+  const { pathname } = useLocation()
+  // Lift above Private Label sticky CTA so the two never overlap
+  const liftForSticky = pathname === '/private-label'
+
   return (
     <a
       href="https://wa.me/971554472995"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="no-print fixed bottom-6 right-6 z-50 inline-flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition hover:scale-105 hover:bg-[#20BD5A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366] sm:bottom-6 sm:right-6"
-      style={{ marginBottom: 'env(safe-area-inset-bottom)', marginRight: 'env(safe-area-inset-right)' }}
+      className={cn(
+        'no-print fixed right-6 z-50 inline-flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition hover:scale-105 hover:bg-[#20BD5A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]',
+        liftForSticky
+          ? 'bottom-[calc(5.75rem+env(safe-area-inset-bottom))]'
+          : 'bottom-[calc(1.5rem+env(safe-area-inset-bottom))]',
+      )}
+      style={{ marginRight: 'env(safe-area-inset-right)' }}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -62,11 +62,20 @@ export function ProductsPage() {
               </p>
               <h2 className="mt-2 font-display text-3xl text-navy sm:text-4xl">All products</h2>
             </div>
-            <div
-              role="group"
-              aria-label="Filter products"
-              className="hide-scrollbar flex gap-2 overflow-x-auto py-1 sm:flex-wrap sm:overflow-visible"
-            >
+            <div className="relative -mx-1">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-gradient-to-r from-ivory to-transparent sm:hidden"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-ivory to-transparent sm:hidden"
+              />
+              <div
+                role="group"
+                aria-label="Filter products"
+                className="hide-scrollbar flex gap-2 overflow-x-auto px-1 py-1 pe-6 sm:flex-wrap sm:overflow-visible sm:pe-1"
+              >
               <FilterChip label="All" active={active === 'all'} onClick={() => setActive('all')} />
               {productCategories.map((category) => (
                 <FilterChip
@@ -76,6 +85,7 @@ export function ProductsPage() {
                   onClick={() => setActive(category.slug)}
                 />
               ))}
+              </div>
             </div>
           </div>
           <ProductCatalogueGrid products={filtered} />

@@ -1,4 +1,4 @@
-import { exportMarkets, type ExportMarket } from '@/content/company'
+import { exportMarkets, type ExportMarket, type ExportRegion } from '@/content/company'
 import { worldCountryPaths } from '@/data/worldCountryPaths'
 import { mapViewBox, project } from '@/lib/geo'
 import { cn } from '@/lib/cn'
@@ -12,6 +12,16 @@ type Placed = {
   labelY: number
   width: number
 }
+
+const REGION_LABELS: Record<ExportRegion, string> = {
+  americas: 'Americas',
+  europe: 'Europe',
+  gulf: 'Gulf',
+  asia: 'Asia',
+  africa: 'Africa',
+}
+
+const REGION_ORDER: ExportRegion[] = ['gulf', 'europe', 'asia', 'africa', 'americas']
 
 function placeMarkers(markets: ExportMarket[]): Placed[] {
   const placed: Placed[] = markets.map((market) => {
@@ -30,7 +40,6 @@ function placeMarkers(markets: ExportMarket[]): Placed[] {
     }
   })
 
-  // Sort left-to-right then resolve vertical overlaps
   placed.sort((a, b) => a.x - b.x || a.y - b.y)
 
   for (let i = 0; i < placed.length; i++) {
@@ -45,7 +54,6 @@ function placeMarkers(markets: ExportMarket[]): Placed[] {
       const minDx = (a.width + b.width) / 2 + 4
       const minDy = 15
       if (dx < minDx && dy < minDy) {
-        // Push later label up or down away from pin cluster
         const preferUp = a.y <= b.y
         a.labelY = preferUp ? b.labelY - minDy : b.labelY + minDy
         a.labelY = Math.max(14, Math.min(486, a.labelY))
@@ -90,38 +98,41 @@ function MarketMarker({ item }: { item: Placed }) {
 
   return (
     <g data-pin className="pointer-events-none">
-      {needsLeader ? (
-        <line
-          x1={x}
-          y1={y - 8}
-          x2={labelX}
-          y2={labelY + 2}
-          stroke="#c6a56a"
-          strokeWidth="0.6"
-          opacity="0.45"
-        />
-      ) : null}
-      <g transform={`translate(${labelX} ${labelY})`}>
-        <rect
-          x={-width / 2}
-          y={-10}
-          width={width}
-          height={13}
-          rx={2}
-          fill="#07111f"
-          opacity={0.94}
-        />
-        <text
-          x={0}
-          y={-0.5}
-          textAnchor="middle"
-          fill={market.kind === 'office' ? '#e8d5a8' : '#f4efe4'}
-          fontSize="7.5"
-          fontFamily="Manrope, sans-serif"
-          fontWeight="600"
-        >
-          {market.short}
-        </text>
+      {/* In-map text labels — desktop/tablet only; mobile uses the list below the map */}
+      <g className="max-lg:hidden">
+        {needsLeader ? (
+          <line
+            x1={x}
+            y1={y - 8}
+            x2={labelX}
+            y2={labelY + 2}
+            stroke="#c6a56a"
+            strokeWidth="0.6"
+            opacity="0.45"
+          />
+        ) : null}
+        <g transform={`translate(${labelX} ${labelY})`}>
+          <rect
+            x={-width / 2}
+            y={-10}
+            width={width}
+            height={13}
+            rx={2}
+            fill="#07111f"
+            opacity={0.94}
+          />
+          <text
+            x={0}
+            y={-0.5}
+            textAnchor="middle"
+            fill={market.kind === 'office' ? '#e8d5a8' : '#f4efe4'}
+            fontSize="7.5"
+            fontFamily="Manrope, sans-serif"
+            fontWeight="600"
+          >
+            {market.short}
+          </text>
+        </g>
       </g>
       <g transform={`translate(${x} ${y})`}>
         {market.kind === 'office' ? <OfficeIcon /> : <ExportIcon />}
@@ -148,12 +159,9 @@ function ExportIcon() {
 function OfficeIcon() {
   return (
     <g>
-      {/* Outer glow */}
       <circle r="12" fill="#c6a56a" opacity={0.16} />
       <circle r="9.5" fill="none" stroke="#e8d5a8" strokeWidth="1.4" opacity={0.95} />
-      {/* Solid badge */}
       <circle r="7.2" fill="#07111f" stroke="#c6a56a" strokeWidth="1.1" />
-      {/* 5-point star — clearly different from export teardrop */}
       <path
         d="M0-4.6 L1.15-1.2 L4.7-1.2 L1.85 0.85 L2.9 4.2 L0 2.2 L-2.9 4.2 L-1.85 0.85 L-4.7-1.2 L-1.15-1.2 Z"
         fill="#e8d5a8"
@@ -201,6 +209,57 @@ function LegendItem({ label, children }: { label: string; children: ReactNode })
     <div className="inline-flex items-center gap-2.5">
       <span className="inline-flex h-5 w-5 items-center justify-center">{children}</span>
       <span>{label}</span>
+    </div>
+  )
+}
+
+/** Region-grouped market chips — shown under the map on small screens where SVG labels are hidden. */
+export function ExportMarketsList({ className }: { className?: string }) {
+  const byRegion = REGION_ORDER.map((region) => ({
+    region,
+    label: REGION_LABELS[region],
+    markets: exportMarkets.filter((m) => m.region === region),
+  })).filter((g) => g.markets.length > 0)
+
+  return (
+    <div
+      className={cn(
+        'space-y-5 border-t border-line-light bg-navy-deep px-5 py-5 lg:hidden sm:px-8',
+        className,
+      )}
+    >
+      {byRegion.map((group) => (
+        <div key={group.region}>
+          <p className="mb-2.5 text-[10px] font-semibold tracking-[0.2em] uppercase text-gold/80">
+            {group.label}
+          </p>
+          <ul className="flex flex-wrap gap-2">
+            {group.markets.map((market) => (
+              <li
+                key={market.id}
+                className={cn(
+                  'inline-flex items-center gap-1.5 border px-2.5 py-1.5 text-[11px] font-semibold tracking-[0.06em]',
+                  market.kind === 'office'
+                    ? 'border-gold/50 bg-gold/10 text-gold-bright'
+                    : 'border-line-light text-ivory/85',
+                )}
+              >
+                <span
+                  className={cn(
+                    'size-1.5 shrink-0 rounded-full',
+                    market.kind === 'office' ? 'bg-gold-bright' : 'bg-gold',
+                  )}
+                  aria-hidden
+                />
+                {market.name}
+                {market.kind === 'office' ? (
+                  <span className="text-[9px] tracking-[0.14em] uppercase text-gold/70">Office</span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   )
 }

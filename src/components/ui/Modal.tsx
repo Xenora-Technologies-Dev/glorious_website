@@ -62,7 +62,7 @@ export function Modal({ open, onClose, children, title, className, showHeading =
           <button
             type="button"
             onClick={onClose}
-            className="absolute top-5 right-5 z-10 text-navy/50 hover:text-navy"
+            className="absolute top-3 right-3 z-10 inline-flex size-11 items-center justify-center text-navy/50 hover:text-navy"
             aria-label="Close"
           >
             <X className="size-5" />

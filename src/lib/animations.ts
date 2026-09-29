@@ -102,14 +102,19 @@ export function splitLines(targets: gsap.TweenTarget) {
 export function parallax(target: gsap.TweenTarget, trigger: Element, amount = 80) {
   if (prefersReducedMotion()) return
 
+  // Keep parallax modest on small viewports to avoid heavy motion / crop issues
+  const isNarrow = window.matchMedia('(max-width: 1023px)').matches
+  const y = isNarrow ? Math.min(amount, 28) : amount
+
   return gsap.to(target, {
-    y: amount,
+    y,
     ease: 'none',
     scrollTrigger: {
       trigger,
       start: 'top bottom',
       end: 'bottom top',
       scrub: true,
+      invalidateOnRefresh: true,
     },
   })
 }

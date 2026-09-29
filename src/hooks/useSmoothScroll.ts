@@ -1,5 +1,6 @@
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { prefersReducedMotion } from '@/lib/animations'
+import { getNavOffset } from '@/lib/nav'
 import Lenis from 'lenis'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
@@ -10,18 +11,17 @@ export function getLenis() {
   return lenis
 }
 
-const NAV_OFFSET = 112
-
 function scrollToHash(hash: string, immediate = false) {
   const id = decodeURIComponent(hash.replace(/^#/, ''))
   if (!id) return false
   const el = document.getElementById(id)
   if (!el) return false
 
+  const offset = getNavOffset()
   if (lenis) {
-    lenis.scrollTo(el, { offset: -NAV_OFFSET, immediate, duration: 1.05 })
+    lenis.scrollTo(el, { offset: -offset, immediate, duration: 1.05 })
   } else {
-    const top = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET
+    const top = el.getBoundingClientRect().top + window.scrollY - offset
     window.scrollTo({ top, left: 0, behavior: immediate ? 'auto' : 'smooth' })
   }
   return true
@@ -68,6 +68,35 @@ export function useSmoothScroll() {
       instance.destroy()
       lenis = null
       gsap.ticker.lagSmoothing(500, 33)
+    }
+  }, [])
+
+  // Keep ScrollTrigger in sync across the 1024 pin breakpoint and orientation changes
+  useEffect(() => {
+    let timer: ReturnType<typeof window.setTimeout> | undefined
+    let lastWide = window.matchMedia('(min-width: 1024px)').matches
+
+    const refresh = () => {
+      window.clearTimeout(timer)
+      timer = window.setTimeout(() => ScrollTrigger.refresh(), 120)
+    }
+
+    const onResize = () => {
+      const wide = window.matchMedia('(min-width: 1024px)').matches
+      if (wide !== lastWide) {
+        lastWide = wide
+        refresh()
+      } else {
+        refresh()
+      }
+    }
+
+    window.addEventListener('resize', onResize, { passive: true })
+    window.addEventListener('orientationchange', refresh)
+    return () => {
+      window.clearTimeout(timer)
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('orientationchange', refresh)
     }
   }, [])
 

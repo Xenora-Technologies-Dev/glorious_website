@@ -46,10 +46,19 @@ export function Categories() {
       </Container>
 
       <div ref={pinRef} className="lg:h-svh lg:overflow-hidden">
-        <div
-          ref={trackRef}
-          className="hide-scrollbar mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-6 sm:px-8 lg:mt-0 lg:h-full lg:w-max lg:items-center lg:overflow-visible lg:px-16"
-        >
+        <div className="relative mt-12 lg:mt-0">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-cream to-transparent lg:hidden"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-cream to-transparent lg:hidden"
+          />
+          <div
+            ref={trackRef}
+            className="hide-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-6 pe-10 sm:px-8 sm:pe-12 lg:h-full lg:w-max lg:items-center lg:overflow-visible lg:px-16 lg:pe-16"
+          >
           {homeCategories.map((category) => (
             <Link
               key={category.slug}
@@ -71,6 +80,7 @@ export function Categories() {
               </div>
             </Link>
           ))}
+          </div>
         </div>
       </div>
     </section>

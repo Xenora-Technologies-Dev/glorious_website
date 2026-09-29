@@ -115,9 +115,7 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-3 border-t border-line-light pt-6 text-[12px] text-ivory/45 sm:flex-row sm:justify-between">
-          <p>
-          <p>© {new Date().getFullYear()} {company.legalName}</p>
-          </p>
+          <p>&copy; {new Date().getFullYear()} {company.legalName}</p>
           <p>International FMCG · Trading · Private label</p>
         </div>
       </Container>

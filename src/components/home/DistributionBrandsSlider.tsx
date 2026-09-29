@@ -2,13 +2,26 @@ import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { partnerBrands } from '@/content/brands'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 const SLIDER_COUNT = 30
 
 export function DistributionBrandsSlider() {
   const logos = useMemo(() => partnerBrands.slice(0, SLIDER_COUNT), [])
   const track = useMemo(() => [...logos, ...logos], [logos])
+  const marqueeRef = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(true)
+
+  useEffect(() => {
+    const el = marqueeRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') return
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: '80px 0px' },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   return (
     <section className="bg-cream py-20 sm:py-24 lg:py-28">
@@ -28,9 +41,11 @@ export function DistributionBrandsSlider() {
       </Container>
 
       {/* Continuous marquee - CSS only; pauses on hover; static grid when reduced-motion */}
-      <div className="mt-12 motion-reduce:hidden">
+      <div ref={marqueeRef} className="mt-12 motion-reduce:hidden">
         <div className="group/marquee overflow-hidden">
-          <div className="flex w-max animate-marquee gap-3 py-1 will-transform group-hover/marquee:[animation-play-state:paused]">
+          <div
+            className={`flex w-max animate-marquee gap-3 py-1 will-transform group-hover/marquee:[animation-play-state:paused]${inView ? '' : ' [animation-play-state:paused]'}`}
+          >
             {track.map((brand, index) => (
               <div
                 key={`${brand.slug}-${index}`}

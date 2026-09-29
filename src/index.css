@@ -161,6 +161,18 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  .edge-fade-x {
+    mask-image: linear-gradient(to right, transparent, #000 1.25rem, #000 calc(100% - 1.75rem), transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 1.25rem, #000 calc(100% - 1.75rem), transparent);
+  }
+
+  @media (min-width: 640px) {
+    .edge-fade-x {
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

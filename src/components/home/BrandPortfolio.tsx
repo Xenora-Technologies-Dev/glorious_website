@@ -30,7 +30,7 @@ export function BrandPortfolio() {
           index="04"
           eyebrow="Our brands"
           title="A house of FMCG brands."
-          copy="Owned and private-label brands from the Glorious Ascent house. Hover to see the atmosphere behind each name."
+          copy="Owned and private-label brands from the Glorious Ascent house. Explore each name to see the atmosphere behind it."
         />
         <div className="mt-14 grid gap-px bg-line sm:grid-cols-2 xl:grid-cols-4">
           {brands.map((brand) => (
@@ -45,10 +45,10 @@ export function BrandPortfolio() {
                 alt=""
                 loading="lazy"
                 decoding="async"
-                className="absolute inset-0 h-full w-full object-cover opacity-0 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
+                className="absolute inset-0 h-full w-full object-cover opacity-[0.28] scale-105 transition-all duration-700 [@media(pointer:fine)]:opacity-0 [@media(pointer:fine)]:scale-100 [@media(pointer:fine)]:group-hover:scale-105 [@media(pointer:fine)]:group-hover:opacity-100"
               />
-              <div className="absolute inset-0 bg-navy-deep/0 transition-colors duration-500 group-hover:bg-navy-deep/55" />
-              <p className="relative text-[10px] font-semibold tracking-[0.22em] uppercase text-muted group-hover:text-gold">
+              <div className="absolute inset-0 bg-navy-deep/40 transition-colors duration-500 [@media(pointer:fine)]:bg-navy-deep/0 [@media(pointer:fine)]:group-hover:bg-navy-deep/55" />
+              <p className="relative text-[10px] font-semibold tracking-[0.22em] uppercase text-gold [@media(pointer:fine)]:text-muted [@media(pointer:fine)]:group-hover:text-gold">
                 {brand.hasPortfolio ? 'House brand' : 'On request'}
               </p>
               <div className="relative flex flex-1 items-center py-6">
@@ -56,10 +56,10 @@ export function BrandPortfolio() {
                   brand={brand}
                   size="lg"
                   plate
-                  className="shadow-none transition duration-500 group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+                  className="shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition duration-500 [@media(pointer:fine)]:shadow-none [@media(pointer:fine)]:group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
                 />
               </div>
-              <h3 className="relative font-display text-[clamp(1.6rem,3vw,2.25rem)] break-word text-navy transition-colors group-hover:text-ivory">
+              <h3 className="relative font-display text-[clamp(1.6rem,3vw,2.25rem)] break-word text-ivory transition-colors [@media(pointer:fine)]:text-navy [@media(pointer:fine)]:group-hover:text-ivory">
                 {brand.name}
               </h3>
             </Link>

@@ -1,3 +1,4 @@
+import { scrollMtClass } from '@/lib/nav'
 import { ProductCatalogueGrid } from '@/components/products/ProductCatalogueGrid'
 import { Seo } from '@/components/seo/Seo'
 import { PageHero } from '@/components/ui/PageHero'
@@ -152,7 +153,7 @@ export function ProductCategoryPage() {
                 {frozenSections.map((section) => {
                   const sectionProducts = getFrozenProductsByGroup(section.id)
                   return (
-                    <section key={section.id} id={section.id} className="scroll-mt-28">
+                    <section key={section.id} id={section.id} className={scrollMtClass}>
                       <div className="mb-8 grid items-center gap-8 border-t border-line pt-12 lg:grid-cols-12">
                         <div className="overflow-hidden border border-line bg-ivory p-4 lg:col-span-4">
                           <img

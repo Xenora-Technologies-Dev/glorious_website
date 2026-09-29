@@ -82,9 +82,10 @@ export function AboutPage() {
           </div>
           <div className="mt-16">
             <ImageReveal
-              src={images.factory}
-              alt="FMCG manufacturing atmosphere"
-              className="h-[min(52vw,560px)] min-h-[220px] w-full"
+              src={images.aboutGlobal}
+              alt="Global logistics network — port operations at sunset with worldwide trade routes"
+              className="aspect-[4/3] w-full min-h-[200px] sm:aspect-[16/9] lg:aspect-[21/9]"
+              imgClassName="object-cover object-[center_40%] sm:object-center"
             />
           </div>
         </Container>

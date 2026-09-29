@@ -11,6 +11,7 @@ import { prefersReducedMotion } from '@/lib/animations'
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { getLenis } from '@/hooks/useSmoothScroll'
+import { getNavOffset, scrollMtClass } from '@/lib/nav'
 
 export function BrandsPage() {
   const location = useLocation()
@@ -23,7 +24,7 @@ export function BrandsPage() {
     if (location.hash !== '#distribution') return
     const el = document.getElementById('distribution')
     if (!el) return
-    const offset = 112
+    const offset = getNavOffset()
     const lenis = getLenis()
     const top = el.getBoundingClientRect().top + window.scrollY - offset
     const id = window.setTimeout(() => {
@@ -90,6 +91,10 @@ export function BrandsPage() {
                 <BrandLogo brand={current} size="md" plate />
               </div>
               <p className="mt-3 font-display text-3xl">{current.name}</p>
+              <p className="mt-3 max-w-md text-sm text-ivory/75">
+                {current.note ??
+                  `${current.name} is part of the Glorious Ascent brand house. Product lines are confirmed on request.`}
+              </p>
             </div>
           </div>
           <div className="flex flex-col justify-center lg:col-span-5 lg:min-h-[70svh]">
@@ -141,7 +146,7 @@ export function BrandsPage() {
           </div>
         </Container>
       </section>
-      <section id="distribution" className="scroll-mt-28 bg-ivory py-20 sm:py-24 lg:pb-32">
+      <section id="distribution" className={`${scrollMtClass} bg-ivory py-20 sm:py-24 lg:pb-32`}>
         <Container>
           <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
             Distribution
