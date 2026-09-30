@@ -79,6 +79,28 @@ export function ContactPage() {
                 ))}
               </div>
               <div className="mt-12">
+                <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
+                  WhatsApp
+                </p>
+                <div className="mt-4 flex flex-col gap-3">
+                  {company.whatsapp.map((item) => (
+                    <a
+                      key={item.id}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={item.ariaLabel}
+                      className="inline-flex items-center justify-center gap-2 border border-line bg-white px-4 py-3 text-sm font-semibold text-navy transition hover:border-navy"
+                    >
+                      <span aria-hidden="true" className="text-[#25D366]">
+                        ?
+                      </span>
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-8">
                 <Button href={company.offices.uae.phoneHref} variant="navy">
                   Contact sales
                 </Button>

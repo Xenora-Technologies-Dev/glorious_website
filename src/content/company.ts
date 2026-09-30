@@ -3,7 +3,21 @@ export const siteUrl = 'https://gloriousascent.com'
 export const company = {
   legalName: 'Glorious Ascent General Trading L.L.C.',
   shortName: 'Glorious Ascent',
-  location: 'Dubai, UAE',
+    location: 'Dubai, UAE',
+  whatsapp: [
+    {
+      id: 'uae-55',
+      label: '+971 55 447 2995',
+      href: 'https://wa.me/971554472995',
+      ariaLabel: 'Chat on WhatsApp at +971 55 447 2995',
+    },
+    {
+      id: 'uae-50',
+      label: '+971 50 362 8101',
+      href: 'https://wa.me/971503628101',
+      ariaLabel: 'Chat on WhatsApp at +971 50 362 8101',
+    },
+  ],
   tagline: 'Connecting global FMCG markets.',
   positioning:
     'A global FMCG trading house connecting quality products, trusted manufacturing partners and international markets — across ambient FMCG, frozen, non-food and commodities.',
