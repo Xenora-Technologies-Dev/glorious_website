@@ -26,10 +26,11 @@
   --radius-lg: 8px;
 
   --shadow-nav: 0 8px 30px rgba(7, 17, 31, 0.12);
-  --animate-marquee: marquee 42s linear infinite;
-  --animate-marquee-slow: marquee 64s linear infinite;
+  --animate-marquee: marquee 95s linear infinite;
+  --animate-marquee-slow: marquee 150s linear infinite;
 }
 
+/* Marquee: explicit animation (not var()) for Safari; durations kept slow/readable */
 @keyframes marquee {
   from {
     transform: translate3d(0, 0, 0);
@@ -37,6 +38,30 @@
   to {
     transform: translate3d(-50%, 0, 0);
   }
+}
+
+.ga-marquee,
+.ga-marquee-slow {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  flex-shrink: 0;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.ga-marquee {
+  animation: marquee 95s linear infinite;
+}
+.ga-marquee-slow {
+  animation: marquee 150s linear infinite;
+}
+.ga-marquee[data-paused='true'],
+.ga-marquee-slow[data-paused='true'] {
+  animation-play-state: paused;
+}
+.ga-marquee-pause:hover .ga-marquee,
+.ga-marquee-pause:hover .ga-marquee-slow {
+  animation-play-state: paused;
 }
 
 @layer base {
@@ -173,7 +198,7 @@
     touch-action: pan-x pinch-zoom;
   }
 
-  /* Desktop GSAP pin track: free overflow so pinHorizontal keeps working ≥1024 */
+  /* Desktop GSAP pin track: free overflow so pinHorizontal keeps working >=1024 */
   @media (min-width: 1024px) {
     .scrollport-x.scrollport-x--desktop-free {
       width: max-content;
@@ -213,7 +238,9 @@
   }
 
   .animate-marquee,
-  .animate-marquee-slow {
+  .animate-marquee-slow,
+  .ga-marquee,
+  .ga-marquee-slow {
     animation: none !important;
   }
 

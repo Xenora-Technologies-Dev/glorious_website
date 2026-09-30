@@ -42,9 +42,10 @@ export function DistributionBrandsSlider() {
 
       {/* Continuous marquee - CSS only; pauses on hover; hidden under reduced-motion */}
       <div ref={marqueeRef} className="mt-12 motion-reduce:hidden">
-        <div className="group/marquee overflow-hidden">
+        <div className="ga-marquee-pause overflow-hidden">
           <div
-            className={`flex w-max animate-marquee gap-3 py-1 will-transform group-hover/marquee:[animation-play-state:paused]${inView ? '' : ' [animation-play-state:paused]'}`}
+            className="ga-marquee gap-3 py-1"
+            data-paused={!inView ? 'true' : 'false'}
           >
             {track.map((brand, index) => (
               <div

@@ -136,7 +136,7 @@ export function Hero() {
 
         <div className="relative z-10 border-t border-ivory/12">
           <div className="flex items-center gap-4 px-4 py-3 sm:gap-6 sm:px-8 lg:px-12 xl:px-16">
-            <Marquee items={allProductNames} className="min-w-0 flex-1 text-ivory/70" />
+            <Marquee items={allProductNames} speed="slow" className="min-w-0 flex-1 text-ivory/70" />
             <a
               href="#who-we-are"
               className="hidden shrink-0 items-center gap-3 text-[10px] font-semibold tracking-[0.22em] uppercase text-gold md:inline-flex"

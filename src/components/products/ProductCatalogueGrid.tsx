@@ -1,4 +1,4 @@
-﻿import { ProductCatalogueCard } from '@/components/products/ProductCatalogueCard'
+import { ProductCatalogueCard } from '@/components/products/ProductCatalogueCard'
 import type { Product } from '@/content/products'
 import { cn } from '@/lib/cn'
 

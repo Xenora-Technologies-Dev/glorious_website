@@ -22,7 +22,7 @@ const journey = [
     title: 'Customization',
     copy: 'Customized shapes, formats and grammage, with value-added products made to the brief.',
     image: images.manufacturing,
-    alt: 'Blank-label packaging formats — jars, pouches, bottles, cartons and tins',
+    alt: 'Blank-label packaging formats - jars, pouches, bottles, cartons and tins',
   },
   {
     title: 'Packaging',
@@ -40,7 +40,7 @@ const journey = [
     title: 'Distribution',
     copy: 'Import, export and international supply from origin through to market.',
     image: images.distributionLogistics,
-    alt: 'Global logistics — palletized FMCG with truck, ship and worldwide routes',
+    alt: 'Global logistics - palletized FMCG with truck, ship and worldwide routes',
   },
 ]
 
@@ -79,7 +79,7 @@ export function PrivateLabelPage() {
             className="font-display max-w-5xl text-[clamp(2.25rem,6.5vw,6rem)] leading-[0.95]"
           />
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-ivory/72">
-            Manufacture, customize, pack, label and supply â€” under your brand.
+            Manufacture, customize, pack, label and supply - under your brand.
           </p>
           <div className="mt-10">
             <Button href="/contact?intent=private-label" variant="gold" size="lg">
@@ -103,7 +103,7 @@ export function PrivateLabelPage() {
               <h2 className="font-display text-4xl text-navy">The proposition</h2>
               <p className="mt-6 text-lg leading-relaxed text-muted">
                 Glorious Ascent undertakes private-label manufacturing for partners who want a
-                finished FMCG product under their own brand â€” including customized shapes, grammage
+                finished FMCG product under their own brand - including customized shapes, grammage
                 and value-added products.
               </p>
               <ul className="mt-10 space-y-4">

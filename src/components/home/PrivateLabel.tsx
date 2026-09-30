@@ -1,4 +1,4 @@
-﻿import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { ImageReveal } from '@/components/ui/ImageReveal'
 import { images } from '@/content/images'
