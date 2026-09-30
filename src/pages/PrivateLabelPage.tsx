@@ -16,26 +16,31 @@ const journey = [
     title: 'Manufacturing',
     copy: 'Private-label manufacturing for partners who need a finished FMCG product under their own brand.',
     image: images.factory,
+    alt: 'FMCG packaging line with jars, bottles, pouches and cartons',
   },
   {
     title: 'Customization',
     copy: 'Customized shapes, formats and grammage, with value-added products made to the brief.',
     image: images.manufacturing,
+    alt: 'Blank-label packaging formats — jars, pouches, bottles, cartons and tins',
   },
   {
     title: 'Packaging',
     copy: 'Packaging materials and product protection planned for international supply.',
     image: images.packaging,
+    alt: '',
   },
   {
     title: 'Labeling',
     copy: 'Labeling, date coding and ink jetting in any language, together with export documentation.',
     image: images.shelf,
+    alt: 'Labeled private-label packaging formats with label sheets',
   },
   {
     title: 'Distribution',
     copy: 'Import, export and international supply from origin through to market.',
-    image: images.warehouse,
+    image: images.distributionLogistics,
+    alt: 'Global logistics — palletized FMCG with truck, ship and worldwide routes',
   },
 ]
 
@@ -133,9 +138,9 @@ export function PrivateLabelPage() {
                 <div className="overflow-hidden lg:col-span-5">
                   <img
                     src={item.image}
-                    alt=""
+                    alt={item.alt}
                     loading="lazy"
-                    className="aspect-[16/9] w-full object-cover"
+                    className="aspect-[16/9] w-full object-cover object-center"
                   />
                 </div>
               </li>

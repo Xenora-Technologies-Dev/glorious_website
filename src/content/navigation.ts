@@ -1,4 +1,4 @@
-import { productCategories } from '@/content/products'
+import { foodCategorySlugs, productCategories } from '@/content/products'
 import { brands } from '@/content/brands'
 
 export const navCta = {
@@ -33,19 +33,6 @@ export const primaryNav: PrimaryNavItem[] = [
   { label: 'Insights', href: '/insights' },
   { label: 'Contact Us', href: '/contact' },
 ]
-
-const foodCategorySlugs = [
-  'pasta',
-  'sauces',
-  'oils',
-  'condiments',
-  'canned-food',
-  'grocery',
-  'frozen',
-  'commodities',
-  'confectionery',
-  'beverages',
-] as const
 
 const nonFoodCategorySlugs = ['non-food'] as const
 

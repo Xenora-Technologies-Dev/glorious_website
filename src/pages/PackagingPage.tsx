@@ -76,8 +76,9 @@ export function PackagingPage() {
             <div className="lg:col-span-5">
               <ImageReveal
                 src={images.packaging}
-                alt="Packaged goods prepared for labeling"
-                className="h-[min(58vw,420px)] w-full min-h-[220px]"
+                alt="Eco packaging and global logistics for Glorious Ascent private label"
+                className="aspect-[4/3] w-full bg-ivory-deep"
+                imgClassName="object-cover object-center"
               />
             </div>
             <div className="lg:col-span-7">

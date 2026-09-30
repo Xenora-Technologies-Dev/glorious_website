@@ -1,5 +1,6 @@
 export const images = {
   aboutGlobal: '/brand/about-global-logistics.png',
+  globalSourcingHub: '/brand/global-sourcing-uae-hub.png',
   whoWeAre: '/brand/who-we-are-capabilities.png',
   hero: '/brand/hero-global-map.png',
   heroWebp: '/brand/hero-global-map.webp',
@@ -28,20 +29,18 @@ export const images = {
     'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1800&q=80',
   warehouse:
     'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2000&q=80',
-  packaging: '/brand/catalogue/private_label_lifestyle.jpg',
+  packaging: '/brand/packaging-eco-global.png',
   gloriousPack: '/Products/non-food/Glory_Wrap_45cm_300m.png',
   privateLabel: '/brand/private-label-brand-owner.png',
-  manufacturing:
-    'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1800&q=80',
+  manufacturing: '/brand/customization-formats-mockup.png',
   logistics:
     'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=2000&q=80',
-  factory:
-    'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=2000&q=80',
+  factory: '/brand/manufacturing-fmcg-line.png',
   confectionery:
     'https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=1600&q=80',
   beverages: '/brand/catalogue/black_tea_lifestyle.jpg',
-  shelf:
-    'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1800&q=80',
+  shelf: '/brand/labeling-private-label-mockup.png',
+  distributionLogistics: '/brand/distribution-global-logistics.png',
 } as const
 
 export type ImageKey = keyof typeof images

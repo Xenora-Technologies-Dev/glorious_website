@@ -104,68 +104,43 @@ export const productCategories: ProductCategory[] = [
   },
 ]
 
-export const homeCategories = [
-  {
-    slug: 'pasta',
-    name: 'Pasta',
-    href: '/products/pasta',
-    image: img('penne_pasta_450gm_Packet_Zarella.png'),
-  },
-  {
-    slug: 'sauces',
-    name: 'Sauces',
-    href: '/products/sauces',
-    image: '/Products/american-hat/sriracha-chili-sauce-475g.jpeg',
-  },
-  {
-    slug: 'olive-oil',
-    name: 'Olive Oil',
-    href: '/products/oils',
-    image: img('Olive_Oil_4L_Tin_Zaitha.png'),
-  },
-  {
-    slug: 'cooking-oil',
-    name: 'Cooking Oil',
-    href: '/products/oils',
-    image: img('Frying_Oil_18L_American_Hat.png'),
-  },
-  {
-    slug: 'mayonnaise',
-    name: 'Mayonnaise',
-    href: '/products/condiments',
-    image: '/Products/american-hat/classic-mayonnaise-1-gallon.jpeg',
-  },
-  {
-    slug: 'mustard',
-    name: 'Mustard',
-    href: '/products/condiments',
-    image: img('Dijon_Mustard_1Kg_American_Hat.png'),
-  },
-  {
-    slug: 'vinegar',
-    name: 'Vinegar',
-    href: '/products/condiments',
-    image: img('Vinegar_1USGallon_Bottle_American_Hat.png'),
-  },
-  {
-    slug: 'canned-food',
-    name: 'Canned Food',
-    href: '/products/canned-food',
-    image: '/Products/american-hat/baked-beans-in-tomato-sauce-400g.jpeg',
-  },
-  {
-    slug: 'frozen',
-    name: 'Frozen',
-    href: '/products/frozen',
-    image: '/Products/frozen/frozen-products-intro.png',
-  },
-  {
-    slug: 'beverages',
-    name: 'Beverages',
-    href: '/products/beverages',
-    image: brandCat('black_tea_lifestyle.jpg'),
-  },
-]
+/** Same order/labels as navbar Products ? Food (see also navigation foodCategorySlugs). */
+export const foodCategorySlugs = [
+  'pasta',
+  'sauces',
+  'oils',
+  'condiments',
+  'canned-food',
+  'grocery',
+  'frozen',
+  'commodities',
+  'confectionery',
+  'beverages',
+] as const
+
+/** Pack-shot overrides for cream home cards (prefer transparent / catalogue PNGs). */
+const homeCategoryImages: Partial<Record<(typeof foodCategorySlugs)[number], string>> = {
+  pasta: img('penne_pasta_450gm_Packet_Zarella.png'),
+  sauces: img('Tomato_Ketchup_340gm_bottle_American_Hat.png'),
+  oils: img('Olive_Oil_500ml_bottle_Legacy_Valley.png'),
+  condiments: img('Dijon_Mustard_1Kg_American_Hat.png'),
+  'canned-food': '/Products/american-hat/baked-beans-in-tomato-sauce-400g.jpeg',
+  grocery: cat('american_hat_honey_1kg.png'),
+  frozen: '/Products/frozen/chicken-breast.png',
+  commodities: '/Products/commodities/basmati-rice.jpg',
+  confectionery: '/Products/confectionery/milk-chocolate.jpg',
+  beverages: cat('american_hat_black_tea_100bags.png'),
+}
+
+export const homeCategories = foodCategorySlugs.map((slug) => {
+  const category = productCategories.find((item) => item.slug === slug)!
+  return {
+    slug: category.slug,
+    name: category.navLabel,
+    href: `/products/${category.slug}`,
+    image: homeCategoryImages[slug] ?? category.image,
+  }
+})
 
 export const products: Product[] = [
   {

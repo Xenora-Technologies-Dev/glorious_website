@@ -2,13 +2,10 @@ import { Seo } from '@/components/seo/Seo'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { PageHero } from '@/components/ui/PageHero'
-import { WorldMap } from '@/components/ui/WorldMap'
 import { company, sourcingOrigins } from '@/content/company'
+import { images } from '@/content/images'
 import { breadcrumbJsonLd } from '@/content/jsonld'
 import { pageMeta } from '@/content/seo'
-import { prefersReducedMotion } from '@/lib/animations'
-import { gsap, useGSAP } from '@/lib/gsap'
-import { useRef } from 'react'
 
 const sections = [
   {
@@ -38,23 +35,6 @@ const sections = [
 ]
 
 export function GlobalSourcingPage() {
-  const mapRef = useRef<HTMLDivElement>(null)
-
-  useGSAP(
-    () => {
-      if (!mapRef.current || prefersReducedMotion()) return
-      gsap.from(mapRef.current.querySelectorAll('[data-origin]'), {
-        scale: 0.5,
-        autoAlpha: 0,
-        stagger: 0.1,
-        duration: 0.9,
-        ease: 'expo.out',
-        scrollTrigger: { trigger: mapRef.current, start: 'top 75%' },
-      })
-    },
-    { scope: mapRef },
-  )
-
   return (
     <>
       <Seo
@@ -79,26 +59,14 @@ export function GlobalSourcingPage() {
       <section className="bg-navy py-20 text-ivory sm:py-24 lg:py-32">
         <Container>
           <div className="overflow-hidden border border-line-light bg-navy-deep">
-            <div ref={mapRef} className="relative aspect-[5/4] sm:aspect-[16/10] lg:aspect-[16/9]">
-              <WorldMap className="absolute inset-0 h-full w-full text-gold" />
-              <svg viewBox="0 0 100 56" className="relative h-full w-full" aria-hidden="true">
-                {sourcingOrigins.map((origin) => (
-                  <g key={origin.id} data-origin>
-                    <circle cx={origin.x} cy={origin.y - 6} r={1.4} fill="#c6a56a" />
-                    <text
-                      className="max-md:hidden"
-                      x={origin.x}
-                      y={origin.y - 8.5}
-                      textAnchor="middle"
-                      fill="#f4efe4"
-                      fontSize="2.6"
-                      fontFamily="Manrope, sans-serif"
-                    >
-                      {origin.name}
-                    </text>
-                  </g>
-                ))}
-              </svg>
+            <div className="relative aspect-[5/4] sm:aspect-[2/1] lg:aspect-[2/1]">
+              <img
+                src={images.globalSourcingHub}
+                alt="Global sourcing network from UAE hub linking UK, India, Ethiopia and partner markets"
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover object-center"
+              />
             </div>
             <div className="border-t border-line-light px-5 py-4 md:hidden sm:px-8">
               <p className="mb-3 text-[10px] font-semibold tracking-[0.2em] uppercase text-gold/80">
