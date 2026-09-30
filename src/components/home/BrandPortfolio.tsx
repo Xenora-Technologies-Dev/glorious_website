@@ -59,9 +59,6 @@ export function BrandPortfolio() {
                   className="shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition duration-500 [@media(pointer:fine)]:shadow-none [@media(pointer:fine)]:group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
                 />
               </div>
-              <h3 className="relative font-display text-[clamp(1.6rem,3vw,2.25rem)] break-word text-ivory transition-colors [@media(pointer:fine)]:text-navy [@media(pointer:fine)]:group-hover:text-ivory">
-                {brand.name}
-              </h3>
             </Link>
           ))}
         </div>
