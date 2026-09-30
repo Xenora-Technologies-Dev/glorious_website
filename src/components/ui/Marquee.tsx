@@ -6,17 +6,23 @@ type MarqueeProps = {
   className?: string
   speed?: 'normal' | 'slow'
   separator?: string
+  /** Max names shown under prefers-reduced-motion (single-line strip). */
+  reducedCount?: number
 }
+
+const DEFAULT_REDUCED_COUNT = 10
 
 export function Marquee({
   items,
   className,
   speed = 'normal',
   separator = '·',
+  reducedCount = DEFAULT_REDUCED_COUNT,
 }: MarqueeProps) {
   const rootRef = useRef<HTMLDivElement>(null)
   const [inView, setInView] = useState(true)
   const loop = [...items, ...items]
+  const reducedItems = items.slice(0, Math.min(Math.max(reducedCount, 8), 12))
 
   useEffect(() => {
     const el = rootRef.current
@@ -30,7 +36,7 @@ export function Marquee({
   }, [])
 
   return (
-    <div ref={rootRef} className={cn('overflow-hidden', className)}>
+    <div ref={rootRef} className={cn('min-w-0 overflow-hidden', className)}>
       {/* Animated track — hidden when user prefers reduced motion */}
       <div className="motion-reduce:hidden" aria-hidden="true">
         <div
@@ -52,16 +58,19 @@ export function Marquee({
         </div>
       </div>
 
-      {/* Static fallback for prefers-reduced-motion */}
-      <div className="hidden flex-wrap items-center justify-center gap-x-6 gap-y-2 py-0.5 motion-reduce:flex" aria-hidden="true">
-        {items.map((item) => (
-          <span
-            key={item}
-            className="font-sans text-[12px] font-semibold tracking-[0.22em] uppercase"
-          >
-            {item}
-          </span>
-        ))}
+      {/* Reduced-motion: short curated single-line strip (no flex-wrap of full catalogue) */}
+      <div
+        className="hidden min-w-0 overflow-hidden motion-reduce:block"
+        aria-hidden="true"
+      >
+        <p className="truncate whitespace-nowrap font-sans text-[12px] font-semibold tracking-[0.22em] uppercase">
+          {reducedItems.map((item, index) => (
+            <span key={item}>
+              {index > 0 ? <span className="mx-3 text-gold">{separator}</span> : null}
+              {item}
+            </span>
+          ))}
+        </p>
       </div>
     </div>
   )

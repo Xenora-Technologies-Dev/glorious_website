@@ -36,21 +36,27 @@ export function InsightsPage() {
       />
       <section className="bg-cream pb-24 lg:pb-32">
         <Container>
-          <div className="hide-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
-            {['All', ...insightCategories].map((item) => (
-              <button
-                key={item}
-                type="button"
-                onClick={() => setActive(item)}
-                className={cn(
-                  'h-10 shrink-0 px-4 text-[11px] font-semibold tracking-[0.16em] uppercase',
-                  active === item ? 'bg-navy text-ivory' : 'text-navy hover:bg-ivory-deep',
-                )}
-                aria-pressed={active === item}
-              >
-                {item}
-              </button>
-            ))}
+          <div className="w-full min-w-0">
+            <div
+              role="group"
+              aria-label="Filter insights"
+              className="scrollport-x scrollport-x--sm-wrap hide-scrollbar -mx-4 flex gap-2 px-4 sm:mx-0 sm:flex-wrap sm:px-0"
+            >
+              {['All', ...insightCategories].map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  onClick={() => setActive(item)}
+                  className={cn(
+                    'h-10 shrink-0 px-4 text-[11px] font-semibold tracking-[0.16em] uppercase',
+                    active === item ? 'bg-navy text-ivory' : 'text-navy hover:bg-ivory-deep',
+                  )}
+                  aria-pressed={active === item}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {filtered.map((item) => (

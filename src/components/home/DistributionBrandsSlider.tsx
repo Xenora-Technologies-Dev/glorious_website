@@ -40,7 +40,7 @@ export function DistributionBrandsSlider() {
         </div>
       </Container>
 
-      {/* Continuous marquee - CSS only; pauses on hover; static grid when reduced-motion */}
+      {/* Continuous marquee - CSS only; pauses on hover; hidden under reduced-motion */}
       <div ref={marqueeRef} className="mt-12 motion-reduce:hidden">
         <div className="group/marquee overflow-hidden">
           <div
@@ -65,25 +65,55 @@ export function DistributionBrandsSlider() {
         </div>
       </div>
 
-      {/* Reduced-motion fallback: static grid of the same logos */}
-      <Container className="mt-12 hidden motion-reduce:block">
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {logos.map((brand) => (
+      {/* Reduced-motion: horizontal scrollport on coarse (phones); static grid on fine pointer */}
+      <div className="mt-12 hidden motion-reduce:block">
+        <div className="hidden pointer-coarse:block">
+          <div className="relative w-full min-w-0">
             <div
-              key={brand.slug}
-              className="flex aspect-[5/3] items-center justify-center border border-line bg-ivory p-3"
-            >
-              <img
-                src={brand.logo}
-                alt={brand.name}
-                className="max-h-full max-w-full object-contain"
-                loading="lazy"
-                decoding="async"
-              />
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-cream to-transparent"
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-cream to-transparent"
+            />
+            <div className="scrollport-x hide-scrollbar flex gap-3 px-4 pb-2 pe-10 sm:px-8 sm:pe-12 lg:px-16 lg:pe-16">
+              {logos.map((brand) => (
+                <div
+                  key={brand.slug}
+                  className="flex h-[88px] w-[148px] shrink-0 items-center justify-center border border-line bg-ivory p-3 sm:h-[100px] sm:w-[168px]"
+                >
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    className="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-      </Container>
+        <Container className="pointer-coarse:hidden">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {logos.map((brand) => (
+              <div
+                key={brand.slug}
+                className="flex aspect-[5/3] items-center justify-center border border-line bg-ivory p-3"
+              >
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  className="max-h-full max-w-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+        </Container>
+      </div>
     </section>
   )
 }

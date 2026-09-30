@@ -52,7 +52,8 @@
 
   html {
     background: var(--color-cream);
-    overflow-x: hidden;
+    /* clip (not hidden) so nested overflow-x:auto scrollports work on iOS Safari */
+    overflow-x: clip;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
@@ -66,7 +67,7 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    overflow-x: clip;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
   }
@@ -160,6 +161,37 @@
 
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* iOS-friendly horizontal scrollport: use on tracks; links may keep touch-action:manipulation */
+  .scrollport-x {
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pinch-zoom;
+  }
+
+  /* Desktop GSAP pin track: free overflow so pinHorizontal keeps working ≥1024 */
+  @media (min-width: 1024px) {
+    .scrollport-x.scrollport-x--desktop-free {
+      width: max-content;
+      overflow-x: visible;
+      -webkit-overflow-scrolling: auto;
+      overscroll-behavior-x: auto;
+      touch-action: auto;
+    }
+  }
+
+  /* Chip rows that wrap from sm upward */
+  @media (min-width: 640px) {
+    .scrollport-x.scrollport-x--sm-wrap {
+      overflow-x: visible;
+      -webkit-overflow-scrolling: auto;
+      overscroll-behavior-x: auto;
+      touch-action: auto;
+    }
   }
 
   .edge-fade-x {

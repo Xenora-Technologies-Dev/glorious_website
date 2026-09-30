@@ -46,7 +46,7 @@ export function Categories() {
       </Container>
 
       <div ref={pinRef} className="lg:h-svh lg:overflow-hidden">
-        <div className="relative mt-12 lg:mt-0">
+        <div className="relative mt-12 w-full min-w-0 lg:mt-0">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-cream to-transparent lg:hidden"
@@ -57,7 +57,7 @@ export function Categories() {
           />
           <div
             ref={trackRef}
-            className="hide-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-6 pe-10 sm:px-8 sm:pe-12 lg:h-full lg:w-max lg:items-center lg:overflow-visible lg:px-16 lg:pe-16"
+            className="scrollport-x scrollport-x--desktop-free hide-scrollbar flex snap-x snap-mandatory gap-5 px-4 pb-6 pe-10 sm:px-8 sm:pe-12 lg:h-full lg:w-max lg:items-center lg:px-16 lg:pe-16"
           >
           {homeCategories.map((category) => (
             <Link
