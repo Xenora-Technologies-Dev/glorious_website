@@ -1,0 +1,27 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/portal"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/portal/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.gloriousascent.com/*"
+  to = "https://gloriousascent.com/:splat"
+  status = 301
+  force = true
+
+# SPA fallback — unknown paths serve the app; React Router shows NotFoundPage
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

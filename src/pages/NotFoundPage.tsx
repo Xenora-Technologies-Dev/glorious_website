@@ -7,7 +7,8 @@ export function NotFoundPage() {
     <>
       <Seo
         title="Page not found | Glorious Ascent"
-        description="This page is not on the Glorious Ascent website."
+        description="This page is not on the Glorious Ascent website. Return home or contact our team."
+        noindex
       />
       <section className="flex min-h-[80svh] items-center bg-navy-deep text-ivory">
         <Container>
@@ -22,7 +23,7 @@ export function NotFoundPage() {
           </p>
           <div className="mt-10 flex w-full max-w-md flex-col flex-wrap gap-3 sm:max-w-none sm:flex-row [&>a]:w-full sm:[&>a]:w-auto">
             <Button href="/" variant="gold">
-              Back home
+              Go Home
             </Button>
             <Button href="/contact" variant="outline">
               Contact

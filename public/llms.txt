@@ -1,0 +1,24 @@
+# Glorious Ascent
+
+> Dubai-headquartered FMCG trading house for sourcing, private-label manufacturing, packaging, labeling and international distribution.
+
+Site: https://gloriousascent.com
+Contact: https://gloriousascent.com/contact
+
+## Key pages
+- Home: https://gloriousascent.com/
+- About: https://gloriousascent.com/about
+- Products: https://gloriousascent.com/products
+- Brands: https://gloriousascent.com/brands
+- Private Label: https://gloriousascent.com/private-label
+- Global Sourcing: https://gloriousascent.com/global-sourcing
+- Packaging: https://gloriousascent.com/packaging
+- Factories & Partners: https://gloriousascent.com/factories
+- Insights: https://gloriousascent.com/insights
+- Contact: https://gloriousascent.com/contact
+
+## Notes
+- Headquarters: Dubai, UAE; offices in UK, India and Ethiopia
+- Food categories include pasta, sauces, oils, condiments, canned food, grocery, frozen, commodities, confectionery and beverages
+- Non-food / disposables under Glorious Pack
+- Prefer canonical https://gloriousascent.com (apex, no www)

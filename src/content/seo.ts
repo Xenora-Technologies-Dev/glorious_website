@@ -1,7 +1,4 @@
-export const pageMeta: Record<
-  string,
-  { title: string; description: string }
-> = {
+export const pageMeta: Record<string, { title: string; description: string }> = {
   home: {
     title: 'Glorious Ascent | Connecting Global FMCG Markets',
     description:
@@ -15,7 +12,7 @@ export const pageMeta: Record<
   products: {
     title: 'Products | Glorious Ascent',
     description:
-      'Pasta, sauces, oils, condiments, canned food and grocery products from Glorious Ascent, including American Hat, Zaitha, Tash, Zarella and Legacy Valley.'
+      'Pasta, sauces, oils, condiments, canned food and grocery products from Glorious Ascent, including American Hat, Zaitha, Tash, Zarella and Legacy Valley.',
   },
   brands: {
     title: 'Brands | Glorious Ascent',
@@ -37,6 +34,11 @@ export const pageMeta: Record<
     description:
       'Packaging, labeling, design, product protection and export documentation from Glorious Ascent.',
   },
+  factories: {
+    title: 'Factories & Partners | Glorious Ascent',
+    description:
+      'Manufacturing partners and factory network supporting Glorious Ascent private-label and branded FMCG programmes.',
+  },
   insights: {
     title: 'Insights | Glorious Ascent',
     description:
@@ -45,6 +47,11 @@ export const pageMeta: Record<
   contact: {
     title: 'Contact | Glorious Ascent',
     description:
-      'Start a commercial conversation with Glorious Ascent in Dubai or London — product information, quotations, private label and partnerships.',
+      'Start a commercial conversation with Glorious Ascent in Dubai or London - product information, quotations, private label and partnerships.',
+  },
+  notFound: {
+    title: 'Page not found | Glorious Ascent',
+    description:
+      'This page is not on the Glorious Ascent website. Return home or contact our team.',
   },
 }

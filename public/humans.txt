@@ -1,0 +1,9 @@
+/* TEAM */
+Company: Glorious Ascent General Trading L.L.C.
+Location: Dubai, UAE
+
+/* SITE */
+Standards: HTML5, CSS3, ES modules
+Components: React, Vite
+Apex: https://gloriousascent.com
+Contact: https://gloriousascent.com/contact

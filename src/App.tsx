@@ -79,6 +79,8 @@ export default function App() {
             <Route path="insights" element={<InsightsPage />} />
             <Route path="insights/:slug" element={<InsightDetailPage />} />
             <Route path="contact" element={<ContactPage />} />
+            <Route path="portal" element={<Navigate to="/" replace />} />
+            <Route path="portal/*" element={<Navigate to="/" replace />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

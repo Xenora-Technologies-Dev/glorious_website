@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Legacy path - redirected to home; keep out of crawl noise
+Disallow: /portal
+Disallow: /portal/
+
+Sitemap: https://gloriousascent.com/sitemap.xml

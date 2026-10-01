@@ -1,4 +1,5 @@
 import { Seo } from '@/components/seo/Seo'
+import { pageMeta } from '@/content/seo'
 import { PageHero } from '@/components/ui/PageHero'
 import { Container } from '@/components/ui/Container'
 import { breadcrumbJsonLd } from '@/content/jsonld'
@@ -15,8 +16,8 @@ export function FactoriesPartnersPage() {
   return (
     <>
       <Seo
-        title="Factories & Partners | Glorious Ascent"
-        description="Manufacturing and factory partners in the Glorious Ascent supply network."
+        title={pageMeta.factories.title}
+        description={pageMeta.factories.description}
         jsonLd={breadcrumbJsonLd([
           { name: 'Home', path: '/' },
           { name: 'Factories & Partners', path: '/factories' },

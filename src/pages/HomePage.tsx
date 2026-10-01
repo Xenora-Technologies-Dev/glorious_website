@@ -8,7 +8,7 @@ import { Intro } from '@/components/home/Intro'
 import { Packaging } from '@/components/home/Packaging'
 import { PrivateLabel } from '@/components/home/PrivateLabel'
 import { Seo } from '@/components/seo/Seo'
-import { organizationJsonLd } from '@/content/jsonld'
+import { organizationJsonLd, websiteJsonLd } from '@/content/jsonld'
 import { pageMeta } from '@/content/seo'
 
 export function HomePage() {
@@ -17,7 +17,7 @@ export function HomePage() {
       <Seo
         title={pageMeta.home.title}
         description={pageMeta.home.description}
-        jsonLd={organizationJsonLd}
+        jsonLd={[organizationJsonLd, websiteJsonLd]}
       />
       <Hero />
       <Intro />
