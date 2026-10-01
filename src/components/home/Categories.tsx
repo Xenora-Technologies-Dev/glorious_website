@@ -32,7 +32,7 @@ export function Categories() {
     <section ref={ref} className="bg-cream py-24 lg:overflow-hidden lg:py-0">
       <Container className="lg:pt-28">
         <SectionHeader
-          index="03"
+          index="02"
           eyebrow="What we offer"
           title={
             <>

@@ -7,7 +7,7 @@ export function CtaBanner() {
     <section className="bg-navy py-24 text-ivory lg:py-32">
       <Container>
         <p className="mb-6 text-[11px] font-semibold tracking-[0.24em] uppercase text-gold">
-          07 · Let’s work together
+          08 · Let’s work together
         </p>
         <h2 className="font-display max-w-5xl text-[clamp(2.1rem,5vw,4.5rem)] leading-[1.05]">
           Let’s Build Your Next FMCG Programme.

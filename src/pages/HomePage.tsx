@@ -21,12 +21,12 @@ export function HomePage() {
       />
       <Hero />
       <Intro />
-      <GlobalPresence />
       <Categories />
       <BrandPortfolio />
       <DistributionBrandsSlider />
       <PrivateLabel />
       <Packaging />
+      <GlobalPresence />
       <CtaBanner />
     </>
   )

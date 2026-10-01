@@ -27,7 +27,7 @@ export function BrandPortfolio() {
     <section ref={ref} className="bg-ivory py-24 lg:py-32">
       <Container>
         <SectionHeader
-          index="04"
+          index="03"
           eyebrow="Our brands"
           title="A house of FMCG brands."
           copy="Owned and private-label brands from the Glorious Ascent house. Explore each name to see the atmosphere behind it."

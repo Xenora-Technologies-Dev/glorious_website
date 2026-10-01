@@ -30,7 +30,7 @@ export function GlobalPresence() {
     <section ref={ref} className="bg-navy py-20 text-ivory sm:py-24 lg:py-32">
       <Container>
         <SectionHeader
-          index="02"
+          index="07"
           eyebrow="Where we export"
           tone="light"
           title="Connecting Markets Across the World."

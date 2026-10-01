@@ -28,7 +28,7 @@ export function DistributionBrandsSlider() {
       <Container>
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader
-            index="04b"
+            index="04"
             eyebrow="Distribution"
             title="International brands we work with"
             copy="A selection of international brands in our trading and distribution conversations."
