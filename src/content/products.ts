@@ -555,15 +555,6 @@ export const products: Product[] = [
     image: '/Products/delicia/spaghetti-400g.png',
   },
   {
-    slug: 'zaitha-olive-oil-5l',
-    name: 'Extra Virgin Olive Oil',
-    categorySlug: 'oils',
-    brandSlug: 'zaitha',
-    packSize: '5L',
-    origin: 'Spain',
-    image: cat('zaitha_olive_oil_5l.png'),
-  },
-  {
     slug: 'zaitha-olive-oil-1l',
     name: 'Extra Virgin Olive Oil',
     categorySlug: 'oils',

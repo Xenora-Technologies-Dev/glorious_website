@@ -1,4 +1,4 @@
-import { ProductCatalogueGrid } from '@/components/products/ProductCatalogueGrid'
+﻿import { ProductCatalogueGrid } from '@/components/products/ProductCatalogueGrid'
 import { ProductVisual } from '@/components/products/ProductVisual'
 import { Seo } from '@/components/seo/Seo'
 import { Button } from '@/components/ui/Button'
@@ -53,12 +53,14 @@ export function BrandDetailPage() {
             <div className="lg:col-span-6">
               {heroProduct ? (
                 <ProductVisual
+                  key={heroProduct.slug}
                   product={heroProduct}
-                  className="h-[min(58vw,380px)] w-full min-h-[220px] border border-line"
+                  className="h-[min(58vw,380px)] w-full min-h-[220px] border border-line bg-transparent"
                   eager
                 />
               ) : (
                 <ImageReveal
+                  key={data.slug}
                   src={images[data.atmosphere]}
                   alt=""
                   className="h-[min(58vw,380px)] w-full min-h-[220px]"

@@ -1,5 +1,5 @@
 import { cn } from '@/lib/cn'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 type SmartImageProps = {
   src: string
@@ -20,6 +20,13 @@ export function SmartImage({
 }: SmartImageProps) {
   const [current, setCurrent] = useState(src)
   const [failed, setFailed] = useState(false)
+
+  // Sync when parent reuses this instance across route param changes
+  // (e.g. /brands/zaitha -> /brands/tash).
+  useEffect(() => {
+    setCurrent(src)
+    setFailed(false)
+  }, [src])
 
   return (
     <div className={cn('relative overflow-hidden bg-transparent', className)}>

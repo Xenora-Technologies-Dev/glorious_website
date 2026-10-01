@@ -28,7 +28,7 @@ export function ImageReveal({
       imageReveal(imgRef.current, frameRef.current)
       parallax(imgRef.current, ref.current, parallaxAmount)
     },
-    { scope: ref },
+    { scope: ref, dependencies: [src, parallaxAmount] },
   )
 
   return (
