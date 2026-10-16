@@ -1,7 +1,8 @@
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/cn'
 import { useId, useState, type FormEvent, type ReactNode } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
+import { company } from '@/content/company'
 
 const enquiryTypes = [
   { value: 'general', label: 'General Enquiry' },
@@ -26,11 +27,34 @@ const intentMap: Record<string, string> = {
 export function EnquiryForm() {
   const [params] = useSearchParams()
   const defaultType = intentMap[params.get('intent') ?? ''] ?? 'general'
-  return <EnquiryFields key={defaultType} defaultType={defaultType} />
+  const prefill = {
+    product: (params.get('product') ?? '').slice(0, 120),
+    brand: (params.get('brand') ?? '').slice(0, 80),
+    packSize: (params.get('packSize') ?? '').slice(0, 80),
+  }
+  return (
+    <EnquiryFields
+      key={`${defaultType}|${prefill.product}|${prefill.brand}|${prefill.packSize}`}
+      defaultType={defaultType}
+      prefill={prefill}
+    />
+  )
 }
 
-function EnquiryFields({ defaultType }: { defaultType: string }) {
-  const [status, setStatus] = useState<'idle' | 'sent'>('idle')
+const FORM_NAME = 'enquiry'
+
+function encode(data: Record<string, string>) {
+  return new URLSearchParams(data).toString()
+}
+
+function EnquiryFields({
+  defaultType,
+  prefill,
+}: {
+  defaultType: string
+  prefill: { product: string; brand: string; packSize: string }
+}) {
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [errors, setErrors] = useState<FieldErrors>({})
   const formId = useId()
   const [form, setForm] = useState({
@@ -40,14 +64,22 @@ function EnquiryFields({ defaultType }: { defaultType: string }) {
     phone: '',
     country: '',
     enquiryType: defaultType,
-    product: '',
+    product: prefill.product,
+    brand: prefill.brand,
+    packSize: prefill.packSize,
+    quantity: '',
+    deliveryDestination: '',
     message: '',
     website: '',
   })
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (form.website) return
+    if (status === 'sending') return
+    if (form.website) {
+      setStatus('sent')
+      return
+    }
 
     const next: FieldErrors = {}
     if (!form.name.trim()) next.name = 'Name is required.'
@@ -60,22 +92,52 @@ function EnquiryFields({ defaultType }: { defaultType: string }) {
     setErrors(next)
     if (Object.keys(next).length) return
 
-    setStatus('sent')
+    setStatus('sending')
+    try {
+      // Netlify Forms: POST url-encoded data with the registered form-name.
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({ 'form-name': FORM_NAME, ...form }),
+      })
+      if (!response.ok) throw new Error(`Form submit failed: ${response.status}`)
+      setStatus('sent')
+      window.scrollTo({ top: 0 })
+    } catch {
+      setStatus('error')
+    }
   }
 
   if (status === 'sent') {
     return (
-      <div className="border border-line bg-cream p-8">
-        <h2 className="font-display text-3xl text-navy">Received.</h2>
+      <div role="status" aria-live="polite" className="border border-line bg-cream p-8">
+        <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
+          Enquiry sent
+        </p>
+        <h2 className="mt-3 font-display text-3xl text-navy">Thank you, {form.name.split(' ')[0]}.</h2>
         <p className="mt-4 text-muted">
-          Thank you. Our team will review your enquiry and respond shortly.
+          We have received your {form.enquiryType === 'quote' ? 'quote request' : 'enquiry'}
+          {form.product ? ` for ${form.product}` : ''}. Our team will reply to{' '}
+          <span className="text-navy">{form.email}</span>, usually within one business day.
+        </p>
+        <p className="mt-4 text-sm text-muted">
+          For anything urgent, call {company.offices.uae.phone} or message us on WhatsApp.
         </p>
       </div>
     )
   }
 
   return (
-    <form className="relative grid gap-6 sm:grid-cols-2" onSubmit={onSubmit} noValidate>
+    <form
+      name={FORM_NAME}
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="website"
+      className="relative grid gap-6 sm:grid-cols-2"
+      onSubmit={onSubmit}
+      noValidate
+    >
+      <input type="hidden" name="form-name" value={FORM_NAME} />
       <input
         tabIndex={-1}
         autoComplete="off"
@@ -171,6 +233,45 @@ function EnquiryFields({ defaultType }: { defaultType: string }) {
           />
         </Field>
       </div>
+      <Field id={`${formId}-brand`} label="Brand">
+          <input
+            id={`${formId}-brand`}
+            name="brand"
+            value={form.brand}
+            onChange={(event) => setForm({ ...form, brand: event.target.value })}
+            className={inputClass()}
+          />
+        </Field>
+      <Field id={`${formId}-packSize`} label="Pack size">
+          <input
+            id={`${formId}-packSize`}
+            name="packSize"
+            value={form.packSize}
+            onChange={(event) => setForm({ ...form, packSize: event.target.value })}
+            className={inputClass()}
+          />
+        </Field>
+      <Field id={`${formId}-quantity`} label="Quantity">
+          <input
+            id={`${formId}-quantity`}
+            name="quantity"
+            placeholder="e.g. 500 cartons / 1 x 20ft container"
+            value={form.quantity}
+            onChange={(event) => setForm({ ...form, quantity: event.target.value })}
+            className={inputClass()}
+          />
+        </Field>
+      <Field id={`${formId}-deliveryDestination`} label="Delivery destination">
+          <input
+            id={`${formId}-deliveryDestination`}
+            name="deliveryDestination"
+            autoComplete="off"
+            placeholder="City, country or port"
+            value={form.deliveryDestination}
+            onChange={(event) => setForm({ ...form, deliveryDestination: event.target.value })}
+            className={inputClass()}
+          />
+        </Field>
       <div className="sm:col-span-2">
         <Field id={`${formId}-message`} label="Message" error={errors.message}>
         <textarea
@@ -186,11 +287,25 @@ function EnquiryFields({ defaultType }: { defaultType: string }) {
         />
       </Field>
       </div>
-      <div className="pt-2 sm:col-span-2 [&>button]:w-full sm:[&>button]:w-auto">
-        <Button type="submit" variant="navy" size="lg">
-          Start a Conversation
+      <div className="flex flex-col gap-4 pt-2 sm:col-span-2 sm:flex-row sm:items-center [&>button]:w-full sm:[&>button]:w-auto">
+        <Button type="submit" variant="navy" size="lg" disabled={status === 'sending'}>
+          {status === 'sending' ? 'Sending...' : 'Start a Conversation'}
         </Button>
+        <p className="text-xs leading-relaxed text-muted">
+          By submitting, you agree that we may use your details to respond to your enquiry, as set
+          out in our{' '}
+          <Link to="/privacy-policy" className="text-navy underline underline-offset-4 hover:text-gold">
+            Privacy Policy
+          </Link>
+          .
+        </p>
       </div>
+      {status === 'error' ? (
+        <p role="alert" className="text-sm font-medium text-red sm:col-span-2">
+          Sorry, your enquiry could not be sent. Please try again, call{' '}
+          {company.offices.uae.phone} or message us on WhatsApp.
+        </p>
+      ) : null}
     </form>
   )
 }

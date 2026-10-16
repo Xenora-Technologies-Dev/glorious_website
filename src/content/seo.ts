@@ -49,6 +49,11 @@ export const pageMeta: Record<string, { title: string; description: string }> = 
     description:
       'Start a commercial conversation with Glorious Ascent in Dubai or London - product information, quotations, private label and partnerships.',
   },
+  privacy: {
+    title: 'Privacy Policy | Glorious Ascent',
+    description:
+      'How Glorious Ascent General Trading L.L.C. collects, uses and protects contact details shared through enquiries, quotes and WhatsApp.',
+  },
   notFound: {
     title: 'Page not found | Glorious Ascent',
     description:

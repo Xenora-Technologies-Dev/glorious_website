@@ -18,6 +18,15 @@ export type Product = {
   packSize?: string
   origin?: string
   frozenGroup?: FrozenGroup
+  /** Optional verified specs. Leave undefined unless confirmed by the client. */
+  unitsPerCarton?: string
+  countryOfManufacture?: string
+  shelfLife?: string
+  storage?: string
+  moq?: string
+  deliveryTime?: string
+  /** Public path or URL of a downloadable product sheet (PDF). */
+  productSheetUrl?: string
 }
 
 const img = (file: string) => `/Products/${file}`
@@ -144,7 +153,7 @@ export const homeCategories = foodCategorySlugs.map((slug) => {
 
 export const products: Product[] = [
   {
-    slug: 'penne-pastx450g',
+    slug: 'penne-pasta-450g',
     name: 'Penne Pasta',
     categorySlug: 'pasta',
     brandSlug: 'zarella',
@@ -152,7 +161,7 @@ export const products: Product[] = [
     image: img('penne_pasta_450gm_Packet_Zarella.png'),
   },
   {
-    slug: 'rigatoni-pastx400g',
+    slug: 'rigatoni-pasta-400g',
     name: 'Rigatoni Pasta',
     categorySlug: 'pasta',
     brandSlug: 'zarella',
@@ -160,7 +169,7 @@ export const products: Product[] = [
     image: img('Rigatoni_Pasta_400gm_zarella.png'),
   },
   {
-    slug: 'macaroni-pastx400g',
+    slug: 'macaroni-pasta-400g',
     name: 'Macaroni Pasta',
     categorySlug: 'pasta',
     brandSlug: 'zarella',
@@ -262,7 +271,7 @@ export const products: Product[] = [
   },
 
   {
-    slug: 'tahinx10kg',
+    slug: 'tahina-10kg',
     name: 'Tahina Sesame Paste',
     categorySlug: 'condiments',
     brandSlug: 'zaitha',

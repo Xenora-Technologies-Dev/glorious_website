@@ -2,5 +2,11 @@
 /portal    /    301!
 /portal/*  /    301!
 
+# Corrected product slugs (mangled a-/size collapse)
+/products/pasta/penne-pastx450g         /products/pasta/penne-pasta-450g         301!
+/products/pasta/rigatoni-pastx400g      /products/pasta/rigatoni-pasta-400g      301!
+/products/pasta/macaroni-pastx400g      /products/pasta/macaroni-pasta-400g      301!
+/products/condiments/tahinx10kg         /products/condiments/tahina-10kg         301!
+
 # SPA fallback
 /*    /index.html   200

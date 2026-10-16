@@ -49,6 +49,23 @@ export function ProductDetailPage() {
   const related = getRelatedProducts(product)
   const shots = productGallery(product)
   const activeShot = shots[Math.min(shot, shots.length - 1)]
+  const specs = (
+    [
+      ['Pack size', product.packSize],
+      ['Units per carton', product.unitsPerCarton],
+      ['Origin', product.origin],
+      ['Country of manufacture', product.countryOfManufacture],
+      ['Shelf life', product.shelfLife],
+      ['Storage', product.storage],
+      ['Minimum order (MOQ)', product.moq],
+      ['Delivery time', product.deliveryTime],
+    ] as Array<[string, string | undefined]>
+  ).flatMap(([label, value]) => (value?.trim() ? [[label, value.trim()] as const] : []))
+  const quoteParams = new URLSearchParams({ intent: 'quote', product: product.name })
+  if (brand?.name) quoteParams.set('brand', brand.name)
+  if (product.packSize) quoteParams.set('packSize', product.packSize)
+  const infoParams = new URLSearchParams(quoteParams)
+  infoParams.set('intent', 'product')
 
   return (
     <>
@@ -64,7 +81,7 @@ export function ProductDetailPage() {
             { name: cat?.name ?? 'Category', path: `/products/${product.categorySlug}` },
             { name: product.name, path: productHref(product) },
           ]),
-          productJsonLd(product.name, productHref(product), productImage(product)),
+          productJsonLd(product.name, productHref(product), productImage(product), brand?.name),
         ]}
       />
       <section className="bg-ivory pt-[calc(7.5rem+env(safe-area-inset-top))] pb-20 sm:pt-32 lg:pt-40 lg:pb-32">
@@ -121,27 +138,47 @@ export function ProductDetailPage() {
                 </Link>
               ) : null}
               <h1 className="font-display mt-4 text-[clamp(2rem,5vw,3.75rem)] break-word text-navy">{product.name}</h1>
-              <dl className="mt-10 space-y-4 border-t border-line pt-8 text-sm">
-                <div className="flex justify-between gap-4 border-b border-line pb-4">
-                  <dt className="text-muted">Available formats</dt>
-                  <dd className="max-w-[min(14rem,52%)] text-right text-navy">
-                    {product.packSize ?? 'Available on request'}
-                  </dd>
+              {specs.length > 0 ? (
+                <div className="mt-10 border-t border-line pt-8">
+                  <h2 className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
+                    Specifications
+                  </h2>
+                  <table className="mt-4 w-full text-sm">
+                    <tbody>
+                      {specs.map(([label, value]) => (
+                        <tr key={label} className="border-b border-line">
+                          <th scope="row" className="py-4 pr-4 text-left font-normal text-muted">
+                            {label}
+                          </th>
+                          <td className="py-4 text-right text-navy">{value}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-                <div className="flex justify-between gap-4 border-b border-line pb-4">
-                  <dt className="text-muted">Origin / manufacturing</dt>
-                  <dd className="max-w-[min(14rem,52%)] text-right text-navy">
-                    {product.origin ?? 'Available on request'}
-                  </dd>
-                </div>
-              </dl>
+              ) : (
+                <p className="mt-10 border-t border-line pt-8 text-sm text-muted">
+                  Full specifications are available on request.
+                </p>
+              )}
               <div className="mt-10 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap [&>a]:w-full sm:[&>a]:w-auto">
-                <Button href="/contact?intent=product" variant="navy" size="lg">
+                <Button href={`/contact?${infoParams.toString()}`} variant="navy" size="lg">
                   Request Product Information
                 </Button>
-                <Button href="/contact?intent=quote" variant="gold" size="lg">
+                <Button href={`/contact?${quoteParams.toString()}`} variant="gold" size="lg">
                   Request a Quote
                 </Button>
+                {product.productSheetUrl ? (
+                  <a
+                    href={product.productSheetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                    className="inline-flex min-h-12 w-full items-center justify-center rounded-sm border border-navy px-5 py-3 text-[11px] font-semibold tracking-[0.12em] uppercase text-navy transition-colors hover:bg-navy hover:text-ivory sm:w-auto sm:px-7 sm:text-[12px]"
+                  >
+                    Download product sheet
+                  </a>
+                ) : null}
               </div>
             </div>
           </div>

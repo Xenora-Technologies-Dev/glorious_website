@@ -70,7 +70,7 @@ export const brands: Brand[] = [
     logo: '/brand/brand_logos/Zarella_Logo.png',
     logoAspect: 'portrait',
     hasPortfolio: true,
-    heroProductSlug: 'penne-pastx450g',
+    heroProductSlug: 'penne-pasta-450g',
     atmosphere: 'pasta',
     kind: 'owned',
   },

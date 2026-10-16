@@ -7,9 +7,9 @@ import { images } from '@/content/images'
 import { breadcrumbJsonLd } from '@/content/jsonld'
 import { pageMeta } from '@/content/seo'
 import { SplitHeading } from '@/components/ui/SplitHeading'
-import { fadeUp, prefersReducedMotion } from '@/lib/animations'
-import { useGSAP } from '@gsap/react'
-import { useRef } from 'react'
+import { gsap } from '@/lib/gsap'
+import { prefersReducedMotion } from '@/lib/animations'
+import { useEffect, useRef } from 'react'
 
 const journey = [
   {
@@ -47,17 +47,44 @@ const journey = [
 export function PrivateLabelPage() {
   const journeyRef = useRef<HTMLElement>(null)
 
-  useGSAP(
-    () => {
-      if (!journeyRef.current || prefersReducedMotion()) return
-      fadeUp(journeyRef.current.querySelectorAll('[data-journey]'), {
-        y: 28,
-        stagger: 0.08,
-        trigger: journeyRef.current,
-      })
-    },
-    { scope: journeyRef },
-  )
+  // Journey steps are visible by default (no hidden initial CSS). We only animate items that
+  // are still below the viewport, using IntersectionObserver instead of ScrollTrigger so the
+  // reveal does not depend on Lenis/ScrollTrigger refresh timing. A safety timer forces every
+  // step visible in case an observer never fires (e.g. in-app browsers, print, odd scroll roots).
+  useEffect(() => {
+    const root = journeyRef.current
+    if (!root || prefersReducedMotion() || typeof IntersectionObserver === 'undefined') return
+    const items = Array.from(root.querySelectorAll<HTMLElement>('[data-journey]'))
+    const pending = items.filter((el) => el.getBoundingClientRect().top > window.innerHeight * 0.9)
+    if (!pending.length) return
+
+    gsap.set(pending, { autoAlpha: 0, y: 28 })
+    const reveal = (el: Element) =>
+      gsap.to(el, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power4.out', overwrite: true })
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          reveal(entry.target)
+          observer.unobserve(entry.target)
+        })
+      },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.05 },
+    )
+    pending.forEach((el) => observer.observe(el))
+
+    const safety = window.setTimeout(() => {
+      observer.disconnect()
+      gsap.set(pending, { autoAlpha: 1, y: 0, overwrite: true })
+    }, 4000)
+
+    return () => {
+      window.clearTimeout(safety)
+      observer.disconnect()
+      gsap.set(items, { clearProps: 'opacity,visibility,transform' })
+    }
+  }, [])
 
   return (
     <>

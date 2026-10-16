@@ -20,6 +20,49 @@
   status = 301
   force = true
 
+
+# Ensure crawler files always serve as static assets with correct types
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
+[[headers]]
+  for = "/humans.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
+# Old mangled product slugs → corrected URLs (301)
+[[redirects]]
+  from = "/products/pasta/penne-pastx450g"
+  to = "/products/pasta/penne-pasta-450g"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/pasta/rigatoni-pastx400g"
+  to = "/products/pasta/rigatoni-pasta-400g"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/pasta/macaroni-pastx400g"
+  to = "/products/pasta/macaroni-pasta-400g"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/condiments/tahinx10kg"
+  to = "/products/condiments/tahina-10kg"
+  status = 301
+  force = true
+
 # SPA fallback — unknown paths serve the app; React Router shows NotFoundPage
 [[redirects]]
   from = "/*"

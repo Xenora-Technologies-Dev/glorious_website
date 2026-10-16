@@ -6,21 +6,6 @@
     <link rel="icon" type="image/png" href="/brand/logo.png" />
     <link rel="preload" as="image" href="/brand/hero-global-map.webp" type="image/webp" />
     <meta name="theme-color" content="#07111f" />
-    <meta
-      name="description"
-      content="Glorious Ascent General Trading L.L.C. - international FMCG food trading, sourcing, private-label manufacturing and distribution, based in Dubai, UAE."
-    />
-    <link rel="canonical" href="https://gloriousascent.com/" />
-    <meta property="og:site_name" content="Glorious Ascent" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://gloriousascent.com/" />
-    <meta property="og:title" content="Glorious Ascent | International FMCG Trading" />
-    <meta
-      property="og:description"
-      content="Dubai-headquartered FMCG trading house for sourcing, private-label manufacturing, packaging and international distribution."
-    />
-    <meta property="og:image" content="https://gloriousascent.com/brand/logo-on-white.png" />
-    <meta name="twitter:card" content="summary_large_image" />
     <link rel="author" type="text/plain" href="/humans.txt" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,9 +13,25 @@
       href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <title>Glorious Ascent | International FMCG Trading</title>
   </head>
   <body>
+    <!-- Static copy of the enquiry form so Netlify Forms detects every field at deploy time. -->
+    <form name="enquiry" data-netlify="true" netlify-honeypot="website" hidden>
+      <input type="hidden" name="form-name" value="enquiry" />
+      <input name="website" />
+      <input name="name" />
+      <input name="company" />
+      <input name="email" />
+      <input name="phone" />
+      <input name="country" />
+      <select name="enquiryType"><option value="general">General</option></select>
+      <input name="product" />
+      <input name="brand" />
+      <input name="packSize" />
+      <input name="quantity" />
+      <input name="deliveryDestination" />
+      <textarea name="message"></textarea>
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

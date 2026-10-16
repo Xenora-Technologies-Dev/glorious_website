@@ -70,12 +70,18 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   }
 }
 
-export function productJsonLd(name: string, path: string, image: string) {
+export function productJsonLd(
+  name: string,
+  path: string,
+  image: string,
+  brandName?: string,
+) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name,
-    brand: company.shortName,
+    // Brand must match the brand displayed on the product page; omit when none is shown.
+    ...(brandName ? { brand: { '@type': 'Brand', name: brandName } } : {}),
     image: image.startsWith('http') ? image : `${siteUrl}${image}`,
     url: `${siteUrl}${path}`,
     category: productCategories.find((item) => path.includes(item.slug))?.name,

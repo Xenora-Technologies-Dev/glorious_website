@@ -21,6 +21,7 @@ const staticPaths = [
   '/factories',
   '/insights',
   '/contact',
+  '/privacy-policy',
 ]
 
 const productsTs = read('src/content/products.ts')

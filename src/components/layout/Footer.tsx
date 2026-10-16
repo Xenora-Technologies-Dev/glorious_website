@@ -115,7 +115,13 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-3 border-t border-line-light pt-6 text-[12px] text-ivory/45 sm:flex-row sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} {company.legalName}</p>
+          <p>
+            &copy; {new Date().getFullYear()} {company.legalName}
+            <span aria-hidden="true"> &middot; </span>
+            <Link to="/privacy-policy" className="underline-offset-4 hover:text-gold hover:underline">
+              Privacy Policy
+            </Link>
+          </p>
           <p>International FMCG · Trading · Private label</p>
         </div>
       </Container>

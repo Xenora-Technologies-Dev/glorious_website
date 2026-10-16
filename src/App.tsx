@@ -50,6 +50,9 @@ const FactoriesPartnersPage = lazy(() =>
     default: module.FactoriesPartnersPage,
   })),
 )
+const PrivacyPolicyPage = lazy(() =>
+  import('@/pages/PrivacyPolicyPage').then((module) => ({ default: module.PrivacyPolicyPage })),
+)
 const NotFoundPage = lazy(() =>
   import('@/pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage })),
 )
@@ -79,6 +82,7 @@ export default function App() {
             <Route path="insights" element={<InsightsPage />} />
             <Route path="insights/:slug" element={<InsightDetailPage />} />
             <Route path="contact" element={<ContactPage />} />
+            <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="portal" element={<Navigate to="/" replace />} />
             <Route path="portal/*" element={<Navigate to="/" replace />} />
             <Route path="*" element={<NotFoundPage />} />
