@@ -131,8 +131,6 @@ function EnquiryFields({
     <form
       name={FORM_NAME}
       method="POST"
-      data-netlify="true"
-      netlify-honeypot="website"
       className="relative grid gap-6 sm:grid-cols-2"
       onSubmit={onSubmit}
       noValidate

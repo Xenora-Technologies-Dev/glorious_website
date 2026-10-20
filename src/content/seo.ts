@@ -47,7 +47,7 @@ export const pageMeta: Record<string, { title: string; description: string }> = 
   contact: {
     title: 'Contact | Glorious Ascent',
     description:
-      'Start a commercial conversation with Glorious Ascent in Dubai or London - product information, quotations, private label and partnerships.',
+      'Contact Glorious Ascent: Dubai headquarters and offices in the UK, India and Ethiopia. Product information, quotations, private label and partnerships.',
   },
   privacy: {
     title: 'Privacy Policy | Glorious Ascent',

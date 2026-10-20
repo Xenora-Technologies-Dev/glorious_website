@@ -1,4 +1,5 @@
 import { company, siteUrl } from '@/content/company'
+import { useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 type SeoProps = {
@@ -25,6 +26,11 @@ export function Seo({
   const canonical = `${siteUrl}${canonicalPath}`
   const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`
   const payload = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []
+
+  // index.html ships static defaults for link previews; remove them so the per-page tags below are the only set.
+  useLayoutEffect(() => {
+    document.head.querySelectorAll('[data-seo-default]').forEach((node) => node.remove())
+  }, [])
 
   return (
     <>

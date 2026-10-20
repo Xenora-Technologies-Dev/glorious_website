@@ -10,6 +10,7 @@ import { pageMeta } from '@/content/seo'
 import { prefersReducedMotion } from '@/lib/animations'
 import { gsap, useGSAP } from '@/lib/gsap'
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 const pinPanels = [
   { title: 'Mission', copy: company.mission },
@@ -131,8 +132,19 @@ export function AboutPage() {
             <div className="lg:col-span-6">
               <h2 className="font-display text-4xl text-navy">Global approach</h2>
               <p className="mt-6 text-lg leading-relaxed text-muted">
-                Import, export and cross-trade, with offices in Dubai and London. Sourcing and
-                manufacturing origins include Italy, Spain, India and the UAE.
+                Import, export and cross-trade from our Dubai headquarters, with offices in the
+                United Kingdom, India and Ethiopia. Sourcing and manufacturing origins include
+                Italy, Spain, India and the UAE.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-muted">
+                Our products are also supplied through our{' '}
+                <Link
+                  to="/#distribution-partner"
+                  className="font-semibold text-navy underline underline-offset-4 hover:text-gold-muted"
+                >
+                  distribution partner
+                </Link>
+                .
               </p>
             </div>
             <div className="lg:col-span-5 lg:col-start-8">

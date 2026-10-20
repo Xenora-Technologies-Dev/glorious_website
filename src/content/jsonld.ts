@@ -1,9 +1,13 @@
-import { company, siteUrl } from '@/content/company'
+import { company, distributionPartner, siteUrl } from '@/content/company'
 import { productCategories } from '@/content/products'
+
+export const organizationId = `${siteUrl}/#organization`
+export const distributionPartnerId = `${siteUrl}/#distribution-partner`
 
 export const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': organizationId,
   name: company.legalName,
   alternateName: company.shortName,
   url: siteUrl,
@@ -51,10 +55,40 @@ export const websiteJsonLd = {
   description: company.tagline,
   publisher: {
     '@type': 'Organization',
+    '@id': organizationId,
     name: company.legalName,
     url: siteUrl,
   },
   inLanguage: 'en',
+}
+
+/** Distribution partner as its own Organization; never merged into Glorious Ascent's addresses. */
+export const distributionPartnerJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': distributionPartnerId,
+  name: distributionPartner.name,
+  description: `Distribution partner of ${company.shortName}`,
+  ...(distributionPartner.logo ? { logo: `${siteUrl}${distributionPartner.logo}` } : {}),
+  ...(distributionPartner.website ? { url: distributionPartner.website } : {}),
+  ...(distributionPartner.phone ? { telephone: distributionPartner.phone } : {}),
+  ...(distributionPartner.email ? { email: distributionPartner.email } : {}),
+  address: distributionPartner.addresses.map((item) => ({
+    '@type': 'PostalAddress',
+    name: item.label,
+    streetAddress: item.streetAddress,
+    addressLocality: item.addressLocality,
+    addressCountry: item.addressCountry,
+  })),
+}
+
+/** Contact page about Glorious Ascent. */
+export const contactPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  url: `${siteUrl}/contact`,
+  name: `Contact ${company.shortName}`,
+  about: { '@type': 'Organization', '@id': organizationId, name: company.legalName },
 }
 
 export function breadcrumbJsonLd(items: { name: string; path: string }[]) {

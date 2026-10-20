@@ -11,6 +11,8 @@ type SectionHeaderProps = {
   tone?: 'light' | 'dark'
   className?: string
   index?: string
+  /** Optional id for the h2 so the section can reference it via aria-labelledby. */
+  titleId?: string
 }
 
 export function SectionHeader({
@@ -21,6 +23,7 @@ export function SectionHeader({
   tone = 'dark',
   className,
   index,
+  titleId,
 }: SectionHeaderProps) {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -64,6 +67,7 @@ export function SectionHeader({
         ) : null}
       </div>
       <h2
+        id={titleId}
         data-reveal
         className={cn(
           'font-display text-[clamp(2.1rem,3.8vw+0.7rem,3.75rem)] leading-[1.08] tracking-[-0.02em]',

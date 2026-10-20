@@ -2,8 +2,8 @@ import { EnquiryForm } from '@/components/contact/EnquiryForm'
 import { Seo } from '@/components/seo/Seo'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
-import { company } from '@/content/company'
-import { breadcrumbJsonLd } from '@/content/jsonld'
+import { company, officeList } from '@/content/company'
+import { breadcrumbJsonLd, contactPageJsonLd } from '@/content/jsonld'
 import { conversionPaths } from '@/content/navigation'
 import { pageMeta } from '@/content/seo'
 
@@ -13,10 +13,13 @@ export function ContactPage() {
       <Seo
         title={pageMeta.contact.title}
         description={pageMeta.contact.description}
-        jsonLd={breadcrumbJsonLd([
-          { name: 'Home', path: '/' },
-          { name: 'Contact', path: '/contact' },
-        ])}
+        jsonLd={[
+          breadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Contact', path: '/contact' },
+          ]),
+          contactPageJsonLd,
+        ]}
       />
       <section className="bg-ivory pt-[calc(7.5rem+env(safe-area-inset-top))] pb-20 sm:pt-32 lg:pt-40 lg:pb-32">
         <Container>
@@ -28,7 +31,8 @@ export function ContactPage() {
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
             Product information, quotations, private-label programmes and partnerships. Use the
-            form or call our Dubai or London office.
+            form or contact our headquarters in Dubai or our offices in the United Kingdom, India
+            and Ethiopia.
           </p>
 
           <div className="mt-16 grid gap-12 lg:grid-cols-12">
@@ -37,23 +41,7 @@ export function ContactPage() {
             </div>
             <aside className="lg:col-span-5">
               <div className="space-y-8">
-                {(
-                  [
-                    company.offices.uae,
-                    company.offices.uk,
-                    company.offices.india,
-                    company.offices.ethiopia,
-                  ] as Array<{
-                    label: string
-                    address: string
-                    operatingName?: string
-                    role?: string
-                    phone?: string
-                    phoneHref?: string
-                    phoneSecondary?: string
-                    phoneSecondaryHref?: string
-                  }>
-                ).map((office) => (
+                {officeList.map((office) => (
                   <div key={office.label}>
                     <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-muted">
                       {office.label}

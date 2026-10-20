@@ -2,13 +2,14 @@ import { BrandPortfolio } from '@/components/home/BrandPortfolio'
 import { Categories } from '@/components/home/Categories'
 import { CtaBanner } from '@/components/home/CtaBanner'
 import { DistributionBrandsSlider } from '@/components/home/DistributionBrandsSlider'
+import { DistributionPartner } from '@/components/home/DistributionPartner'
 import { GlobalPresence } from '@/components/home/GlobalPresence'
 import { Hero } from '@/components/home/Hero'
 import { Intro } from '@/components/home/Intro'
 import { Packaging } from '@/components/home/Packaging'
 import { PrivateLabel } from '@/components/home/PrivateLabel'
 import { Seo } from '@/components/seo/Seo'
-import { organizationJsonLd, websiteJsonLd } from '@/content/jsonld'
+import { distributionPartnerJsonLd, organizationJsonLd, websiteJsonLd } from '@/content/jsonld'
 import { pageMeta } from '@/content/seo'
 
 export function HomePage() {
@@ -17,7 +18,7 @@ export function HomePage() {
       <Seo
         title={pageMeta.home.title}
         description={pageMeta.home.description}
-        jsonLd={[organizationJsonLd, websiteJsonLd]}
+        jsonLd={[organizationJsonLd, websiteJsonLd, distributionPartnerJsonLd]}
       />
       <Hero />
       <Intro />
@@ -27,6 +28,7 @@ export function HomePage() {
       <PrivateLabel />
       <Packaging />
       <GlobalPresence />
+      <DistributionPartner />
       <CtaBanner />
     </>
   )

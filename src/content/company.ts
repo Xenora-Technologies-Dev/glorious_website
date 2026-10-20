@@ -100,6 +100,85 @@ export const company = {
   ],
 } as const
 
+/** Shared shape for office cards (Contact page, footer). */
+export type Office = {
+  label: string
+  address: string
+  operatingName?: string
+  role?: string
+  hours?: string
+  phone?: string
+  phoneHref?: string
+  phoneSecondary?: string
+  phoneSecondaryHref?: string
+}
+
+/** Offices in display order: UAE headquarters first. */
+export const officeList: readonly Office[] = [
+  company.offices.uae,
+  company.offices.uk,
+  company.offices.india,
+  company.offices.ethiopia,
+]
+
+export type PartnerAddress = {
+  id: 'office' | 'warehouse'
+  label: string
+  /** Address exactly as supplied by the partner; shown on the site. */
+  address: string
+  /** Structured parts for JSON-LD. */
+  streetAddress: string
+  addressLocality: string
+  addressCountry: string
+}
+
+export type DistributionPartner = {
+  id: string
+  name: string
+  /** Optional logo in /public; a text wordmark renders when absent. */
+  logo?: string
+  logoAlt?: string
+  addresses: PartnerAddress[]
+  // Contact fields stay unset until verified details are supplied.
+  phone?: string
+  phoneHref?: string
+  email?: string
+  website?: string
+  whatsapp?: string
+  whatsappHref?: string
+}
+
+export const distributionPartner: DistributionPartner = {
+  id: 'provision-hub',
+  name: 'Provision Hub FZ LLC',
+  addresses: [
+    {
+      id: 'office',
+      label: 'Office',
+      address:
+        'APT 1702, Ozone Cargo Building, Tourist Club Area, Near Electra Street, Abu Dhabi',
+      streetAddress: 'APT 1702, Ozone Cargo Building, Tourist Club Area, Near Electra Street',
+      addressLocality: 'Abu Dhabi',
+      addressCountry: 'AE',
+    },
+    {
+      id: 'warehouse',
+      label: 'Warehouse',
+      address: 'Green Sky Logistics, Musaffah, Sanaya M-44',
+      streetAddress: 'Green Sky Logistics, Sanaya M-44',
+      addressLocality: 'Musaffah',
+      addressCountry: 'AE',
+    },
+  ],
+}
+
+/** Google Maps search link built from the address text (country appended for accuracy). */
+export function mapsSearchUrl(address: string) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${address}, United Arab Emirates`,
+  )}`
+}
+
 export const sourcingOrigins = [
   { id: 'italy', name: 'Italy', x: 51.5, y: 38 },
   { id: 'spain', name: 'Spain', x: 46.5, y: 40 },

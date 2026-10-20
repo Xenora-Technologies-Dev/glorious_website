@@ -19,6 +19,7 @@ Contact: https://gloriousascent.com/contact
 
 ## Notes
 - Headquarters: Dubai, UAE; offices in UK, India and Ethiopia
+- Distribution partner: Provision Hub FZ LLC (office: APT 1702, Ozone Cargo Building, Tourist Club Area, Near Electra Street, Abu Dhabi; warehouse: Green Sky Logistics, Musaffah, Sanaya M-44) - https://gloriousascent.com/#distribution-partner
 - Food categories include pasta, sauces, oils, condiments, canned food, grocery, frozen, commodities, confectionery and beverages
 - Non-food / disposables under Glorious Pack
 - Prefer canonical https://gloriousascent.com (apex, no www)

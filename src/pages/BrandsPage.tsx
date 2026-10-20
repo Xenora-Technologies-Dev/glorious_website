@@ -8,31 +8,17 @@ import { breadcrumbJsonLd } from '@/content/jsonld'
 import { pageMeta } from '@/content/seo'
 import { gsap, useGSAP } from '@/lib/gsap'
 import { prefersReducedMotion } from '@/lib/animations'
-import { useEffect, useRef, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { getLenis } from '@/hooks/useSmoothScroll'
-import { getNavOffset, scrollMtClass } from '@/lib/nav'
+import { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { scrollMtClass } from '@/lib/nav'
 
 export function BrandsPage() {
-  const location = useLocation()
   const [active, setActive] = useState(brands[0].slug)
   const current = brands.find((brand) => brand.slug === active) ?? brands[0]
   const imageRef = useRef<HTMLImageElement>(null)
   const washRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    if (location.hash !== '#distribution') return
-    const el = document.getElementById('distribution')
-    if (!el) return
-    const offset = getNavOffset()
-    const lenis = getLenis()
-    const top = el.getBoundingClientRect().top + window.scrollY - offset
-    const id = window.setTimeout(() => {
-      if (lenis) lenis.scrollTo(el, { offset: -offset, duration: 1.05 })
-      else window.scrollTo({ top, behavior: 'smooth' })
-    }, 80)
-    return () => window.clearTimeout(id)
-  }, [location.hash, location.pathname])
+  // #distribution hash scrolling is handled globally by useSmoothScroll (Layout).
 
   useGSAP(
     () => {

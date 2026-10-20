@@ -1,4 +1,4 @@
-import { company } from '@/content/company'
+import { company, distributionPartner, officeList } from '@/content/company'
 import { conversionPaths, footerLinks } from '@/content/navigation'
 import { brands } from '@/content/brands'
 import { Container } from '@/components/ui/Container'
@@ -54,19 +54,8 @@ export function Footer() {
           </div>
         </div>
 
-                <div className="grid gap-10 border-b border-line-light py-14 sm:grid-cols-2 xl:grid-cols-4">
-          {Object.values(company.offices).map((office) => {
-            const detail = office as {
-              label: string
-              address: string
-              operatingName?: string
-              role?: string
-              hours?: string
-              phone?: string
-              phoneHref?: string
-              phoneSecondary?: string
-              phoneSecondaryHref?: string
-            }
+        <div className="grid gap-10 border-b border-line-light py-14 sm:grid-cols-2 xl:grid-cols-4">
+          {officeList.map((detail) => {
             return (
               <div key={detail.label}>
                 <p className="mb-3 text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">
@@ -95,6 +84,37 @@ export function Footer() {
               </div>
             )
           })}
+        </div>
+
+        <div
+          aria-labelledby="footer-distribution-partner"
+          className="grid gap-8 border-b border-line-light py-12 lg:grid-cols-12 lg:gap-10"
+          role="group"
+        >
+          <div className="lg:col-span-4">
+            <p
+              id="footer-distribution-partner"
+              className="mb-3 text-[11px] font-semibold tracking-[0.22em] uppercase text-gold"
+            >
+              Distribution Partner
+            </p>
+            <Link
+              to="/#distribution-partner"
+              className="text-sm font-semibold text-ivory hover:text-gold"
+            >
+              {distributionPartner.name}
+            </Link>
+          </div>
+          <dl className="grid gap-6 sm:grid-cols-2 lg:col-span-8">
+            {distributionPartner.addresses.map((item) => (
+              <div key={item.id}>
+                <dt className="mb-2 text-[10px] font-semibold tracking-[0.2em] uppercase text-ivory/50">
+                  {item.label}
+                </dt>
+                <dd className="max-w-sm text-sm leading-relaxed text-ivory/75">{item.address}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
         <div className="flex flex-col gap-6 py-10 lg:flex-row lg:items-center lg:justify-between">
